@@ -11,7 +11,7 @@ Projeto da matéria de Computação Gráfica utilizando OpenGL e Python
 >$ python3 -m pygame.examples.aliens </br>
 
 >`Instala o PyOpenGL no Python 3.x` </br>
->$ python3 -m pip install PyOpenGL PyOpenGL_accelerate --user </br>
+>$ pip3 install PyOpenGL PyOpenGL_accelerate </br>
 
 ### Windows
 > `Em Breve`

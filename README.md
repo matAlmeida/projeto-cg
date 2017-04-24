@@ -8,7 +8,7 @@ Projeto da matéria de Computação Gráfica utilizando OpenGL e Python
 
 >`Instala e testa o Pygame no Python 3.x` </br>
 >$ python3 -m pip install pygame --user </br>
->$ python3 -m pygame.example.aliens </br>
+>$ python3 -m pygame.examples.aliens </br>
 
 >`Instala o PyOpenGL no Python 3.x` </br>
 >$ python3 -m pip install PyOpenGL PyOpenGL_accelerate --user </br>

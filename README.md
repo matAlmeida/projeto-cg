@@ -14,7 +14,22 @@ Projeto da matéria de Computação Gráfica utilizando OpenGL e Python
 >$ pip3 install PyOpenGL PyOpenGL_accelerate </br>
 
 ### Windows
-> `Em Breve`
+> `Baixe e instale o Python3.x no site abaixo de acordo com a arquitetura do seu computador:` </br>
+> [`Python3.x`](https://www.python.org/downloads/windows/) </br>
+
+> `Baixe o PyOpenGL e o Pygame no site abaixo, de acordo com a sua arquitetura e com a versão do Python. (onde cp3x corresponde à versão do Python, no caso, Python 3.x).` </br>
+> `Como o site é muito grande, é aconselhável pesquisar o PyOpenGL e o Pygame pelo ctrl+f.` </br>
+> [`PyOpenGL e Pygame`](http://www.lfd.uci.edu/~gohlke/pythonlibs/) </br>
+
+> `Abra o CMD do Windows e navegue até a pasta em que está os arquivos que você baixou com o comando 'cd', exemplo:` </br>
+> $ cd Downloads
+> `Agora para instalar o PyOpenGL e o Pygame, utiliza-se o comando pip install 'nomeDoModulo', exemplo:` </br>
+> $ pip install PyOpenGL-3.1.1-cp3x-cp3xm-win_amd64.whl </br>
+> `E depois de instalado o PyOpenGL, instala o Pygame:` </br>
+> $ pip install pygame-1.9.3-cp3x-cp3xm-win_amd64.whl </br>
+
+> `Agora com os módulos já instalados, baixe e instale uma IDE. O link abaixo é da IDE PyCharm:` </br>
+> [`PyCharm`](https://www.jetbrains.com/pycharm/download/#section=windows) </br>
 
 ## Usando no codigo
 ```python

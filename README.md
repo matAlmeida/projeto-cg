@@ -38,6 +38,9 @@ from pygame.locals import *
 from OpenGL.GL import *
 from OpenGL.GLU import *
 ```
+## OBJETIVO
+> `Refazer os primeiros 36 projetos do site abaixo utilizando a versão 3 do Python e os pacotes PyOpenGL e o Pygame e fazer a documentação dos mesmos:`
+>[Tutorial OpenGL](http://lazyfoo.net/tutorials/SDL/index.php)
 
 ## Tutorial (em inglês)
 > [`Aqui`](https://pythonprogramming.net/opengl-pyopengl-python-pygame-tutorial/)

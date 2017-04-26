@@ -9,7 +9,7 @@ def main():
 
 	#Create Double Buffered Window
 	glutInitDisplayMode(GLUT_DOUBLE)
-	glutInitWindowSize(600, 800)
+	glutInitWindowSize(SCREEN_WIDTH,SCREEN_HEIGHT)
 	glutCreateWindow("OpenGL")
 
 	#Do post window/context creation initialization
@@ -21,7 +21,7 @@ def main():
 	glutDisplayFunc(render)
 
 	#Set main loop
-	glutTimerFunc(1000 // 10, runMainLoop,0)
+	glutTimerFunc(1000 // SCREEN_FPS, runMainLoop,0)
 
 	#Start GLUT main loop
 	glutMainLoop()

@@ -2,6 +2,11 @@ from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
 
+#Screen Constants
+SCREEN_WIDTH = 640;
+SCREEN_HEIGHT = 480;
+SCREEN_FPS = 60;
+
 def initGL():
 	#Initialize Projection Matrix
 	glMatrixMode(GL_PROJECTION)

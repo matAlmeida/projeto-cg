@@ -1,9 +1,6 @@
-import pygame
-import pygame.locals
-import OpenGL.GL
-import OpenGL.GLU
-import OpenGL.GLUT
-import OpenGL.GLUT.freeglut
+from OpenGL.GL import *
+from OpenGL.GLU import *
+from OpenGL.GLUT import *
 
 def initGL():
 	#Initialize Projection Matrix
@@ -25,11 +22,11 @@ def initGL():
 	return True
 
 def update():
-	return 0
+	pass
 
 def render():
 	#Clear color buffer
-	glCLear(GL_COLOR_BUFFER_BIT)
+	glClear(GL_COLOR_BUFFER_BIT)
 
 	#Render quad
 	glBegin(GL_QUADS)

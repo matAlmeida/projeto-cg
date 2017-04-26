@@ -2,14 +2,14 @@ from LUntil import *
 
 def main():
 	#Initialize FreeGLUT
-	glutInit(sys.argv)
+	glutInit([])
 
 	#Create OpenGL 2.1 context
 	glutInitContextVersion( 2, 1 );
 
 	#Create Double Buffered Window
 	glutInitDisplayMode(GLUT_DOUBLE)
-	displayWindowSize(SCREEN_WIDTH, SCREEN_HEIGHT)
+	glutInitWindowSize(600, 800)
 	glutCreateWindow("OpenGL")
 
 	#Do post window/context creation initialization
@@ -18,13 +18,13 @@ def main():
 		return 1
 
 	#Set rendering function
-	glutDisplayFUnc(render)
+	glutDisplayFunc(render)
 
 	#Set main loop
-	glutTimerFunc(1000 / SCREEN_FPS, runMainLoop,0)
+	glutTimerFunc(1000 // 10, runMainLoop,0)
 
 	#Start GLUT main loop
-	gultMainLoop()
+	glutMainLoop()
 
 	return 0
 

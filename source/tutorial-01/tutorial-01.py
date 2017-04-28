@@ -2,6 +2,8 @@ from LUntil import *
 
 def main():
 	#Initialize FreeGLUT
+	# Caso esteja dando erro nessa linha no linux é preciso instalar o freglut
+	# sudo apt-get install freeglut3-dev
 	glutInit([])
 
 	#Create OpenGL 2.1 context

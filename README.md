@@ -13,6 +13,10 @@ Projeto da matéria de Computação Gráfica utilizando OpenGL e Python
 >`Instala o PyOpenGL no Python 3.x` </br>
 >$ pip3 install PyOpenGL PyOpenGL_accelerate </br>
 
+>`Instala o pacote freeglut` </br>
+>`Este pacote tem a mesma finalidade do pygame, ele está sendo utilizado no projeto. O pygame foi só para teste.` </br>
+>$ sudo apt-get install freeglut3-dev </br>
+
 ### Windows
 > `Baixe e instale o Python3.x no site abaixo de acordo com a arquitetura do seu computador:` </br>
 > [`Python3.x`](https://www.python.org/downloads/windows/) </br>
@@ -22,7 +26,7 @@ Projeto da matéria de Computação Gráfica utilizando OpenGL e Python
 > [`PyOpenGL e Pygame`](http://www.lfd.uci.edu/~gohlke/pythonlibs/) </br>
 
 > `Abra o CMD do Windows e navegue até a pasta em que está os arquivos que você baixou com o comando 'cd', exemplo:` </br>
-> $ cd Downloads
+> $ cd Downloads </br>
 > `Agora para instalar o PyOpenGL e o Pygame, utiliza-se o comando pip install 'nomeDoModulo', exemplo:` </br>
 > $ pip install PyOpenGL-3.1.1-cp3x-cp3xm-win_amd64.whl </br>
 > `E depois de instalado o PyOpenGL, instala o Pygame:` </br>

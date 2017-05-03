@@ -1,6 +1,6 @@
 ################# DOCUMENTAÇÃO ###########################################################
 #
-# Autores: Levy Santiago, Matheus Almeida, Tulio campos e Jhonnathan Soares
+# Autores: Levy Santiago, Matheus Almeida, Tulio campos, Adson Cardoso Jhonnathan Soares
 #
 # Projeto Computação Gráfica
 #

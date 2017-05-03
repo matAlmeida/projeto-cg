@@ -181,9 +181,13 @@ def runMainLoop(val):
 	glutTimerFunc(1000 / SCREEN_FPS, runMainLoop, val)
 
 def handleKeys(key,x,y):
+	global gViewportMode
+	key = ord(key)
+	print("key: "+str(key))
 	#Se o usuario pressiona q
-	if(key == 'q'):
+	if(key == 113):
 		#Ciclos através de escalas de projeção
 		gViewportMode += 1
 		if(gViewportMode > VIEWPORT_MODE_RADAR):
 			gViewportMode = VIEWPORT_MODE_FULL
+		glutPostRedisplay()

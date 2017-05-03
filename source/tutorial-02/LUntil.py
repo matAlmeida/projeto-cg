@@ -86,15 +86,19 @@ def runMainLoop(val):
 	glutTimerFunc(1000 / SCREEN_FPS, runMainLoop, val)
 
 def handleKeys(key,x,y):
+	global gColorMode
+	global gProjectionScale
+	key = ord(key)
+	print ("key: "+str(key))
 	#Se o usuário pressiona q
-	print ("---",key)
-	if(key == 'q'):
+	if(key == 113):
 		#Altera modo de cor
 		if(gColorMode == COLOR_MODE_CYAN):
 			gColorMode = COLOR_MODE_MULTI;
 		else:
 			gColorMode = COLOR_MODE_CYAN;
-	elif(key == 'e'):
+		glutPostRedisplay()
+	elif(key == 101):
 		# Ciclos através de escalas de projeção
 		if(gProjectionScale == 1.0):
 			#Zoom out
@@ -102,8 +106,9 @@ def handleKeys(key,x,y):
 		elif(gProjectionScale == 2.0):
 			#Zoom in
 			gProjectionScale = 1.0;
+		glutPostRedisplay()
 
-		#Atualizando matriz de projeção
-		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
-		glOrtho(0.0, SCREEN_WIDTH * gProjectionScale, SCREEN_HEIGHT * gProjectionScale, 0.0, 1.0, -1.0);
+	#Atualizando matriz de projeção
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(0.0, SCREEN_WIDTH * gProjectionScale, SCREEN_HEIGHT * gProjectionScale, 0.0, 1.0, -1.0);

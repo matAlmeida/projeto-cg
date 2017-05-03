@@ -1,4 +1,4 @@
-from LUntil import *
+from LUtil import *
 
 def main():
 	#Inicializando FreeGLUT

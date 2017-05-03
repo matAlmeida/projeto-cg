@@ -1,0 +1,189 @@
+################# DOCUMENTAÇÃO ###########################################################
+#
+# Autores: Levy Santiago, Matheus Almeida, Tulio campos e Jhonnathan
+#
+# Projeto Computação Gráfica
+#
+##########################################################################################
+
+###############################################################################################################################
+# FUNÇÃO: initGL
+# DESCRIÇÃO: Inicializa recursos de inicialização do OpenGL, como por exemplo, a definição da cor de limpeza.
+# PARÂMETROS: Void
+# RETORNO:  True (Se obteve sucesso);
+#  		False (Se não obteve sucesso).
+# PROTÓTIPO: bool initGL(void)
+###############################################################################################################################
+
+###############################################################################################################################
+# FUNÇÃO: render
+# DESCRIÇÃO: Função onde serão renderizados todos os objetos que serão trabalhados.
+# PARÂMETROS: Void
+# RETORNO: Void
+# PROTÓTIPO: void render(void)
+###############################################################################################################################
+
+###############################################################################################################################
+# FUNÇÃO: runMainLoop
+# DESCRIÇÃO: Quando chamamos essa função, ele irá executar as funções do loop principal e definir uma chamada de volta para 
+#		executar-se novamente. Quando o callback é executado, ele irá executar as funções de loop principal e chamar-se 
+#		novamente em um 60 de segundo. Então, o que esse loop de retorno faz é garantir que as funções do loop principal sejam 
+#		chamadas a cada 60º de segundo para nos dar uma taxa de quadros de 60 quadros por segundo.
+# PARÂMETROS: Tempo de retorno (val).
+# RETORNO: Void
+# PROTÓTIPO: void render(void)
+###############################################################################################################################
+
+###############################################################################################################################
+# FUNÇÃO: glMatrixMode
+# DESCRIÇÃO: Especifica qual é a matriz atual.
+# PARÂMETROS: Variável mode (Especifica qual pilha de matriz é o destino para operações de matriz subsequentes.) Valores aceitos:
+#		GL_MODELVIEW, GL_PROJECTION e GL_TEXTURE. Sendo que o valor inicial é GL_MODELVIEW.
+# RETORNO: Void
+# PROTÓTIPO: void glMatrixMode(GLenum(mode))
+###############################################################################################################################
+
+###############################################################################################################################
+# FUNÇÃO: glLoadIdentity
+# DESCRIÇÃO: Substitui a matriz atual pela matriz identidade.
+# PARÂMETROS: Void
+# RETORNO: Void
+# PROTÓTIPO: void glLoadIdentity(void)
+###############################################################################################################################
+
+###############################################################################################################################
+# FUNÇÃO: glClearColor
+# DESCRIÇÃO: Especifica valores vermelho, verde, azul e alfa 
+#		usados  para a inicialização do buffer de cores. 
+#		Os valores iniciais são todos iguais a 0.
+# PARÂMETROS: Variáveis red, green, blue e alpha.
+# RETORNO: Void
+# PROTÓTIPO: void glClearColor( GLfloat ( red ) , GLfloat ( green ) , GLfloat ( blue ) , GLfloat ( alpha ) )
+###############################################################################################################################
+
+###############################################################################################################################
+# FUNÇÃO: glGetError
+# DESCRIÇÃO: Retorna uma intormação de erro. A cada erro detectado é atribuído um código numérico e um nome simbólico. Quando
+#		ocorre um erro, o sinalizador de erro é definido para o valor de código de erro apropriado.
+# PARÂMETROS: Void
+# RETORNO: Valor da flag de erro do tipo GLenum.
+# PROTÓTIPO:  GLenum glGetError(void)
+###############################################################################################################################
+
+###############################################################################################################################
+# FUNÇÃO: glClear
+# DESCRIÇÃO: Limpa os buffers para valores predefinidos por glClearDepth ou glClearStencil.
+# PARÂMETROS: Máscaras (tipo GLbitfield) que indicam os buffers a serem limpos. As três máscaras são: GL_COLOR_BUFFER_BIT, 
+#		GL_DEPTH_BUFFER_BIT e GL_STENCIL_BUFFER_BIT.
+# RETORNO: Void
+# PROTÓTIPO: void glClear(GLbitfield mask)
+###############################################################################################################################
+
+###############################################################################################################################
+# FUNÇÃO: glBegin
+# DESCRIÇÃO: Delimita os vértices de um tipo primitivo ou um grupo de tipos primitivos.
+# PARÂMETROS: Variável mode (Especifica os tipos primitivos que serão criados a partir dos vértices presentes entre o glBegin e
+#		o subsequente glEnd) Constantes aceitas: GL_POINTS, GL_LINES, GL_LINE_STRIP, GL_LINE_LOOP, GL_TRIANGLES, 
+#		GL_TRIANGLE_STRIP, GL_TRIANGLE_FAN, GL_QUADS, GL_QUAD_STRIP e GL_POLYGON.
+# RETORNO: Void
+# PROTÓTIPO: void glBegin(GLenum(mode))
+###############################################################################################################################
+
+###############################################################################################################################
+# FUNÇÃO: glVertex
+# DESCRIÇÃO: Especifica um vértice.
+# PARÂMETROS: Coordenadas x,y,z e w do vértice. Nem todos os parâmetros estão presentes em todas as formas do comando.
+# RETORNO: Void
+# PROTÓTIPOS:   void glVertex(* args)
+#		Formas do comando:
+#		void  glVertex2d( GLdouble ( x ) , GLdouble ( y ) )
+#		void  glVertex2dv( const GLdouble * ( v ) )
+#		void  glVertex2f( GLfloat ( x ) , GLfloat ( y ) )
+#		void  glVertex2fv( const GLfloat * ( v ) )
+#		void  glVertex2i( GLint ( x ) , GLint ( y ) )
+#		void  glVertex2iv( const GLint * ( v ) )
+#		void  glVertex2s( GLshort ( x ) , GLshort ( y ) )
+#		void  glVertex2sv( const GLshort * ( v ) )
+#		void  glVertex3d( GLdouble ( x ) , GLdouble ( y ) , GLdouble ( z ) )
+#		void  glVertex3dv( const GLdouble * ( v ) )
+#		void  glVertex3f( GLfloat ( x ) , GLfloat ( y ) , GLfloat ( z ) )
+#		void  glVertex3fv( const GLfloat * ( v ) )
+#		void  glVertex3i( GLint ( x ) , GLint ( y ) , GLint ( z ) )
+#		void  glVertex3iv( const GLint * ( v ) )
+#		void  glVertex3s( GLshort ( x ) , GLshort ( y ) , GLshort ( z ) )
+#		void  glVertex3sv( const GLshort * ( v ) )
+#		void  glVertex4d( GLdouble ( x ) , GLdouble ( y ) , GLdouble ( z ) , GLdouble ( w ) )
+#		void  glVertex4dv( const GLdouble * ( v ) )
+#		void  glVertex4f( GLfloat ( x ) , GLfloat ( y ) , GLfloat ( z ) , GLfloat ( w ) )
+#		void  glVertex4fv( const GLfloat * ( v ) )
+#		void  glVertex4i( GLint ( x ) , GLint ( y ) , GLint ( z ) , GLint ( w ) )
+#		void  glVertex4iv( const GLint * ( v ) )
+#		void  glVertex4s( GLshort ( x ) , GLshort ( y ) , GLshort ( z ) , GLshort ( w ) )
+#		void  glVertex4sv( const GLshort * ( v ) )
+###############################################################################################################################
+
+###############################################################################################################################
+# FUNÇÃO: glutSwapBuffers
+# DESCRIÇÃO: Promove a troca do buffer secundário (atual) e seu conteúdo para se tornar o conteúdo do buffer de frente.
+# PARÂMETROS: Void
+# RETORNO: Void
+# PROTÓTIPO: void glutSwapBuffers(void)
+###############################################################################################################################
+
+###############################################################################################################################
+# FUNÇÃO: glutTimerFunc
+# DESCRIÇÃO: Registra um tempo de retorno a ser acionado em um número especificado de milisegundos.
+# PARÂMETROS: Milissegundos tipo unsigned int, ponteiro a função do tipo void (*func)(int value) e o tempo de retorno .
+# RETORNO: Void
+# PROTÓTIPO: void glutTimerFunc(unsigned int msecs,void (*func)(int value), int value)
+###############################################################################################################################
+
+###############################################################################################################################
+# FUNÇÃO: glutInitContextVersion
+# DESCRIÇÃO: Utilizada para definir a versão de contexto do OpenGL. Lembrando que esta função não faz parte do GLUT
+# PARÂMETROS: Numeração da versão, por exemplo, versão x.y, definiremos como glutInitContextVersion(x,y);
+# RETORNO: Void
+# PROTÓTIPO: void glutInitContextVersion(int num1, int num2);
+###############################################################################################################################
+
+###############################################################################################################################
+# FUNÇÃO: glutInitDisplayMode
+# DESCRIÇÃO: Define um modo de display inicial.
+# PARÂMETROS: Variável modo (Modo de exibição). Permite as seguintes máscaras: GLUT_RGBA, GLUT_RGB, GLUT_INDEX, GLUT_SINGLE,
+#		GLUT_DOUBLE, GLUT_ACCUM, GLUT_ALPHA, GLUT_DEPTH, GLUT_STENCIL, GLUT_MULTISAMPLE, GLUT_STEREO e  GLUT_LUMINANCE.
+# RETORNO: Void
+# PROTÓTIPO: void glutInitDisplayMode(unsigned int mode);
+###############################################################################################################################
+
+###############################################################################################################################
+# FUNÇÃO: glutInitWindowSize
+# DESCRIÇÃO: Define o tamanho inicial da janela.
+# PARÂMETROS: Variáveis inteiras largura e altura (width e height) em pixels.
+# RETORNO: Void
+# PROTÓTIPO: void glutInitWindowSize(int width, int height);
+###############################################################################################################################
+
+###############################################################################################################################
+# FUNÇÃO: glutCreateWindow
+# DESCRIÇÃO: Cria uma nova janela.
+# PARÂMETROS: Uma variável nome (ponteiro a char), que vai ser o nome da janela criada.
+# RETORNO: O valor retornado é um identificador inteiro pequeno exclusivo para a janela. O intervalo de identificadores alocados
+#		começa em um. 
+# PROTÓTIPO: int glutCreateWindow(char *name);
+###############################################################################################################################
+
+###############################################################################################################################
+# FUNÇÃO: glutDisplayFunc
+# DESCRIÇÃO: Define um display de retorno para a janela atual.
+# PARÂMETROS: Uma função com retorno e parâmetro void.
+# RETORNO: Void
+# PROTÓTIPO: void glutDisplayFunc(void (*func)(void));
+###############################################################################################################################
+
+###############################################################################################################################
+# FUNÇÃO: glutMainLoop
+# DESCRIÇÃO: Faz os eventos GLUT entrarem em processo de loop.
+# PARÂMETROS: Void
+# RETORNO: Void
+# PROTÓTIPO: void glutMainLoop(void);
+###############################################################################################################################

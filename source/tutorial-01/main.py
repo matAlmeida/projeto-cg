@@ -1,31 +1,31 @@
 from LUntil import *
 
 def main():
-	#Initialize FreeGLUT
+	#Inicializando FreeGLUT
 	# Caso esteja dando erro nessa linha no linux é preciso instalar o freglut
 	# sudo apt-get install freeglut3-dev
 	glutInit([])
 
-	#Create OpenGL 2.1 context
+	#Criando contexto OpenGL 2.1
 	glutInitContextVersion( 2, 1 );
 
-	#Create Double Buffered Window
+	#Criando janela dupla de buffer
 	glutInitDisplayMode(GLUT_DOUBLE)
 	glutInitWindowSize(SCREEN_WIDTH,SCREEN_HEIGHT)
 	glutCreateWindow("OpenGL")
 
-	#Do post window/context creation initialization
+	#Chamando a função de inicialização da biblioteca gráfica
 	if(initGL() == False):
 		print("Unable to initialize graphics library!\n")
 		return 1
 
-	#Set rendering function
+	#Setando a função de renderização
 	glutDisplayFunc(render)
 
-	#Set main loop
+	#Definindo main loop
 	glutTimerFunc(1000 // SCREEN_FPS, runMainLoop,0)
 
-	#Start GLUT main loop
+	#Iniciando GLUT main loop
 	glutMainLoop()
 
 	return 0

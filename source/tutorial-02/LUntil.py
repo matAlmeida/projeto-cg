@@ -23,7 +23,7 @@ def initGL():
 	glLoadIdentity();
 	glOrtho(0.0, SCREEN_WIDTH, SCREEN_HEIGHT, 0.0, 1.0, -1.0);
 
-	#Inicializando Matriz de modelo de visão (Modelview)
+	#Inicializando Matriz de modelo de exibição (Modelview)
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
@@ -65,12 +65,12 @@ def render():
 		#Se não é ciano então pode-se assumir que deve ser multicolor
 		glBegin(GL_QUADS);
 		glColor3f(1,0,0);
-		glColor3f(1,1,0);
-		glColor3f(0,1,0);
-		glColor3f(0,0,1);
 		glVertex2f(-50, -50);
+		glColor3f(1,1,0);
 		glVertex2f(50, -50);
+		glColor3f(0,1,0);
 		glVertex2f(50, 50);
+		glColor3f(0,0,1);
 		glVertex2f(-50, 50);
 		glEnd();
 
@@ -78,15 +78,16 @@ def render():
 	glutSwapBuffers();
 
 def runMainLoop(val):
-	#Frame logic
+	#Lógica do Frame
 	update()
 	render()
 
-	#Run frame one more time
+	#Executando o frame mais uma vez
 	glutTimerFunc(1000 / SCREEN_FPS, runMainLoop, val)
 
 def handleKeys(key,x,y):
 	#Se o usuário pressiona q
+	print ("---",key)
 	if(key == 'q'):
 		#Altera modo de cor
 		if(gColorMode == COLOR_MODE_CYAN):

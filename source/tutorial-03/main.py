@@ -7,7 +7,7 @@ def main():
 	glutInit([]);
 
 	#Criando contexto OpenGL 2.1
-	glutInitContextVersion( 2, 1 );
+	glutInitContextVersion(2, 1);
 
 	#Criando janela dupla de buffer
 	glutInitDisplayMode(GLUT_DOUBLE);

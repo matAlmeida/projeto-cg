@@ -1,6 +1,6 @@
 ################# DOCUMENTAÇÃO ###########################################################
 #
-# Autores: Levy Santiago, Matheus Almeida, Tulio campos e Jhonnathan
+# Autores: Levy Santiago, Matheus Almeida, Tulio campos e Jhonnathan Soares
 #
 # Projeto Computação Gráfica
 #
@@ -186,4 +186,96 @@
 # PARÂMETROS: Void
 # RETORNO: Void
 # PROTÓTIPO: void glutMainLoop(void);
+###############################################################################################################################
+
+## A partir do tutorial-02:
+
+###############################################################################################################################
+# FUNÇÃO: glOrtho
+# DESCRIÇÃO: Multiplica a matriz atual por uma matriz ortográfica (2D) com os valores right, left, bottom, top, near e far.
+# PARÂMETROS: Coordenadas para os planos de corte vertical esquerdo e direito (left, right);
+#		Coordenadas para os planos de corte horizontal superior e inferior (bottom, top);
+#		A distância para os planos de corte de profundidade mais próximo e afastado (nearVal, farVal).
+# RETORNO: Void
+# PROTÓTIPO: glOrtho(GLdouble(left), GLdouble(right), GLdouble(bottom), GLdouble(top), GLdouble(nearVal), GLdouble(farVal));
+###############################################################################################################################
+
+###############################################################################################################################
+# FUNÇÃO: glTranslate
+# DESCRIÇÃO: Multiplica a matriz atual por uma matriz de translação.
+# PARÂMETROS: Coordenadas x, y e z do vetor de translação.
+# RETORNO: Void
+# PROTÓTIPO:  glTranslate()
+#		Formas do comando:
+#		 glTranslated(GLdouble(x), GLdouble(y), GLdouble(z));
+#		 glTranslatef(GLfloat(x), GLfloat(y), GLfloat(z));
+###############################################################################################################################
+
+###############################################################################################################################
+# FUNÇÃO: glColor
+# DESCRIÇÃO: Especifica a cor atual
+# PARÂMETROS: Valores red, green, blue e alpha.
+# RETORNO: Void
+# PROTÓTIPO:  glColor(*args)
+#		Formas do comando:
+#		void glColor3b( GLbyte ( red ) , GLbyte ( green ) , GLbyte ( blue ) );
+#		void glColor3bv( const GLbyte * ( v ) );
+#		void glColor3d( GLdouble ( red ) , GLdouble ( green ) , GLdouble ( blue ) );
+#		void glColor3dv( const GLdouble * ( v ) );
+#		void glColor3f( GLfloat ( red ) , GLfloat ( green ) , GLfloat ( blue ) );
+#		void glColor3fv( const GLfloat * ( v ) );
+#		void glColor3i( GLint ( red ) , GLint ( green ) , GLint ( blue ) );
+#		void glColor3iv( const GLint * ( v ) );
+#		void glColor3s( GLshort ( red ) , GLshort ( green ) , GLshort ( blue ) );
+#		void glColor3sv( const GLshort * ( v ) );
+#		void glColor3ub( GLubyte ( red ) , GLubyte ( green ) , GLubyte ( blue ) );
+#		void glColor3ubv( const GLubyte * ( v ) );
+#		void glColor3ui( GLuint ( red ) , GLuint ( green ) , GLuint ( blue ) );
+#		void glColor3uiv( const GLuint * ( v ) );
+#		void glColor3us( GLushort ( red ) , GLushort ( green ) , GLushort ( blue ) );
+#		void glColor3usv( const GLushort * ( v ) );
+#		void glColor4b( GLbyte ( red ) , GLbyte ( green ) , GLbyte ( blue ) , GLbyte ( alpha ) );
+#		void glColor4bv( const GLbyte * ( v ) );
+#		void glColor4d( GLdouble ( red ) , GLdouble ( green ) , GLdouble ( blue ) , GLdouble ( alpha ) );
+#		void glColor4dv( const GLdouble * ( v ) );
+#		void glColor4f( GLfloat ( red ) , GLfloat ( green ) , GLfloat ( blue ) , GLfloat ( alpha ) );
+#		void glColor4fv( const GLfloat * ( v ) );
+#		void glColor4i( GLint ( red ) , GLint ( green ) , GLint ( blue ) , GLint ( alpha ) );
+#		void glColor4iv( const GLint * ( v ) );
+#		void glColor4s( GLshort ( red ) , GLshort ( green ) , GLshort ( blue ) , GLshort ( alpha ) );
+#		void glColor4sv( const GLshort * ( v ) );
+#		void glColor4ub( GLubyte ( red ) , GLubyte ( green ) , GLubyte ( blue ) , GLubyte ( alpha ) );
+#		void glColor4ubv( const GLubyte * ( v ) );
+#		void glColor4ui( GLuint ( red ) , GLuint ( green ) , GLuint ( blue ) , GLuint ( alpha ) );
+#		void glColor4uiv( const GLuint * ( v ) );
+#		void glColor4us( GLushort ( red ) , GLushort ( green ) , GLushort ( blue ) , GLushort ( alpha ) );
+#		void glColor4usv( const GLushort * ( v ) );
+###############################################################################################################################
+
+###############################################################################################################################
+# FUNÇÃO: handleKeys
+# DESCRIÇÃO: Essa função pega um valor ASCII de uma tecla pressionada e a posição atual do mouse. Ela simplesmente alterna a
+#		flag boleana quando a tecla é pressionada.
+# PARÂMETROS: Valor da tecla pressionada (key) e a coordenada x e y da posição do mouse.
+# RETORNO: Void
+# PROTÓTIPO: void handleKeys(unsigned char key,int x,int y);
+###############################################################################################################################
+
+###############################################################################################################################
+# FUNÇÃO: glutKeyboardFunc
+# DESCRIÇÃO: Especifica a tecla de retorno do teclado para a janela atual.
+# PARÂMETROS: A nova função de retorno do teclado.
+# RETORNO: Void
+# PROTÓTIPO: void glutKeyboardFunc(void (*func)(unsigned char key,int x, int y));
+###############################################################################################################################
+
+## A partir do tutorial-03:
+
+###############################################################################################################################
+# FUNÇÃO: glViewport
+# DESCRIÇÃO: Define um modo de exibição de janela (viewport).
+# PARÂMETROS: x e y: especificam o canto inferior esquerdo do retângulo da janela de visualização em pixels. Valor inicial (0,0)
+#		width e height: especificam a largura e altura da viewport.
+# RETORNO: Void
+# PROTÓTIPO: glViewport( GLint ( x ) , GLint ( y ) , GLsizei ( width ) , GLsizei ( height ) );
 ###############################################################################################################################

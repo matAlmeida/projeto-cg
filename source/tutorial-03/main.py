@@ -33,12 +33,4 @@ def main():
 
 	return 0;
 
-def handleKeys(key,x,y):
-	#Se o usuario pressiona q
-	if(key == 'q'):
-		#Ciclos através de escalas de projeção
-		gViewportMode += 1
-		if(gViewportMode > VIEWPORT_MODE_RADAR):
-			gViewportMode = VIEWPORT_MODE_FULL
-
 main()

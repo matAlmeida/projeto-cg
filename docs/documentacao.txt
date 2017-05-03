@@ -31,7 +31,7 @@
 #		chamadas a cada 60º de segundo para nos dar uma taxa de quadros de 60 quadros por segundo.
 # PARÂMETROS: Tempo de retorno (val).
 # RETORNO: Void
-# PROTÓTIPO: void render(void)
+# PROTÓTIPO: void runMainLoop(val)
 ###############################################################################################################################
 
 ###############################################################################################################################

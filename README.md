@@ -6,12 +6,8 @@ Projeto da matéria de Computação Gráfica utilizando OpenGL e Python
 >`Instala o pip que gerencia os modulos no Python3.x` </br>
 >$ sudo apt-get install python3-pip </br>
 
->`Instala e testa o Pygame no Python 3.x` </br>
->$ python3 -m pip install pygame --user </br>
->$ python3 -m pygame.examples.aliens </br>
-
 >`Instala o PyOpenGL no Python 3.x` </br>
->$ pip3 install PyOpenGL PyOpenGL_accelerate </br>
+>$ sudo pip3 install PyOpenGL PyOpenGL_accelerate </br>
 
 >`Instala o pacote freeglut` </br>
 >`Este pacote tem a mesma finalidade do pygame, ele está sendo utilizado no projeto. O pygame foi só para teste.` </br>
@@ -37,10 +33,9 @@ Projeto da matéria de Computação Gráfica utilizando OpenGL e Python
 
 ## Usando no codigo
 ```python
-import pygame
-from pygame.locals import *
 from OpenGL.GL import *
 from OpenGL.GLU import *
+from OpenGL.GLUT import *
 ```
 ## OBJETIVO
 > `Refazer os primeiros 36 projetos do site abaixo utilizando a versão 3 do Python e os pacotes PyOpenGL e o Pygame e fazer a documentação dos mesmos:`

@@ -19,7 +19,7 @@ class LTexture:
 	def freeTexture(self):
 		#Deletando textura
 		if(self.mTextureID != 0):
-			glDeleteTextures(1,mTextureID)
+			glDeleteTextures(1,self.mTextureID)
 			self.mTextureID = 0
 		mTextureWidth = 0
 		mTextureHeight = 0
@@ -73,9 +73,9 @@ class LTexture:
 			imagem = im.tobytes("raw","RGBA",0,-1)
 			textureLoaded = self.loadTextureFromPixels32(imagem,im.size[0],im.size[1])
 		im.close()
-		if(~textureLoaded):
+		if(textureLoaded == False):
 			print("Não foi possível carregar a imagem!")
-			return textureLoaded
+		return textureLoaded
 
 	def render(self,x,y):
 		#Se a textura existel

@@ -71,7 +71,6 @@ class LTexture:
 		if(im != None):
 			#Criando a textura a partir dos pixels do arquivo
 			imagem = im.tobytes("raw","RGBA",0,-1)
-			#end = hex(id(imagem))
 			textureLoaded = self.loadTextureFromPixels32(imagem,im.size[0],im.size[1])
 		im.close()
 		if(~textureLoaded):

@@ -1,4 +1,4 @@
-from LUtil import *
+﻿from LUtil import *
 
 def main():
 	#Inicializando FreeGLUT
@@ -12,7 +12,7 @@ def main():
 	#Criando janela dupla de buffer
 	glutInitDisplayMode(GLUT_DOUBLE)
 	glutInitWindowSize(SCREEN_WIDTH,SCREEN_HEIGHT)
-	glutCreateWindow("OpenGL")
+	glutCreateWindow(b"OpenGL")
 
 	#Chamando a função de inicialização da biblioteca gráfica
 	if(initGL() == False):

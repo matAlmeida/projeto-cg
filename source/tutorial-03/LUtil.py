@@ -178,7 +178,7 @@ def runMainLoop(val):
 	render()
 
 	#Run frame one more time
-	glutTimerFunc(1000 / SCREEN_FPS, runMainLoop, val)
+	glutTimerFunc(1000 // SCREEN_FPS, runMainLoop, val)
 
 def handleKeys(key,x,y):
 	global gViewportMode

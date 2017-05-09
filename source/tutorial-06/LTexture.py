@@ -2,6 +2,7 @@ from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
 from PIL import Image
+from PIL.Image import open
 
 class LTexture:
 	#Inicializando textura ID
@@ -32,14 +33,17 @@ class LTexture:
 		self.freeTexture(self)
 
 		#Obtém as dimensões da textura
-		mTextureWidth = width
-		mTextureHeight = height
+		self.mTextureWidth = width
+		self.mTextureHeight = height
 
 		#Gera textura ID
-		texture = glGenTextures(1,self.mTextureID)
+		glGenTextures(1,self.mTextureID)
+
+		#Define a ID da textura
+		self.mTextureID = 1
 
 		#Cria textura ID
-		glBindTexture(GL_TEXTURE_2D,texture)
+		glBindTexture(GL_TEXTURE_2D,self.mTextureID)
 		glPixelStorei(GL_UNPACK_ALIGNMENT,1)
 
 		#Gera textura
@@ -63,10 +67,11 @@ class LTexture:
 		textureLoaded = False
 
 		#Gerando e Definindo uma imagem atual
-		im = Image.open(imagem)
+		im = open(imagem)
 		if(im != None):
 			#Criando a textura a partir dos pixels do arquivo
 			imagem = im.tobytes("raw","RGBA",0,-1)
+			#end = hex(id(imagem))
 			textureLoaded = self.loadTextureFromPixels32(imagem,im.size[0],im.size[1])
 		im.close()
 		if(~textureLoaded):
@@ -77,24 +82,25 @@ class LTexture:
 		#Se a textura existel
 		if(self.mTextureID != 0):
 			#Remove quaisquer transformações anteriores
-			glLOadIdentity()
+			glLoadIdentity()
 
 			#Movendo para o ponto de renderização
 			glTranslatef(x,y,0)
 
 			#Definindo textura ID
-			glBindTexture(GL_TEXTURE_2D,mTextureID)
+			glBindTexture(GL_TEXTURE_2D,self.mTextureID)
 
 			#Renderizando quadrados texturizados
 			glBegin(GL_QUADS)
 			glTexCoord2f(0,0)
-			glVertex2f(1,0)
+			glVertex2f(0,self.mTextureHeight)
 			glTexCoord2f(1,0)
-			glVertex2f(mTextureWidth,0)
+			glVertex2f(self.mTextureWidth,self.mTextureHeight)
 			glTexCoord2f(1,1)
-			glVertex2f(mTextureWidth,mTextureHeight)
+			glVertex2f(self.mTextureWidth,0)
 			glTexCoord2f(0,1)
-			glVertex2f(0,mTextureHeight)
+			glVertex2f(0,0)
+			glEnd()
 
 	def getTextureID(self):
 		return self.mTextureID

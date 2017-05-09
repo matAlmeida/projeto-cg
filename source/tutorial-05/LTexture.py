@@ -1,4 +1,4 @@
-from OpenGL.GL import *
+﻿from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
 
@@ -31,11 +31,14 @@ class LTexture:
 		self.freeTexture(self)
 
 		#Obtém as dimensões da textura
-		mTextureWidth = width
-		mTextureHeight = height
+		self.mTextureWidth = width
+		self.mTextureHeight = height
 
 		#Gera textura ID
 		texture = glGenTextures(1,self.mTextureID)
+
+		#Define a ID da textura
+		self.mTextureID = 1
 
 		#Cria textura ID
 		glBindTexture(GL_TEXTURE_2D,self.mTextureID)
@@ -61,24 +64,25 @@ class LTexture:
 		#Se a textura existel
 		if(self.mTextureID != 0):
 			#Remove quaisquer transformações anteriores
-			glLOadIdentity()
+			glLoadIdentity()
 
 			#Movendo para o ponto de renderização
 			glTranslatef(x,y,0)
 
 			#Definindo textura ID
-			glBindTexture(GL_TEXTURE_2D,mTextureID)
+			glBindTexture(GL_TEXTURE_2D,self.mTextureID)
 
 			#Renderizando quadrados texturizados
 			glBegin(GL_QUADS)
 			glTexCoord2f(0,0)
 			glVertex2f(1,0)
 			glTexCoord2f(1,0)
-			glVertex2f(mTextureWidth,0)
+			glVertex2f(self.mTextureWidth,0)
 			glTexCoord2f(1,1)
-			glVertex2f(mTextureWidth,mTextureHeight)
+			glVertex2f(self.mTextureWidth,self.mTextureHeight)
 			glTexCoord2f(0,1)
-			glVertex2f(0,mTextureHeight)
+			glVertex2f(0,self.mTextureHeight)
+			glEnd()
 
 	def getTextureID(self):
 		return self.mTextureID

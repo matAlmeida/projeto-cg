@@ -1,4 +1,4 @@
-from OpenGL.GL import *
+﻿from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
 from LTexture import *
@@ -91,4 +91,4 @@ def runMainLoop(val):
 	render()
 
 	#Executando o frame mais uma vez
-	glutTimerFunc(1000 / SCREEN_FPS, runMainLoop, val)
+	glutTimerFunc(1000 // SCREEN_FPS, runMainLoop, val)

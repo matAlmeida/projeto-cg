@@ -19,8 +19,8 @@ class LTexture:
 		if(self.mTextureID != 0):
 			glDeleteTextures(1,mTextureID)
 			self.mTextureID = 0
-		mTextureWidth = 0
-		mTextureHeight = 0
+		self.mTextureWidth = 0
+		self.mTextureHeight = 0
 
 	def __del__(self):
 		#Limpa dados da textura se preciso

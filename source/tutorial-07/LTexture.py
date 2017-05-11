@@ -1,8 +1,4 @@
-from OpenGL.GL import *
-from OpenGL.GLU import *
-from OpenGL.GLUT import *
-from PIL import Image
-from PIL.Image import open
+from LFRect import *
 
 class LTexture:
 	#Inicializando textura ID
@@ -77,11 +73,28 @@ class LTexture:
 			print("Não foi possível carregar a imagem!")
 		return textureLoaded
 
-	def render(self,x,y):
-		#Se a textura existel
+	def render(self,x,y,clip = None):
+		#Se a textura existe
 		if(self.mTextureID != 0):
 			#Remove quaisquer transformações anteriores
 			glLoadIdentity()
+
+			#Coordenadas de textura
+			texTop = 0.0
+			texBottom = 1.0
+			texLeft = 0.0
+			texRight = 1.0
+
+			#Coordenadas de vértice
+			quadWidth = mTextureWidth
+			quadHeight = mTextureHeight
+
+			if(clip != None):
+				#Coordenadas de textura
+				texLeft = clip.getX() / mTextureWidth
+				texRight = (clip.getY() + clip.getW()) / mTextureWidth
+				texTop = clip.getY() / mTextureHeight
+				texBottom = (clip.)
 
 			#Movendo para o ponto de renderização
 			glTranslatef(x,y,0)

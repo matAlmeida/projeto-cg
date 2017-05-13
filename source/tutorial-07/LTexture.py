@@ -40,7 +40,6 @@ class LTexture:
 
 		#Cria textura ID
 		glBindTexture(GL_TEXTURE_2D,self.mTextureID)
-		glPixelStorei(GL_UNPACK_ALIGNMENT,1)
 
 		#Gera textura
 		glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,width,height,0,GL_RGBA,GL_UNSIGNED_BYTE,pixels)
@@ -63,7 +62,7 @@ class LTexture:
 		textureLoaded = False
 
 		#Gerando e Definindo uma imagem atual
-		im = open(imagem)
+		im = open(imagem).convert("RGBA")
 		if(im != None):
 			#Criando a textura a partir dos pixels do arquivo
 			imagem = im.tobytes("raw","RGBA",0,-1)
@@ -73,7 +72,7 @@ class LTexture:
 			print("Não foi possível carregar a imagem!")
 		return textureLoaded
 
-	def render(self,x,y,clip = None):
+	def render(self,x,y,clip):
 		#Se a textura existe
 		if(self.mTextureID != 0):
 			#Remove quaisquer transformações anteriores
@@ -86,15 +85,19 @@ class LTexture:
 			texRight = 1.0
 
 			#Coordenadas de vértice
-			quadWidth = mTextureWidth
-			quadHeight = mTextureHeight
+			quadWidth = self.mTextureWidth
+			quadHeight = self.mTextureHeight
 
 			if(clip != None):
 				#Coordenadas de textura
-				texLeft = clip.getX() / mTextureWidth
-				texRight = (clip.getY() + clip.getW()) / mTextureWidth
-				texTop = clip.getY() / mTextureHeight
-				texBottom = (clip.)
+				texLeft = clip.x / self.mTextureWidth
+				texRight = (clip.x + clip.w) / self.mTextureWidth
+				texTop = clip.y / self.mTextureHeight
+				texBottom = (clip.y + clip.h) / self.mTextureHeight
+
+				#Coordenadas de vertice
+				quadWidth = clip.w
+				quadHeight = clip.h
 
 			#Movendo para o ponto de renderização
 			glTranslatef(x,y,0)
@@ -104,14 +107,14 @@ class LTexture:
 
 			#Renderizando quadrados texturizados
 			glBegin(GL_QUADS)
-			glTexCoord2f(0,0)
-			glVertex2f(0,self.mTextureHeight)
-			glTexCoord2f(1,0)
-			glVertex2f(self.mTextureWidth,self.mTextureHeight)
-			glTexCoord2f(1,1)
-			glVertex2f(self.mTextureWidth,0)
-			glTexCoord2f(0,1)
+			glTexCoord2f(texLeft,texTop)
 			glVertex2f(0,0)
+			glTexCoord2f(texRight,texTop)
+			glVertex2f(quadWidth,0)
+			glTexCoord2f(texRight,texBottom)
+			glVertex2f(quadWidth,quadHeight)
+			glTexCoord2f(texLeft,texBottom)
+			glVertex2f(0,quadHeight)
 			glEnd()
 
 	def getTextureID(self):

@@ -5,13 +5,13 @@ from PIL import Image
 from PIL.Image import open
 
 class LTexture:
-	#Inicializando textura ID
 	mTextureID = 0
 	mTextureWidth = 0
 	mTextureHeight = 0
 	def __init__(self):
-		#Inicializando dimensões da textura
+		#Inicializando ID da textura
 		self.mTextureID = 0
+		#Inicializando dimensões da textura
 		self.mTextureWidth = 0
 		self.mTextureHeight = 0
 

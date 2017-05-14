@@ -1,13 +1,13 @@
 from LFRect import *
 
 class LTexture:
-	#Inicializando textura ID
 	mTextureID = 0
 	mTextureWidth = 0
 	mTextureHeight = 0
 	def __init__(self):
-		#Inicializando dimensões da textura
+		#Inicializando textura ID
 		self.mTextureID = 0
+		#Inicializando dimensões da textura
 		self.mTextureWidth = 0
 		self.mTextureHeight = 0
 

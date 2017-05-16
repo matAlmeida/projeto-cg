@@ -1,21 +1,18 @@
-from OpenGL.GL import *
-from OpenGL.GLU import *
-from OpenGL.GLUT import *
-from PIL import Image
-from PIL.Image import open
+from LFRect import *
 
 class LTexture:
-	#Inicializando textura ID
 	mTextureID = 0
 	mTextureWidth = 0
 	mTextureHeight = 0
 	mImageHeight=0
 	mImageWidth=0
 	def __init__(self):
-		#Inicializando dimensões da textura
+		#Inicializando textura ID
 		self.mTextureID = 0
+		#Inicializando dimensões da textura
 		self.mTextureWidth = 0
 		self.mTextureHeight = 0
+		#Inicializando dimensões da imagem
 		self.mImageHeight=0
 		self.mImageWidth=0
 
@@ -28,7 +25,7 @@ class LTexture:
 		self.mTextureWidth = 0
 		self.mTextureHeight = 0
 		self.mImageHeight = 0
-		self.mTextureWidth = 0
+		self.mImageWidth = 0
 	def __del__(self):
 		#Limpa dados da textura se preciso
 		self.freeTexture(self)
@@ -53,7 +50,7 @@ class LTexture:
 		glBindTexture(GL_TEXTURE_2D,self.mTextureID)
 
 		#Gera textura
-		glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,width,height,0,GL_RGBA,GL_UNSIGNED_BYTE,pixels)
+		glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,self.mTextureWidth,self.mTextureHeight,0,GL_RGBA,GL_UNSIGNED_BYTE,pixels)
 
 		#Definindo parâmetros da textura
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR)
@@ -84,27 +81,28 @@ class LTexture:
 			texWidth = self.powerOfTwo(imgWidth)
 			texHeigth = self.powerOfTwo(imgHeight)
 
+			'''
 			#Se o tamanho da textura for incorreto 
 			if (imgWidth != texWidth or imgHeight != texHeigth):
 				#Colocando a imagem na parte superior esquerda
 
-				#redimensionando imagem
+				#Redimensionando imagem
 				newSize = []
 				newSize.append(texWidth)
 				newSize.append(texWidth)
 				im.resize(newSize,1)
-
+			'''
 
 
 			#Criando a textura a partir dos pixels do arquivo
 			imagem = im.tobytes("raw","RGBA",0,-1)
-			textureLoaded = self.loadTextureFromPixels32(imagem,im.size[0],im.size[1],texWidth,texHeigth)
+			textureLoaded = self.loadTextureFromPixels32(imagem,imgWidth,imgHeight,texWidth,texHeigth)
 		im.close()
 		if(textureLoaded == False):
 			print("Não foi possível carregar a imagem!")
 		return textureLoaded
 
-	def render(self,x,y,clip):
+	def render(self,x,y,clip = None):
 		#Se a textura existe
 		if(self.mTextureID != 0):
 			#Remove quaisquer transformações anteriores
@@ -140,17 +138,17 @@ class LTexture:
 			#Renderizando quadrados texturizados
 			glBegin(GL_QUADS)
 			glTexCoord2f(texLeft,texTop)
-			glVertex2f(0,0)
-			glTexCoord2f(texRight,texTop)
-			glVertex2f(quadWidth,0)
-			glTexCoord2f(texRight,texBottom)
-			glVertex2f(quadWidth,quadHeight)
-			glTexCoord2f(texLeft,texBottom)
 			glVertex2f(0,quadHeight)
+			glTexCoord2f(texRight,texTop)
+			glVertex2f(quadWidth,quadHeight)
+			glTexCoord2f(texRight,texBottom)
+			glVertex2f(quadWidth,0)
+			glTexCoord2f(texLeft,texBottom)
+			glVertex2f(0,0)
 			glEnd()
 
 	def powerOfTwo(self,num):
-		if (num!=0):
+		if (num != 0):
 			num -= 1
 			num = num | (num >> 1)
 			num = num | (num >> 2)
@@ -168,3 +166,9 @@ class LTexture:
 
 	def textureHeight(self):
 		return self.mTextureHeight
+
+	def imageWidth(self):
+		return self.mImageWidth
+
+	def imageHeight(self):
+		return self.mImageHeight

@@ -1,12 +1,12 @@
 from LTexture import *
 
 #Constantes de Tela
-SCREEN_WIDTH = 640;
-SCREEN_HEIGHT = 480;
-SCREEN_FPS = 60;
+SCREEN_WIDTH = 640
+SCREEN_HEIGHT = 480
+SCREEN_FPS = 60
 
 #Textura de sprite
-gNon2NTexture = LTexture();
+gNon2NTexture = LTexture()
 
 def initGL():
 	#Definindo a janela de exibição (Viewport)

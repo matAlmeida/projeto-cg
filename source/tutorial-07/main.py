@@ -13,9 +13,6 @@ carregamos as texturas. E na função render() renderizamos os sprites de cada a
 
 
 	
-
-
-
 from LUtil import *
 
 def main():

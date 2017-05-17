@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>  
+    <head>
+        <title>OpenGL em Python</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+
+        <h1>OpenGL em Python</h1>
+        <h2>Implementação de projetos de OpenGL em Python da materia de Computação Gráfica</h2>
+
+        <nav id="top">
+            <ul>
+                <li><a href="#introducao">Introdução</a></li>
+                <li><a href="#instalando">Preparando o Ambiente</a>
+                    <ul>
+                        <li><a href="#instalando_deb">Debian/Ubuntu</a></li>
+                        <li><a href="#instalando_win">Windows</a></li>
+                    </ul>
+                </li>
+                <li><a href="#usando">Usando no Codigo</a></li>
+            </ul>
+        </nav>
+
+        <!-- 
+            INTRODUÇÃO
+        -->
+
+        <section id="introducao">
+            <h3>Introdução</h3>
+            <ul>
+                <li><strong>Titulo:</strong> OpenGL em Python</li>
+                <li><strong>Autores:</strong>
+                    <a href="https://github.com/Adshow" target="_blank">Adson Cardoso</a>, 
+                    <a href="https://github.com/Sya-kun" target="_blank"> Jhonnathan Soares</a>,
+                    <a href="https://github.com/Levysantiago" target="_blank"> Levy Santiago</a>,
+                    <a href="https://github.com/matalmeida" target="_blank"> Matheus Almeida</a>,
+                    <a href="https://github.com/TulioCs" target="_blank"> Tulio Campos</a>
+                </li>
+                <li><strong>Bug report:</strong>
+                    <a href="https://github.com/matAlmeida/projeto-cg/issues" target="_blank">https://github.com/matAlmeida/projeto-cg/issues</a>
+                </li>
+            </ul>
+
+            <h4>Objetivos</h4>
+            <p>A proposta desse projeto é criar uma implementação dos 36 primeiros tutoriais de <strong>OpenGL</strong> que está disponível no tutorial,
+            <a href="http://lazyfoo.net/tutorials/OpenGL/index.php" target="blank">Introduction to OpenGL Graphics Programming</a>, em Python.
+            </p>
+            <p>Essa documentação visa ajudar futuras implementações do <strong>OpenGL</strong> em Python.</p>
+
+            <h4>Requerimentos</h4>
+            <p>Nesse projeto será necessario as ferramentas a seguir.</p>
+            <ol>
+                <li>Editor de texto (Visual Code, Atom, Sublime)</li>
+                <li>Python3.x</li>
+                <li>PyOpenGL</li>
+                <li>Pacote FreeGLUT</li>
+            </ol>
+        </section>
+
+        <!-- 
+            BAIXANDO
+        -->
+
+        <section id="instalando">
+            <h3>Preparando o Ambiente</h3>
+            <h4 id="instalando_deb">Debian/Ubuntu</h4>
+                <div>
+                    <br>$ sudo apt-get install python3-pip 
+                    <br>$ pip3 install PyOpenGL PyOpenGL_accelerate
+                    <br>$ sudo apt-get install freeglut3-dev 
+                </div>
+            <h4 id="instalando_win">Windows</h4>
+                <div>
+                    <br><a href="https://www.python.org/downloads/windows/">Python 3.x</a>
+                    <br><a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#pyopengl">PyOpenGL</a>
+                    <br>$ cd Downloads
+                    <br>$ pip install PyOpenGL-3.1.1-cp3x-cp3xm-win_amd64.whl
+                </div>
+        </section>
+
+        <section id="usando">
+            <h3>Usando no codigo</h3>
+            <div>
+                <br>from OpenGL.GL import *
+                <br>from OpenGL.GLU import *
+                <br>from OpenGL.GLUT import *
+            </div>
+        </section>
+
+    </body>
+    <footer>
+        <p>Site feito por mat_almeida</p>
+    </footer>
+</html>

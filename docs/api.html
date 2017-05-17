@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>OpenGL em Python</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <h1>OpenGL em Python</h1>
+        <h2>API OpenGL</h2>
+
+        <!--
+        <section>
+            <ul>
+                <li><strong>Função: </strong></li>
+                <li><strong>Descrição: </strong></li>
+                <li><strong>Parâmetros: </strong></li>
+                <li><strong>Retorno: </strong></li>
+                <li><strong>Protótipo: </strong></li>
+            </ul>
+        </section>
+        -->
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>initGL</li>
+                <li><strong>Descrição: </strong>Inicializa recursos de inicialização do OpenGL, como por exemplo, a definição da cor de limpeza.</li>
+                <li><strong>Parâmetros: </strong>void</li>
+                <li><strong>Retorno: </strong>bool</li>
+                <li><strong>Protótipo: </strong>bool initGL(void)</li>
+            </ul>
+        </section>
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>render</li>
+                <li><strong>Descrição: </strong>Função onde serão renderizados todos os objetos que serão trabalhados.</li>
+                <li><strong>Parâmetros: </strong>void</li>
+                <li><strong>Retorno: </strong>void</li>
+                <li><strong>Protótipo: </strong>void render(void)</li>
+            </ul>
+        </section>
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>runMainLoop</li>
+                <li><strong>Descrição: </strong>Quando chamamos essa função, ele irá executar as funções do loop principal e definir uma chamada de volta para executar-se novamente. Quando o callback é executado, ele irá executar as funções de loop principal e chamar-se novamente em um 60 de segundo. Então, o que esse loop de retorno faz é garantir que as funções do loop principal sejam chamadas a cada 60º de segundo para nos dar uma taxa de quadros de 60 quadros por segundo.</li>
+                <li><strong>Parâmetros: </strong>val - Tempo de retorno</li>
+                <li><strong>Retorno: </strong>void</li>
+                <li><strong>Protótipo: </strong>void runMainLoop(int val)</li>
+            </ul>
+        </section>
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>glMatrixMode</li>
+                <li><strong>Descrição: </strong>Especifica qual é a matriz atual.</li>
+                <li><strong>Parâmetros: </strong>Variável mode (Especifica qual pilha de matriz é o destino para operações de matriz subsequentes.) Valores aceitos: GL_MODELVIEW, GL_PROJECTION e GL_TEXTURE. Sendo que o valor inicial é GL_MODELVIEW.</li>
+                <li><strong>Retorno: </strong>void</li>
+                <li><strong>Protótipo: </strong>void glMatrixMode(GLenum(mode))</li>
+            </ul>
+        </section>
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>glLoadIdentity</li>
+                <li><strong>Descrição: </strong>Substitui a matriz atual pela matriz identidade.</li>
+                <li><strong>Parâmetros: </strong>void</li>
+                <li><strong>Retorno: </strong>void</li>
+                <li><strong>Protótipo: </strong>void glLoadIdentity(void)</li>
+            </ul>
+        </section>
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>glClearColor</li>
+                <li><strong>Descrição: </strong>Especifica valores vermelho, verde, azul e alfa usados  para a inicialização do buffer de cores. Os valores iniciais são todos iguais a 0.</li>
+                <li><strong>Parâmetros: </strong>Variáveis red, green, blue e alpha.</li>
+                <li><strong>Retorno: </strong>void</li>
+                <li><strong>Protótipo: </strong>void glClearColor(GLfloat(red), GLfloat(green), GLfloat(blue), GLfloat(alpha))</li>
+            </ul>
+        </section>
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>glGetError</li>
+                <li><strong>Descrição: </strong>Retorna uma intormação de erro. A cada erro detectado é atribuído um código numérico e um nome simbólico. Quando ocorre um erro, o sinalizador de erro é definido para o valor de código de erro apropriado.</li>
+                <li><strong>Parâmetros: </strong>void</li>
+                <li><strong>Retorno: </strong>Valor da flag de erro do tipo GLenum.</li>
+                <li><strong>Protótipo: </strong>GLenum glGetError(void)</li>
+            </ul>
+        </section>
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>glClear</li>
+                <li><strong>Descrição: </strong>Limpa os buffers para valores predefinidos por glClearDepth ou glClearStencil.</li>
+                <li><strong>Parâmetros: </strong>Máscaras (tipo GLbitfield) que indicam os buffers a serem limpos. As três máscaras são: GL_COLOR_BUFFER_BIT, GL_DEPTH_BUFFER_BIT e GL_STENCIL_BUFFER_BIT.</li>
+                <li><strong>Retorno: </strong>void</li>
+                <li><strong>Protótipo: </strong>void glClear(GLbitfield mask)</li>
+            </ul>
+        </section>
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>glBegin</li>
+                <li><strong>Descrição: </strong>Delimita os vértices de um tipo primitivo ou um grupo de tipos primitivos.</li>
+                <li><strong>Parâmetros: </strong>Variável mode (Especifica os tipos primitivos que serão criados a partir dos vértices presentes entre o glBegin e o subsequente glEnd) Constantes aceitas: GL_POINTS, GL_LINES, GL_LINE_STRIP, GL_LINE_LOOP, GL_TRIANGLES, GL_TRIANGLE_STRIP, GL_TRIANGLE_FAN, GL_QUADS, GL_QUAD_STRIP e GL_POLYGON.</li>
+                <li><strong>Retorno: </strong>void</li>
+                <li><strong>Protótipo: </strong>void glBegin(GLenum(mode))</li>
+            </ul>
+        </section>
+    </body>
+    <footer>
+        <p>Site feito por mat_almeida</p>
+    </footer>
+</html>

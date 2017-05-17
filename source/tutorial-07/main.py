@@ -1,3 +1,21 @@
+""" Neste tutorial vamos mapear apenas partes de uma textura para renderizar imagens em folhas de sprite.
+	Folhas de sprite são usadas, principalmente, para animações exibindo uma sequencia de frames de imagens. Na bilioteca LFRECT
+vamos definimos em que parte da imagem vamos trabalhar.
+	Na biblioteca LTEXTURE, vamos definir a área da textura que iremos utilizar ( podemos passar NULL para trabalhar como ele
+completo). Depois vamos definir as coordenadas de textura para aplicar no nosso vértice, temos sempre que calcular isso, pois não sa-
+bemos se vamos trabalhar com a imagem completa ou parte dela, para isso temos variaveis para calcular as coordenadas que vamos usar.
+Para calcular a textura temos que converter para 0/1. Ex:(Em uma imagem de 256 p , se eu quero a matede tenho que passar 0,5 e não 128
+tanto para largura quanto para altura ). Com essas informaçoes podemos renderizar a nossa folha de sprite.
+	Em LUTIL declaramos a nossa folha de sprite e criamos um vetor de retangulos. Na função loadMedia() definimos os retangulos e
+carregamos as texturas. E na função render() renderizamos os sprites de cada array em cada canto da tela da nossa imagem."""
+
+
+
+
+	
+
+
+
 from LUtil import *
 
 def main():

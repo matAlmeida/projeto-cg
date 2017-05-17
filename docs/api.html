@@ -109,8 +109,311 @@
                 <li><strong>Protótipo: </strong>void glBegin(GLenum(mode))</li>
             </ul>
         </section>
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>glVertex</li>
+                <li><strong>Descrição: </strong>Especifica um vértice.</li>
+                <li><strong>Parâmetros: </strong>Coordenadas x,y,z e w do vértice. Nem todos os parâmetros estão presentes em todas as formas do comando.</li>
+                <li><strong>Retorno: </strong>void</li>
+                <li><strong>Protótipo: </strong>void glVertex(*args)</li>
+            </ul>
+        </section>
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>glutSwapBuffers</li>
+                <li><strong>Descrição: </strong>Promove a troca do buffer secundário (atual) e seu conteúdo para se tornar o conteúdo do buffer de frente.</li>
+                <li><strong>Parâmetros: </strong>void</li>
+                <li><strong>Retorno: </strong>void</li>
+                <li><strong>Protótipo: </strong>void glutSwapBuffers(void)</li>
+            </ul>
+        </section>
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>glutTimerFunc</li>
+                <li><strong>Descrição: </strong>Registra um tempo de retorno a ser acionado em um número especificado de milisegundos.</li>
+                <li><strong>Parâmetros: </strong>Milissegundos tipo unsigned int, ponteiro a função do tipo void (*func)(int value) e o tempo de retorno.</li>
+                <li><strong>Retorno: </strong>void</li>
+                <li><strong>Protótipo: </strong>void glutTimerFunc(unsigned int msecs,void (*func)(int value), int value)</li>
+            </ul>
+        </section>
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>glutInitContextVersion</li>
+                <li><strong>Descrição: </strong>Utilizada para definir a versão de contexto do OpenGL. Lembrando que esta função não faz parte do GLUT.</li>
+                <li><strong>Parâmetros: </strong>Numeração da versão, por exemplo, versão x.y, definiremos como glutInitContextVersion(x,y).</li>
+                <li><strong>Retorno: </strong>void</li>
+                <li><strong>Protótipo: </strong>void glutInitContextVersion(int num1, int num2)</li>
+            </ul>
+        </section>
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>glutInitDisplayMode</li>
+                <li><strong>Descrição: </strong>Define um modo de display inicial.</li>
+                <li><strong>Parâmetros: </strong>Variável modo (Modo de exibição). Permite as seguintes máscaras: GLUT_RGBA, GLUT_RGB, GLUT_INDEX, GLUT_SINGLE, GLUT_DOUBLE, GLUT_ACCUM, GLUT_ALPHA, GLUT_DEPTH, GLUT_STENCIL, GLUT_MULTISAMPLE, GLUT_STEREO e  GLUT_LUMINANCE.</li>
+                <li><strong>Retorno: </strong>void</li>
+                <li><strong>Protótipo: </strong>void glutInitDisplayMode(unsigned int mode)</li>
+            </ul>
+        </section>
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>glutInitWindowSize</li>
+                <li><strong>Descrição: </strong>Define o tamanho inicial da janela.</li>
+                <li><strong>Parâmetros: </strong>Variáveis inteiras largura e altura (width e height) em pixels.</li>
+                <li><strong>Retorno: </strong>void</li>
+                <li><strong>Protótipo: </strong>void glutInitWindowSize(int width, int height)</li>
+            </ul>
+        </section>
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>glutCreateWindow</li>
+                <li><strong>Descrição: </strong>Cria uma nova janela</li>
+                <li><strong>Parâmetros: </strong>Uma variável nome (ponteiro a char), que vai ser o nome da janela criada.</li>
+                <li><strong>Retorno: </strong>O valor retornado é um identificador inteiro pequeno exclusivo para a janela. O intervalo de identificadores alocados começa em um. </li>
+                <li><strong>Protótipo: </strong>int glutCreateWindow(char *name)</li>
+            </ul>
+        </section>
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>glutDisplayFunc</li>
+                <li><strong>Descrição: </strong>Define um display de retorno para a janela atual.</li>
+                <li><strong>Parâmetros: </strong>Uma função com retorno e parâmetro void.</li>
+                <li><strong>Retorno: </strong>void</li>
+                <li><strong>Protótipo: </strong>void glutDisplayFunc(void (*func)(void))</li>
+            </ul>
+        </section>
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>glutMainLoop</li>
+                <li><strong>Descrição: </strong>Faz os eventos GLUT entrarem em processo de loop.</li>
+                <li><strong>Parâmetros: </strong>void</li>
+                <li><strong>Retorno: </strong>void</li>
+                <li><strong>Protótipo: </strong>void glutMainLoop(void)</li>
+            </ul>
+        </section>
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>glEnd</li>
+                <li><strong>Descrição: </strong>Especifica que os vértices serão enviados e renderiza as figuras.</li>
+                <li><strong>Parâmetros: </strong>void</li>
+                <li><strong>Retorno: </strong>void</li>
+                <li><strong>Protótipo: </strong>void glEnd(void)</li>
+            </ul>
+        </section>
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>glOrtho</li>
+                <li><strong>Descrição: </strong>Multiplica a matriz atual por uma matriz ortográfica (2D) com os valores right, left, bottom, top, near e far.</li>
+                <li><strong>Parâmetros: </strong>Coordenadas para os planos de corte vertical esquerdo e direito (left, right);<br>Coordenadas para os planos de corte horizontal superior e inferior (bottom, top);<br>A distância para os planos de corte de profundidade mais próximo e afastado (nearVal, farVal).</li>
+                <li><strong>Retorno: </strong>void</li>
+                <li><strong>Protótipo: </strong>void glOrtho(GLdouble(left), GLdouble(right), GLdouble(bottom), GLdouble(top), GLdouble(nearVal), GLdouble(farVal))</li>
+            </ul>
+        </section>
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>glTranslate</li>
+                <li><strong>Descrição: </strong>Multiplica a matriz atual por uma matriz de translação.</li>
+                <li><strong>Parâmetros: </strong>Coordenadas x, y e z do vetor de translação.</li>
+                <li><strong>Retorno: </strong>void</li>
+                <li><strong>Protótipo: </strong>void glTranslate(args)</li>
+            </ul>
+        </section>
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>glColor</li>
+                <li><strong>Descrição: </strong>Especifica a cor atual.</li>
+                <li><strong>Parâmetros: </strong>Valores red, green, blue e alpha.</li>
+                <li><strong>Retorno: </strong>void</li>
+                <li><strong>Protótipo: </strong>glColor(*args)</li>
+            </ul>
+        </section>
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>handleKeys</li>
+                <li><strong>Descrição: </strong>Essa função pega um valor ASCII de uma tecla pressionada e a posição atual do mouse. Ela simplesmente alterna a flag boleana quando a tecla é pressionada.</li>
+                <li><strong>Parâmetros: </strong>Valor da tecla pressionada (key) e a coordenada x e y da posição do mouse.</li>
+                <li><strong>Retorno: </strong>void</li>
+                <li><strong>Protótipo: </strong>void handleKeys(unsigned char key,int x,int y)</li>
+            </ul>
+        </section>
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>glutKeyboardFunc</li>
+                <li><strong>Descrição: </strong>Especifica a tecla de retorno do teclado para a janela atual.</li>
+                <li><strong>Parâmetros: </strong>A nova função de retorno do teclado.</li>
+                <li><strong>Retorno: </strong>void</li>
+                <li><strong>Protótipo: </strong>void glutKeyboardFunc(void (*func)(unsigned char key,int x, int y))</li>
+            </ul>
+        </section>
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>glViewport</li>
+                <li><strong>Descrição: </strong>Define um modo de exibição de janela (viewport).</li>
+                <li><strong>Parâmetros: </strong>x e y: especificam o canto inferior esquerdo do retângulo da janela de visualização em pixels. Valor inicial (0,0) width e height: especificam a largura e altura da viewport.</li>
+                <li><strong>Retorno: </strong>void</li>
+                <li><strong>Protótipo: </strong>void glViewport(GLint(x), GLint(y), GLsizei(width), GLsizei(height))</li>
+            </ul>
+        </section>
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>glPushMatrix</li>
+                <li><strong>Descrição: </strong>Salva uma cópia da matriz atual e insere em uma pilha para esta ser utilizada mais tarde. Importante lembrar que a pilha de matrizes não é infinita. Inserindo matrizes demais na pilha o programa irá retornar um erro de GL_STACK_OVERFLOW da função glGetError().</li>
+                <li><strong>Parâmetros: </strong>void</li>
+                <li><strong>Retorno: </strong>void</li>
+                <li><strong>Protótipo: </strong>void glPushMatrix((void))</li>
+            </ul>
+        </section>
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>glPopMatrix</li>
+                <li><strong>Descrição: </strong>Retira a matriz padrão antiga da pilha de matrizes e mescla com a matriz atual.</li>
+                <li><strong>Parâmetros: </strong>void</li>
+                <li><strong>Retorno: </strong>void</li>
+                <li><strong>Protótipo: </strong>void glPopMatrix((void))</li>
+            </ul>
+        </section>
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>glutPostRedisplay</li>
+                <li><strong>Descrição: </strong>Marca que janela atual precisa ser recarregada.</li>
+                <li><strong>Parâmetros: </strong>void</li>
+                <li><strong>Retorno: </strong>void</li>
+                <li><strong>Protótipo: </strong>void glutPostRedisplay(void)</li>
+            </ul>
+        </section>
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>ord</li>
+                <li><strong>Descrição: </strong>Retorna o código ASCII daquele caractere.</li>
+                <li><strong>Parâmetros: </strong>Um caractere qualquer(char).</li>
+                <li><strong>Retorno: </strong>O código ASCII correspondente àquele caractere.</li>
+                <li><strong>Protótipo: </strong>int ord(char)</li>
+            </ul>
+        </section>
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>glDeleteTextures</li>
+                <li><strong>Descrição: </strong>Deleta uma quantidade definida de texturas.</li>
+                <li><strong>Parâmetros: </strong>O número de texturas a serem deletadas e o array de texturas que serão deletadas.</li>
+                <li><strong>Retorno: </strong>void</li>
+                <li><strong>Protótipo: </strong>void glDeleteTextures(GLsizei(n), const GLuint *(textures))</li>
+            </ul>
+        </section>
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>glGenTextures</li>
+                <li><strong>Descrição: </strong>Gera os nomes de uma quantidade determinada de texturas.</li>
+                <li><strong>Parâmetros: </strong>O número de nomes de texturas a serem gerados e o array de texturas a serem nomeadas.</li>
+                <li><strong>Retorno: </strong>void</li>
+                <li><strong>Protótipo: </strong>void glGenTextures(GLsizei(n), GLuint * (textures)) </li>
+            </ul>
+        </section>
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>glBindTexture</li>
+                <li><strong>Descrição: </strong>Vincula uma textura nomeada a uma textura padrão da biblioteca.</li>
+                <li><strong>Parâmetros: </strong>O destino para o qual a textura será vinculada e o nome da textura. As texturas padrão podem ser: GL_TEXTURE_1D, GL_TEXTURE_2D, GL_TEXTURE_3D, GL_TEXTURE_1D_ARRAY, GL_TEXTURE_2D_ARRAY, GL_TEXTURE_RECTANGLE, GL_TEXTURE_CUBE_MAP, GL_TEXTURE_CUBE_MAP_ARRAY, GL_TEXTURE_BUFFER, GL_TEXTURE_2D_MULTISAMPLE ou GL_TEXTURE_2D_MULTISAMPLE_ARRAY.</li>
+                <li><strong>Retorno: </strong>void</li>
+                <li><strong>Protótipo: </strong>void glBindTexture(GLenum(target), GLuint(texture))</li>
+            </ul>
+        </section>
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>glTexImage</li>
+                <li><strong>Descrição: </strong>Especifica uma imagem de textura bidimensional.</li>
+                <li><strong>Parâmetros: </strong>A textura padrão a ser vinculada (GL_TEXTURE_2D, GL_PROXY_TEXTURE_2D, GL_TEXTURE_1D_ARRAY, GL_PROXY_TEXTURE_1D_ARRAY, GL_TEXTURE_RECTANGLE, GL_PROXY_TEXTURE_RECTANGLE, GL_TEXTURE_CUBE_MAP_POSITIVE_X, GL_TEXTURE_CUBE_MAP_NEGATIVE_X, GL_TEXTURE_CUBE_MAP_POSITIVE_Y, GL_TEXTURE_CUBE_MAP_NEGATIVE_Y, GL_TEXTURE_CUBE_MAP_POSITIVE_Z, GL_TEXTURE_CUBE_MAP_NEGATIVE_Z ou GL_PROXY_TEXTURE_CUBE_MAP);<br>- O nível de detalhe;<br>- O número de componentes coloridos na textura;<br>- A altura, largura e borda da imagem;<br>- O formato dos dados de pixel (GL_RED, GL_RG, GL_RGB, GL_BGR, GL_RGBA, GL_BGRA, GL_RED_INTEGER, GL_RG_INTEGER, GL_RGB_INTEGER, GL_BGR_INTEGER, GL_RGBA_INTEGER, GL_BGRA_INTEGER, GL_STENCIL_INDEX, GL_DEPTH_COMPONENT, GL_DEPTH_STENCIL);<br>- O tipo de dado dos dados de pixel (GL_UNSIGNED_BYTE, GL_BYTE, GL_UNSIGNED_SHORT, GL_SHORT, GL_UNSIGNED_INT, GL_INT, GL_FLOAT, GL_UNSIGNED_BYTE_3_3_2, GL_UNSIGNED_BYTE_2_3_3_REV, GL_UNSIGNED_SHORT_5_6_5, GL_UNSIGNED_SHORT_5_6_5_REV, GL_UNSIGNED_SHORT_4_4_4_4, GL_UNSIGNED_SHORT_4_4_4_4_REV, GL_UNSIGNED_SHORT_5_5_5_1, GL_UNSIGNED_SHORT_1_5_5_5_REV, GL_UNSIGNED_INT_8_8_8_8, GL_UNSIGNED_INT_8_8_8_8_REV, GL_UNSIGNED_INT_10_10_10_2 e GL_UNSIGNED_INT_2_10_10_10_REV.);<br>- Um ponteiro para os dados da imagem na memória.</li>
+                <li><strong>Retorno: </strong>void</li>
+                <li><strong>Protótipo: </strong>void glTexImageX(GLenum (target), GLint (level), GLint (internalFormat), GLsizei(width), GLsizei(height), GLint(border), GLenum (format), GLenum (type), const GLvoid *(data))</li>
+                <li><strong>Variações da função: </strong>O valor X pode ser: 2D, 2Df, 2Di, 2Ds, 2Dui, 2Dus. Só havendo diferença entre os tipos de dados aceitos.</li>
+            </ul>
+        </section>
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>glTexParameter</li>
+                <li><strong>Descrição: </strong>Define os parâmetros da textura.</li>
+                <li><strong>Parâmetros: </strong>- (target) A textura de destino que pode ser: GL_TEXTURE_1D, GL_TEXTURE_2D, GL_TEXTURE_3D, GL_TEXTURE_1D_ARRAY, GL_TEXTURE_2D_ARRAY, GL_TEXTURE_RECTANGLE, or GL_TEXTURE_CUBE_MAP;<br>- (pname) O nome simbólico de um parâmetro de textura de valor único, pode ser: GL_DEPTH_STENCIL_TEXTURE_MODE, GL_TEXTURE_BASE_LEVEL, GL_TEXTURE_COMPARE_FUNC, GL_TEXTURE_COMPARE_MODE, GL_TEXTURE_LOD_BIAS, GL_TEXTURE_MIN_FILTER, GL_TEXTURE_MAG_FILTER, GL_TEXTURE_MIN_LOD, GL_TEXTURE_MAX_LOD, GL_TEXTURE_MAX_LEVEL, GL_TEXTURE_SWIZZLE_R, GL_TEXTURE_SWIZZLE_G, GL_TEXTURE_SWIZZLE_B, GL_TEXTURE_SWIZZLE_A, GL_TEXTURE_WRAP_S, GL_TEXTURE_WRAP_T ou GL_TEXTURE_WRAP_R;<br>- (param ou params) Um valor para pname ou um ponteiro para um array onde os valores de pneme estão guardados.</li>
+                <li><strong>Retorno: </strong>void</li>
+                <li><strong>Protótipo: </strong>void  glTexParameterX(GLenum (target), GLenum (pname), const X_type * (params))</li>
+                <li><strong>Variações da função: </strong>O valor de X_type pode ser: const GLint *, const GLuint *, GLfloat, const GLfloat *, GLint, const GLint *.<br>O valor X pode ser: Iiv, Iuiv, f, fv, i, iv. Respectivamente em relação a X_type.</li>                
+            </ul>
+        </section>
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>glEnable</li>
+                <li><strong>Descrição: </strong>Habilida uma textura.</li>
+                <li><strong>Parâmetros: </strong>Uma constante simbólica indicando uma capacidade GL e o índice para desabilitar.</li>
+                <li><strong>Retorno: </strong>void</li>
+                <li><strong>Protótipo: </strong>void glEnable(GLenum(cap)) ou void glEnablei(GLenum(cap), GLuint(index))</li>
+            </ul>
+        </section>
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>glPixelStore</li>
+                <li><strong>Descrição: </strong>Define modos de armazenamento de pixels.</li>
+                <li><strong>Parâmetros: </strong>(pname) Especifica o nome simbólico do parâmetro a ser definido, pode ser: GL_PACK_SWAP_BYTES, GL_PACK_LSB_FIRST, GL_PACK_ROW_LENGTH, GL_PACK_IMAGE_HEIGHT, GL_PACK_SKIP_PIXELS, GL_PACK_SKIP_ROWS, GL_PACK_SKIP_IMAGES ou GL_PACK_ALIGNMENT. GL_UNPACK_SWAP_BYTES, GL_UNPACK_LSB_FIRST, GL_UNPACK_ROW_LENGTH, GL_UNPACK_IMAGE_HEIGHT, GL_UNPACK_SKIP_PIXELS, GL_UNPACK_SKIP_ROWS, GL_UNPACK_SKIP_IMAGES ou GL_UNPACK_ALIGNMENT.<br>(param) especifica o valor que pname está definido.</li>
+                <li><strong>Retorno: </strong>void</li>
+                <li><strong>Protótipo: </strong>void glPixelStoreX(GLenum(pname), X_type(param))</li>
+                <li><strong>Variações da função: </strong>O valor de X pode ser: f ou i;<br>O valor de X_type pode ser: GLfloat ou GLint. Respectivamente em relação a X.</li>
+            </ul>
+        </section>
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>open</li>
+                <li><strong>Descrição: </strong>Lê uma imagem de um arquivo.</li>
+                <li><strong>Parâmetros: </strong>O caminho para o arquivo e o modo de carregamento (se for usado deve ser 'r').</li>
+                <li><strong>Retorno: </strong>Um objeto do tipo imagem.</li>
+                <li><strong>Protótipo: </strong>PIL.Image.open(file,mode='r')</li>
+            </ul>
+        </section>
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>close</li>
+                <li><strong>Descrição: </strong>Retira a imagem da memória.</li>
+                <li><strong>Parâmetros: </strong>void</li>
+                <li><strong>Retorno: </strong>void</li>
+                <li><strong>Protótipo: </strong>void Image.close(void)</li>
+            </ul>
+        </section>
+
+        <section>
+            <ul>
+                <li><strong>Função: </strong>tobytes</li>
+                <li><strong>Descrição: </strong>Retorna a imagem como um objeto de bytes.</li>
+                <li><strong>Parâmetros: </strong>Qual codificador usar (O padrão é usar o codificador padrão "raw") e argumentos extras para o codificador.</li>
+                <li><strong>Retorno: </strong>Um objeto de bytes.</li>
+                <li><strong>Protótipo: </strong>Image.tobytes(encoder_name='raw', *args)</li>
+            </ul>
+        </section>
     </body>
     <footer>
-        <p>Site feito por mat_almeida</p>
+        <p>feito por mat_almeida</p>
     </footer>
 </html>

@@ -37,9 +37,9 @@ class LTexture:
 		if(self.mPixels == None and self.mTextureID != 0):
 			#Alocando memória para os dados de texura
 			size = self.mTextureWidth * self.mTextureHeight
-			self.mPixels = []
-			for i in range(0,size):
-				self.mPixels.append(GLuint())
+			#self.mPixels = []
+			#for i in range(0,size):
+			#	self.mPixels.append(GLuint(0))
 
 			#Definindo textura atual
 			glBindTexture(GL_TEXTURE_2D,self.mTextureID)

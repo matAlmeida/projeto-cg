@@ -76,19 +76,6 @@ class LTexture:
 			texWidth = self.powerOfTwo(imgWidth)
 			texHeigth = self.powerOfTwo(imgHeight)
 
-			'''
-			#Se o tamanho da textura for incorreto 
-			if (imgWidth != texWidth or imgHeight != texHeigth):
-				#Colocando a imagem na parte superior esquerda
-
-				#Redimensionando imagem
-				newSize = []
-				newSize.append(texWidth)
-				newSize.append(texWidth)
-				im.resize(newSize,1)
-			'''
-
-
 			#Criando a textura a partir dos pixels do arquivo
 			imagem = im.tobytes("raw","RGBA",0,-1)
 			textureLoaded = self.loadTextureFromPixels32(imagem,imgWidth,imgHeight,texWidth,texHeigth)
@@ -145,11 +132,11 @@ class LTexture:
 	def powerOfTwo(self,num):
 		if (num != 0):
 			num -= 1
-			num = num | (num >> 1)
-			num = num | (num >> 2)
-			num = num | (num >> 4)
-			num = num | (num >> 8)
-			num = num | (num >> 16)
+			num = num or (num >> 1)
+			num = num or (num >> 2)
+			num = num or (num >> 4)
+			num = num or (num >> 8)
+			num = num or (num >> 16)
 			num += 1
 		return num
 

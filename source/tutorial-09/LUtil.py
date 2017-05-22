@@ -40,34 +40,6 @@ def loadMedia():
 		print("Não foi possível carregar a textura!")
 		return False
 
-	#Bloqueando textura para modificação
-	gCircleTexture.lock()
-
-	#Calculando cor alvo
-	colors = []
-	colors.append([0]*4)
-	colors[0][0] = 000
-	colors[0][0] = 255
-	colors[0][0] = 255
-	colors[0][0] = 255
-
-	#Substituindo a cor alvo com preto transparente
-	pixels = gCircleTexture.getPixelData32()
-	pixelCount = gCircleTexture.textureWidth() * gCircleTexture.textureHeigth()
-	print(pixels)
-	for i in range(0,pixelCount):
-		if(pixels[i] == colors[0]):
-			pixels[i] = 0
-
-	#Linhas diagonais
-	for y in range(0,gCircleTexture.imageHeigth()):
-		for x in range(0,gCircleTexture.imageWidth()):
-			if(y % 10 != x % 10):
-				gCircleTexture.setPixe32(x,y,0)
-
-	#Atualizando textura
-	gCircleTexture.unlock()
-
 	return True
 
 def update():

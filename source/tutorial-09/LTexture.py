@@ -35,12 +35,6 @@ class LTexture:
 	def lock(self):
 		#Se a textura não está bloqueada e existe
 		if(self.mPixels == None and self.mTextureID != 0):
-			#Alocando memória para os dados de texura
-			size = self.mTextureWidth * self.mTextureHeight
-			#self.mPixels = []
-			#for i in range(0,size):
-			#	self.mPixels.append(GLuint(0))
-
 			#Definindo textura atual
 			glBindTexture(GL_TEXTURE_2D,self.mTextureID)
 
@@ -48,7 +42,7 @@ class LTexture:
 			glGetTexImage(GL_TEXTURE_2D,0,GL_RGBA,GL_UNSIGNED_BYTE,self.mPixels)
 
 			#Desligando textura
-			glBindTexture(GL_TEXTURE_2D,None)
+			glBindTexture(GL_TEXTURE_2D,0)
 
 			return True
 
@@ -62,12 +56,12 @@ class LTexture:
 			glTexSubImage2D(GL_TEXTURE_2D,0,0,0,self.mTextureWidth,self.mTextureHeight,GL_RGBA,GL_UNSIGNED_BYTE,self.mPixels)
 
 			#Deletando pixels
-			if(self.mPixels != NULL):
+			if(self.mPixels != None):
 				del self.mPixels
 				self.mPixels = None
 
 			#Desligando textura
-			glBindTexture(GL_TEXTURE_2D,None)
+			glBindTexture(GL_TEXTURE_2D,0)
 
 			return True
 
@@ -122,23 +116,30 @@ class LTexture:
 			texWidth = self.powerOfTwo(imgWidth)
 			texHeigth = self.powerOfTwo(imgHeight)
 
-			'''
-			#Se o tamanho da textura for incorreto 
-			if (imgWidth != texWidth or imgHeight != texHeigth):
-				#Colocando a imagem na parte superior esquerda
-
-				#Redimensionando imagem
-				newSize = []
-				newSize.append(texWidth)
-				newSize.append(texWidth)
-				im.resize(newSize,1)
-			'''
-
-
 			#Criando a textura a partir dos pixels do arquivo
 			imagem = im.tobytes("raw","RGBA",0,-1)
 			textureLoaded = self.loadTextureFromPixels32(imagem,imgWidth,imgHeight,texWidth,texHeigth)
+
+		if(textureLoaded != False):
+			#Bloqueando textura para modificação
+			self.lock()
+
+			#Tornando parte exterior do circulo transparente
+			for i in range(0,im.height):
+				for j in range(0,im.width):
+					r,g,b,a = im.getpixel((i,j))
+					if(r == 0):
+						im.putpixel((i,j),(0,0,0,0))
+
+			for i in range(0,im.height):
+				for j in range(0,im.width):
+					if(j%10 != i%10):
+						im.putpixel((i,j),(0,0,0,0))
+			self.mPixels = im.tobytes("raw","RGBA",0,-1)
+			#Atualizando textura
+			self.unlock()
 		im.close()
+
 		if(textureLoaded == False):
 			print("Não foi possível carregar a imagem!")
 		return textureLoaded
@@ -188,15 +189,6 @@ class LTexture:
 			glVertex2f(0,0)
 			glEnd()
 
-	def getPixelData32(self):
-		return self.mPixels
-
-	def getPixel32(self,x,y):
-		return self.mPixels[y * self.mTextureWidth + x]
-
-	def setPixel32(self,x,y,pixel):
-		self.mPixels[y * self.mTextureWidth + x] = pixel
-
 	def getTextureID(self):
 		return self.mTextureID
 
@@ -212,11 +204,24 @@ class LTexture:
 	def textureHeight(self):
 		return self.mTextureHeight
 
+	def getImagePixel(self,x,y):
+		return im.getpixel((x,y))
+
+	def putImagePixel(self,x,y,pixel):
+		return im.putpixel((x,y),pixel)
+
+	def getDataImage(self):
+		return im.tobytes("raw","RGBA",0,-1)
+
+	def getMPixel(self):
+		return self.mPixels
+
+	def setMPixel(self,pixel):
+		self.mPixel = pixel
+
 	def powerOfTwo(self,num):
 		if(num != 0):
 			num -= 1
-			num = num | (num >> 1)
-			num = num | (num >> 2)
 			num = num | (num >> 4)
 			num = num | (num >> 8)
 			num = num | (num >> 16)

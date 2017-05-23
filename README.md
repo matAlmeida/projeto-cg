@@ -19,7 +19,7 @@ Projeto da matéria de Computação Gráfica utilizando OpenGL e Python
 > `Este pacote tem a mesma finalidade do pygame, ele está sendo utilizado no projeto. O pygame foi só para teste.` </br>
 > $ sudo apt-get install freeglut3-dev </br>
 
-> 'Instala a biblioteca PIL, para manipular imagens' <br>
+> `Instala a biblioteca PIL, para manipular imagens` <br>
 > $ pip3 install Pillow <br>
 
 ### Windows
@@ -37,9 +37,9 @@ Projeto da matéria de Computação Gráfica utilizando OpenGL e Python
 > `E depois de instalado o PyOpenGL, instala o Pygame:` </br>
 > $ pip install pygame-1.9.3-cp3x-cp3xm-win_amd64.whl </br>
 
-> 'Instala a biblioteca PIL, para manipular imagens' <br>
+> `Instala a biblioteca PIL, para manipular imagens` <br>
 > $ pip install Pillow <br>
-> 'ou' <br>
+> `ou` <br>
 > $ easy_install Pillow <br>
 
 > `Agora com os módulos já instalados, baixe e instale uma IDE. O link abaixo é da IDE PyCharm:` </br>

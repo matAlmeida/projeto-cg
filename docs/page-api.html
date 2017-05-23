@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/347dbfbd2c.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/palette.css">
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -34,7 +34,7 @@
                 <div class="input-field">
                     <input id="search" type="search" required>
                     <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                    <i class="material-icons">close</i>
+                    <i class="material-icons" onclick="cleanSearch()">close</i>
                 </div>
             </form>
         </div>
@@ -111,6 +111,11 @@
 </script>
 
 <script>
+    function cleanSearch() {
+        let bar = document.querySelector("#search");
+        bar.textContent = "";
+    }
+
     // Inicializa barra de busca
     let searchBar = document.querySelector('#search');
     searchBar.addEventListener('input', function() {

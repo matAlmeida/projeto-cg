@@ -1,96 +1,179 @@
 <!DOCTYPE html>
-<html>  
-    <head>
-        <title>OpenGL em Python</title>
-        <meta charset="UTF-8"/>
-    </head>
-    <body>
-        <a id="topo"></a>
-        <h1>OpenGL em Python</h1>
-        <h2>Implementação de projetos de OpenGL em Python da materia de Computação Gráfica</h2>
+<html>
 
-        <nav>
-            <ul>
-                <li><a href="#introducao">Introdução</a></li>
-                <li><a href="#instalando">Preparando o Ambiente</a>
-                    <ul>
-                        <li><a href="#instalando_deb">Debian/Ubuntu</a></li>
-                        <li><a href="#instalando_win">Windows</a></li>
-                    </ul>
-                </li>
+<head>
+    <script src="https://use.fontawesome.com/e331a4cca0.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/347dbfbd2c.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/palette.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>OpenGL em Python</title>
+</head>
+
+<body>
+    <a id="topo"></a>
+    <ul id="dropdown1" class="dropdown-content">
+        <li><a href="#instalando_deb">Debian/Ubuntu</a></li>
+        <li><a href="#instalando_win">Windows</a></li>
+    </ul>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#!" class="brand-logo">OpenGL em Python</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Preparando o Ambiente<i class="material-icons right">arrow_drop_down</i></a></li>
                 <li><a href="#usando">Usando no Codigo</a></li>
-                <li><a href="api.html">Documentação API OpenGL</a></li>
+                <li><a href="page-api.html">Documentação API OpenGL</a></li>
             </ul>
-        </nav>
+            <ul class="side-nav" id="mobile-demo">
+                <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Preparando o Ambiente<i class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a href="#usando">Usando no Codigo</a></li>
+                <li><a href="page-api.html">Documentação API OpenGL</a></li>
+            </ul>
+        </div>
+    </nav>
 
-        <!-- 
+    <!-- 
             INTRODUÇÃO
         -->
 
-        <section id="introducao">
-            <h3>Introdução</h3>
-            <ul>
-                <li><strong>Titulo:</strong> OpenGL em Python</li>
-                <li><strong>Autores:</strong>
-                    <a href="https://github.com/Adshow" target="_blank">Adson Cardoso</a>, 
-                    <a href="https://github.com/Sya-kun" target="_blank"> Jhonnathan Soares</a>,
-                    <a href="https://github.com/Levysantiago" target="_blank"> Levy Santiago</a>,
-                    <a href="https://github.com/matalmeida" target="_blank"> Matheus Almeida</a>,
-                    <a href="https://github.com/TulioCs" target="_blank"> Tulio Campos</a>
-                </li>
-                <li><strong>Bug report:</strong>
-                    <a href="https://github.com/matAlmeida/projeto-cg/issues" target="_blank">https://github.com/matAlmeida/projeto-cg/issues</a>
-                </li>
-            </ul>
+    <section id="introducao">
+        <div class="row">
+            <div class="col s12">
+                <div class="card-panel">
+                    <span class="red-text">
+                        <h4 class="header">Objetivos</h4>
+                        <p>A proposta desse projeto é criar uma implementação dos 36 primeiros tutoriais de <strong>OpenGL</strong> que está disponível no tutorial,
+                            <a href="http://lazyfoo.net/tutorials/OpenGL/index.php" target="blank">Introduction to OpenGL Graphics Programming</a>, em Python.
+                        </p>
+                        <p>Essa documentação visa ajudar futuras implementações do <strong>OpenGL</strong> em Python.</p>
+                        <li class="divider"></li>
+                        <h4 class="header">Requerimentos</h4>
+                        <p>Nesse projeto será necessario as ferramentas a seguir.</p>
+                        <ul>
+                            <li><i class="material-icons">keyboard_arrow_right</i>Editor de texto (Visual Code, Atom, Sublime)</li>
+                            <li><i class="material-icons">keyboard_arrow_right</i>Python3.x</li>
+                            <li><i class="material-icons">keyboard_arrow_right</i>PyOpenGL</li>
+                            <li><i class="material-icons">keyboard_arrow_right</i>Pacote FreeGLUT</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <h4>Objetivos</h4>
-            <p>A proposta desse projeto é criar uma implementação dos 36 primeiros tutoriais de <strong>OpenGL</strong> que está disponível no tutorial,
-            <a href="http://lazyfoo.net/tutorials/OpenGL/index.php" target="blank">Introduction to OpenGL Graphics Programming</a>, em Python.
-            </p>
-            <p>Essa documentação visa ajudar futuras implementações do <strong>OpenGL</strong> em Python.</p>
-
-            <h4>Requerimentos</h4>
-            <p>Nesse projeto será necessario as ferramentas a seguir.</p>
-            <ol>
-                <li>Editor de texto (Visual Code, Atom, Sublime)</li>
-                <li>Python3.x</li>
-                <li>PyOpenGL</li>
-                <li>Pacote FreeGLUT</li>
-            </ol>
-        </section>
-
-        <!-- 
+    <!-- 
             BAIXANDO
         -->
 
-        <section id="instalando">
-            <h3>Preparando o Ambiente</h3>
-            <h4 id="instalando_deb">Debian/Ubuntu</h4>
-                <div>
-                    <br>$ sudo apt-get install python3-pip 
-                    <br>$ pip3 install PyOpenGL PyOpenGL_accelerate
-                    <br>$ sudo apt-get install freeglut3-dev 
+    <section id="instalando">
+        <div class="row">
+            <div class="col s12">
+                <div class="card-panel">
+                    <span class="red-text">
+                        <h4 class="header">Preparando o Ambiente</h4>
+                        <h5 id="instalando_deb">Debian/Ubuntu</h5>
+                        <blockquote>
+                            $ sudo apt-get install python3-pip
+                            <br>$ pip3 install PyOpenGL PyOpenGL_accelerate
+                            <br>$ sudo apt-get install freeglut3-d
+                        </blockquote>
+                        <li class="divider"></li>
+                        <h5 id="instalando_win">Windows</h5>
+                        <blockquote>
+                            <a href="https://www.python.org/downloads/windows/">Python 3.x</a>
+                            <br><a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#pyopengl">PyOpenGL</a>
+                        </blockquote>
+                        <blockquote>                            
+                            <br>$ cd Downloads
+                            <br>$ pip install PyOpenGL-3.1.1-cp3x-cp3xm-win_amd64.whl
+                        </blockquote>
+                    </span>
                 </div>
-            <h4 id="instalando_win">Windows</h4>
-                <div>
-                    <br><a href="https://www.python.org/downloads/windows/">Python 3.x</a>
-                    <br><a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#pyopengl">PyOpenGL</a>
-                    <br>$ cd Downloads
-                    <br>$ pip install PyOpenGL-3.1.1-cp3x-cp3xm-win_amd64.whl
-                </div>
-        </section>
-
-        <section id="usando">
-            <h3>Usando no codigo</h3>
-            <div>
-                <br>from OpenGL.GL import *
-                <br>from OpenGL.GLU import *
-                <br>from OpenGL.GLUT import *
             </div>
-        </section>
+        </div>
+    </section>
 
-    </body>
-    <footer>
-        <p>feito por mat_almeida. <a href="#topo">Voltar ao Topo.</a></p>
-    </footer>
+    <section id="usando">
+        <div class="row">
+            <div class="col s12">
+                <div class="card-panel">
+                    <span class="red-text">
+                        <h4 class="header">Usando no codigo</h4>
+                        <blockquote>
+                            from OpenGL.GL import *
+                            <br>from OpenGL.GLU import *
+                            <br>from OpenGL.GLUT import *
+                        </blockquote>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="usando">
+    </section>
+
+</body>
+
+<footer class="page-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Autores</h5>
+                <a href="https://github.com/Adshow" target="_blank">
+                    <div class="chip">
+                        <img src="https://avatars3.githubusercontent.com/u/27982151?v=3&s=460" alt="Adson Cardoso"> Adson Cardoso
+                    </div>
+                </a>
+                <a href="https://github.com/Sya-kun" target="_blank">
+                    <div class="chip">
+                        <img src="https://avatars2.githubusercontent.com/u/13349869?v=3&s=460" alt="Jhonnathan Soares"> Jhonnathan Soares
+                    </div>
+                </a>
+                <a href="https://github.com/Levysantiago" target="_blank">
+                    <div class="chip">
+                        <img src="https://avatars2.githubusercontent.com/u/22161161?v=3&s=460" alt="Adson Cardoso"> Levy Santiago
+                    </div>
+                </a>
+                <a href="https://github.com/matalmeida" target="_blank">
+                    <div class="chip">
+                        <img src="https://avatars2.githubusercontent.com/u/12724212?v=3&s=460" alt="Adson Cardoso"> Matheus Almeida
+                    </div>
+                </a>
+                <a href="https://github.com/TulioCs" target="_blank">
+                    <div class="chip">
+                        <img src="https://avatars0.githubusercontent.com/u/28012866?v=3&s=460" alt="Adson Cardoso"> Tulio Campos
+                    </div>
+                </a>
+            </div>
+            <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                    <li><a href="https://github.com/matAlmeida/projeto-cg/issues" class="grey-text text-lighten-3" target="_blank">Reportar Bugs</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            © 2017 Feito por matalmeida
+            <a class="grey-text text-lighten-4 right" href="#topo">Voltar ao topo</a>
+        </div>
+    </div>
+</footer>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script type="text/javascript" src="res/api-info.js"></script>
+<script>
+    $(document).ready(function() {
+        $(".dropdown-button").dropdown();
+        $(".button-collapse").sideNav();
+    });
+</script>
+
 </html>

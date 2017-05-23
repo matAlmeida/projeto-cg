@@ -59,7 +59,7 @@ def render():
 	#Limpando o buffer de cor
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	#Rnderizando o círculo
+	#Rnderizando imagem
 	gStretchedTexture.render(0.0, 0.0, None, gStretchRect)
 
 	#Atualizando tela

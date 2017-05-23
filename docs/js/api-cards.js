@@ -1,8 +1,8 @@
-function createCard(func_name, description, params, retorno, proto, variation){
+function createCard(func_name, description, params, retorno, proto, variation) {
 
     let sectionApi = document.querySelector("#api");
 
-    if(variation != undefined){
+    if (variation != undefined) {
         variation = `
         <li>
             <div class="collapsible-header"><i class="material-icons">transform</i>Variações</div>
@@ -10,46 +10,40 @@ function createCard(func_name, description, params, retorno, proto, variation){
         </li>
         
         `;
-    } 
-    else
+    } else {
         variation = "";
+    }
 
-    let div = document.createElement("div");
-    div.classList.add("row");
-    div. innerHTML = `
-        <div class="col s12">
-            <div class="card-panel">
-                <span class="red-text">
-                    <ul class="collapsible" data-collapsible="accordion">
-                        <li>
-                            <div class="collapsible-header active"><i class="material-icons">description</i>${func_name}</div>
-                            <div class="collapsible-body"><span>${description}</span></div>
-                        </li>
-                        <li>
-                            <div class="collapsible-header"><i class="material-icons">list</i>Parâmetros / Retorno</div>
-                            <div class="collapsible-body"><span>
-                                <h5 class="header">Parâmetros</h5><br>
-                                <p>${params}</p>
-                                <h5 class="header">Retorno</h5><br>
-                                <p>${retorno}</p>
-                            </span></div>
-                        </li>
-                        <li>
-                            <div class="collapsible-header"><i class="material-icons">fingerprint</i>Prótotipo</div>
-                            <div class="collapsible-body"><span>${proto}</span></div>
-                        </li>
-                        ${variation}
-                    </ul>
-                </span>
-            </div>
-        </div>
+    let div = document.createElement("span");
+    div.classList.add("red-text");
+    div.innerHTML = `
+        <ul class="collapsible a-funcoes red-text" data-collapsible="accordion">
+            <li>
+                <div class="collapsible-header active func-name"><i class="material-icons">description</i>${func_name}</div>
+                <div class="collapsible-body"><span>${description}</span></div>
+            </li>
+            <li>
+                <div class="collapsible-header"><i class="material-icons">list</i>Parâmetros / Retorno</div>
+                <div class="collapsible-body"><span>
+                    <strong>Parâmetros</strong><br>
+                    <p style="margin-left: 25px">${params}</p>
+                    <strong>Retorno</strong><br>
+                    <p style="margin-left: 25px">${retorno}</p>
+                </span></div>
+            </li>
+            <li>
+                <div class="collapsible-header"><i class="material-icons">fingerprint</i>Prótotipo</div>
+                <div class="collapsible-body"><span>${proto}</span></div>
+            </li>
+            ${variation}
+        </ul>
     `;
 
     sectionApi.appendChild(div);
 }
 
-function genCards(functions){
+function genCards(functions) {
     functions.forEach(function(element) {
-        createCard(element["Função"], element["Descrição"], element["Parâmetros"], element["Retorno"], element["Protótipo"], element["Variações da função"]);
+        createCard(element["Função"], element["Descrição"], element["Parâmetros"], element["Retorno"], element["Protótipo"], element["Variações da Função"]);
     }, this);
 }

@@ -1,28 +1,39 @@
-// Caso tenha variaÁ„o usar essa linha
+// Caso tenha varia√ß√£o usar essa linha
 // 
-// ,{"VariaÁıes da FunÁ„o": "", "Par‚metros": "", "ProtÛtipo": "", "Retorno": "", "DescriÁ„o": "", "FunÁ„o": ""}
+// ,{"Varia√ß√µes da Fun√ß√£o": "", "Par√¢metros": "", "Prot√≥tipo": "", "Retorno": "", "Descri√ß√£o": "", "Fun√ß√£o": ""}
 // 
-// Caso n„o tenha variaÁ„o usar essa linha:
+// Caso n√£o tenha varia√ß√£o usar essa linha:
 // 
-// ,{"Par‚metros": "", "ProtÛtipo": "", "Retorno": "", "DescriÁ„o": "", "FunÁ„o": ""}
+// ,{"Par√¢metros": "", "Prot√≥tipo": "", "Retorno": "", "Descri√ß√£o": "", "Fun√ß√£o": ""}
 
 
 
 
 
-{"Par‚metros": "Uma textura que esteja desbloqueada", "ProtÛtipo": "bool lock()", "Retorno": "True:Se os pixels de textura foram recuperados, False: se n„o foi possÌvel recuperar", "DescriÁ„o": "Recebe uma textura, obtem os pixels de textura e retorna se foi possÌvel recupera - los", "FunÁ„o": "lock"}
+{"Par√¢metros": "Uma textura que esteja desbloqueada", "Prot√≥tipo": "bool lock()", "Retorno": "True:Se os pixels de textura foram recuperados, False: se n√£o foi poss√≠vel recuperar", "Descri√ß√£o": "Recebe uma textura, obtem os pixels de textura e retorna se foi poss√≠vel recupera - los", "Fun√ß√£o": "lock"}
 
 
-{"Par‚metros": " Uma textura bloqueada ", "ProtÛtipo": "bool unlock()", "Retorno": "True: Se os pixels de textura foram atualizados, False: se n„o foi possÌvel", "DescriÁ„o": "Recebe uma textura bloqueada, tenta atualizar os pixels de textura e retorna se foi possÌvel atualizar ou n„o.", "FunÁ„o": "unlock"}
+{"Par√¢metros": " Uma textura bloqueada ", "Prot√≥tipo": "bool unlock()", "Retorno": "True: Se os pixels de textura foram atualizados, False: se n√£o foi poss√≠vel", "Descri√ß√£o": "Recebe uma textura bloqueada, tenta atualizar os pixels de textura e retorna se foi poss√≠vel atualizar ou n√£o.", "Fun√ß√£o": "unlock"}
 
-{"Par‚metros": "", "ProtÛtipo": " *GLuint getPixelData32() ", "Retorno": "Um ponteiro para matriz de pixels", "DescriÁ„o": "Recebe o numero de linhas e colunas de pixels da imagem e retorna um ponteiro para matriz de pixels que podem representar uma paleta de cores no sistema RGB.", "FunÁ„o": "getPixelData"}
+{"Par√¢metros": "", "Prot√≥tipo": " *GLuint getPixelData32() ", "Retorno": "Um ponteiro para matriz de pixels", "Descri√ß√£o": "Recebe o numero de linhas e colunas de pixels da imagem e retorna um ponteiro para matriz de pixels que podem representar uma paleta de cores no sistema RGB.", "Fun√ß√£o": "getPixelData"}
 
-{"Par‚metros": " PosiÁ„o X na matriz de pixels, PosiÁ„o Y na matriz de pixels. ", "ProtÛtipo": " GLuint getPixel32( GLuint x, GLuint y ) ", "Retorno": "Retorna: Um valor no sistema ARGB. Retorna 0: Se as coordenadas est„o fora dos limites da imagem. Retorna -1: Se o bitmap foi criado opaco e n„o-transparente", "DescriÁ„o": "Recebe a posiÁ„o de um pixel e retorna um valor no sistema ARGB.", "FunÁ„o": "getPixel32"}
+{"Par√¢metros": " Posi√ß√£o X na matriz de pixels, Posi√ß√£o Y na matriz de pixels. ", "Prot√≥tipo": " GLuint getPixel32( GLuint x, GLuint y ) ", "Retorno": "Retorna: Um valor no sistema ARGB. Retorna 0: Se as coordenadas est√£o fora dos limites da imagem. Retorna -1: Se o bitmap foi criado opaco e n√£o-transparente", "Descri√ß√£o": "Recebe a posi√ß√£o de um pixel e retorna um valor no sistema ARGB.", "Fun√ß√£o": "getPixel32"}
 
-{"Par‚metros": "Coordenadas do pixel e um valor de cor no sistema ARGB. ", "ProtÛtipo": " void setPixel32 ( GLuint x, GLuint y, GLuint pixel ) ", "Retorno": "void.", "DescriÁ„o": "Define os valores de cor e transparÍncia de um ˙nico pixel.", "FunÁ„o": "setPixel32"}
+{"Par√¢metros": "Coordenadas do pixel e um valor de cor no sistema ARGB. ", "Prot√≥tipo": " void setPixel32 ( GLuint x, GLuint y, GLuint pixel ) ", "Retorno": "void.", "Descri√ß√£o": "Define os valores de cor e transpar√™ncia de um √∫nico pixel.", "Fun√ß√£o": "setPixel32"}
 
-{"Par‚metros": "", "ProtÛtipo": "", "Retorno": "", "DescriÁ„o": "", "FunÁ„o": ""}
+{"Par√¢metros": "Caminho para o arquivo .", "Prot√≥tipo": "bool loadPixelsFromFile( self, File )", "Retorno": "True: Se carregar com sucesso, False: Se n√£o conseguir.", "Descri√ß√£o": "Carrega os pixels do Arquivo e faz pads para obter duas dimens√µes.", "Fun√ß√£o": "loadPixelsFromFile"}
 
-{"Par‚metros": "", "ProtÛtipo": "", "Retorno": "", "DescriÁ„o": "", "FunÁ„o": ""}
+{"Par√¢metros": "void", "Prot√≥tipo": "bool loadTextureFromPixels32()", "Retorno": "True: Se obteve sucesso na cria√ß√£o, False: se houve algum erro.", "Descri√ß√£o": "Cria uma textura a partir de pixels membros, deleta os pixels membros e reportar erro se n√£o atingir sucesso. ", "Fun√ß√£o": "loadTextureFromPixels32"}
 
-{"Par‚metros": "", "ProtÛtipo": "", "Retorno": "", "DescriÁ„o": "", "FunÁ„o": ""}
+{"Par√¢metros": "Caminho para o arquivo e uma cor no sistema ARGB.", "Prot√≥tipo": " bool loadTextureFromFileWithColorKey( std::string path, GLubyte r, GLubyte g, GLubyte b, GLubyte a )", "Retorno": "True: se sucesso, False: se nao conseguir sucesso.", "Descri√ß√£o": "Cria uma textura do arquivo fornecido e define uma cor no sistema ARGB para os pixels.", "Fun√ß√£o": "loadTextureFromFileWithColorKey"}
+
+{"Par√¢metros": "matriz destino, a fonte de dados e o numero de bytes a copiar. ", "Prot√≥tipo": "void * memcpy ( void * destination, const void * source, size_t num )", "Retorno": "O destino .", "Descri√ß√£o": "Recebe um destino, uma fonte e numero de bytes a copiar e faz uma copia direta da memoria da fonte para o destino .", "Fun√ß√£o": "memcpy"}
+
+{"Par√¢metros": "Constantes do tipo GL.", "Prot√≥tipo": "void glEnable(GLenum)", "Retorno": "void", "Descri√ß√£o": "Habilita algum recurso, a partir da constante GL passada.", "Fun√ß√£o": "glEnable"}
+
+{"Par√¢metros": "Constantes do tipo GL.", "Prot√≥tipo": "void glDisable(GLenum)", "Retorno": "void", "Descri√ß√£o": "Desabilita algum recurso do tipo GL.", "Fun√ß√£o": "glDisable"}
+
+
+
+
+

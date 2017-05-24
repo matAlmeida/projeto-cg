@@ -1,4 +1,4 @@
-function get_info_api() {
+﻿function get_info_api() {
     return [
         { "Parâmetros": "void", "Protótipo": "bool initGL(void)", "Descrição": "Inicializa recursos de inicialização do OpenGL, como por exemplo, a definição da cor de limpeza.", "Função": "initGL", "Retorno": "bool" },
         { "Parâmetros": "void", "Protótipo": "void render(void)", "Descrição": "Função onde serão renderizados todos os objetos que serão trabalhados.", "Função": "render", "Retorno": "void" },
@@ -38,7 +38,8 @@ function get_info_api() {
         { "Variações da Função": "O valor de X pode ser: f ou i;O valor de X_type pode ser: GLfloat ou GLint. Respectivamente em relação a X.", "Parâmetros": "(pname) Especifica o nome simbólico do parâmetro a ser definido, pode ser: GL_PACK_SWAP_BYTES, GL_PACK_LSB_FIRST, GL_PACK_ROW_LENGTH, GL_PACK_IMAGE_HEIGHT, GL_PACK_SKIP_PIXELS, GL_PACK_SKIP_ROWS, GL_PACK_SKIP_IMAGES ou GL_PACK_ALIGNMENT. GL_UNPACK_SWAP_BYTES, GL_UNPACK_LSB_FIRST, GL_UNPACK_ROW_LENGTH, GL_UNPACK_IMAGE_HEIGHT, GL_UNPACK_SKIP_PIXELS, GL_UNPACK_SKIP_ROWS, GL_UNPACK_SKIP_IMAGES ou GL_UNPACK_ALIGNMENT.(param) especifica o valor que pname está definido.", "Protótipo": "void glPixelStoreX(GLenum(pname), X_type(param))", "Retorno": "void", "Descrição": "Define modos de armazenamento de pixels.", "Função": "glPixelStore" },
         { "Parâmetros": "O caminho para o arquivo e o modo de carregamento (se for usado deve ser 'r').", "Protótipo": "PIL.Image.open(file,mode='r')", "Descrição": "Lê uma imagem de um arquivo.", "Função": "open", "Retorno": "Um objeto do tipo imagem." },
         { "Parâmetros": "void", "Protótipo": "void Image.close(void)", "Descrição": "Retira a imagem da memória.", "Função": "close", "Retorno": "void" },
-        { "Parâmetros": "Qual codificador usar (O padrão é usar o codificador padrão 'raw') e argumentos extras para o codificador.", "Protótipo": "Image.tobytes(encoder_name='raw', *args)", "Descrição": "Retorna a imagem como um objeto de bytes.", "Função": "tobyte", "Retorno": "Um objeto de bytes." }
+        { "Parâmetros": "Qual codificador usar (O padrão é usar o codificador padrão 'raw') e argumentos extras para o codificador.", "Protótipo": "Image.tobytes(encoder_name='raw', *args)", "Descrição": "Retorna a imagem como um objeto de bytes.", "Função": "tobyte", "Retorno": "Um objeto de bytes." },
+	{"Variações da Função": "O valor dos parâmetros podem ser GLfloat ou GLdouble", "Parâmetros": "(angle) especifica o angulo de rotação, em graus. (x, y, z) coordenadas de um vetor", "Protótipo": "void glRotated(GLdouble angle, GLdouble x, GLdouble y, GLdouble z)", "Retorno": "void", "Descrição": "multiplica a matriz atual pela matriz de otação", "Função": "glRotate"}
     ];
 }
 

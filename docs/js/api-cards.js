@@ -46,4 +46,6 @@ function genCards(functions) {
     functions.forEach(function(element) {
         createCard(element["Função"], element["Descrição"], element["Parâmetros"], element["Retorno"], element["Protótipo"], element["Variações da Função"]);
     }, this);
+
+    document.querySelector("#progressBar").innerHTML = "";
 }

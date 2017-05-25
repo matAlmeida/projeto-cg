@@ -4,6 +4,7 @@ import json
 import re
 
 def clean(soup, bStr, aStr):
+
     newSoup = []
     for x in soup:
         i = str(x).replace(bStr, '')
@@ -12,7 +13,8 @@ def clean(soup, bStr, aStr):
     
     return newSoup
 
-def my_dictfy(titles, elements):    
+def my_dictfy(titles, elements):  
+
     my_dict = {}
 
     for i in range(len(titles)):
@@ -20,20 +22,18 @@ def my_dictfy(titles, elements):
     
     return my_dict
 
+def get_my_letter(soup, className):
+    
+    return clean(soup.findAll('div', {'class' : className}), '<div class="'+ className +'">', '</div>')
+
 sauce = urllib.request.urlopen('http://localhost:5252/modeloTutorial.html').read()
 soup = bs.BeautifulSoup(sauce, 'html.parser')
 
-tutorialNumbers = soup.findAll('div', {'class' : 'numeroTutorial'})
-titles = soup.findAll('div', {'class' : 'titulo'})
-links = soup.findAll('div', {'class' : 'linkdotutorial'})
-library = soup.findAll('div', {'class' : 'bibliotecas'})
-description = soup.findAll('div', {'class' : 'descricao'})
-
-tutorialNumbers = clean(tutorialNumbers, '<div class="numeroTutorial">', '</div>')
-titles = clean(titles, '<div class="titulo">', '</div>')
-links = clean(links, '<div class="linkdotutorial">', '</div>')
-library = clean(library, '<div class="bibliotecas">', '</div>')
-description = clean(description, '<div class="descricao">', '</div>')
+tutorialNumbers = get_my_letter(soup, 'numeroTutorial')
+titles = get_my_letter(soup, 'titulo')
+links = get_my_letter(soup, 'linkdotutorial')
+library = get_my_letter(soup, 'bibliotecas')
+description = get_my_letter(soup, 'descricao')
 
 titulos = ['Numero', 'Titulo', 'Link', 'Bibliotecas', 'Descricao']
 tutoriais = []
@@ -43,8 +43,8 @@ for i in range(len(tutorialNumbers)):
     tutoriais.append(my_dictfy(titulos, elementos))
 
 funcName = 'function get_info_api() {\n return ' + str(tutoriais) + '; }'
-funcName = funcName.replace('return [', 'return [\n')
-funcName = funcName.replace('];', '\n];\n')
+funcName = funcName.replace('return [', '\treturn [\n')
+funcName = funcName.replace('];', '\n\t];\n')
 funcName = funcName.replace('},', '},\n')
 
 myJs = open('res/tutorial-info.js', 'w')

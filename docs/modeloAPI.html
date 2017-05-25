@@ -1,0 +1,517 @@
+<!--
+        <section>
+            
+                <div class="nomeFuncao"></div>
+                <div class="descricao"></div>
+                <div class="parametros"></div>
+                <div class="retorno"></div>
+                <div class="prototipo"></div>
+                <div class="variacoes"></div>
+        </section>
+-->
+
+<section>
+
+    <div class="nomeFuncao">initGL</div>
+    <div class="descricao">Inicializa recursos de inicialização do OpenGL, como por exemplo, a definição da cor de limpeza.</div>
+    <div class="parametros">void</div>
+    <div class="retorno">bool</div>
+    <div class="prototipo">bool initGL(void)</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">render</div>
+    <div class="descricao">Função onde serão renderizados todos os objetos que serão trabalhados.</div>
+    <div class="parametros">void</div>
+    <div class="retorno">void</div>
+    <div class="prototipo">void render(void)</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">runMainLoop</div>
+    <div class="descricao">Quando chamamos essa função, ele irá executar as funções do loop principal e definir uma chamada de volta para executar-se novamente. Quando o callback é executado, ele irá executar as funções de loop principal e chamar-se novamente em um 60 de segundo.
+        Então, o que esse loop de retorno faz é garantir que as funções do loop principal sejam chamadas a cada 60º de segundo para nos dar uma taxa de quadros de 60 quadros por segundo.</div>
+    <div class="parametros">val - Tempo de retorno</div>
+    <div class="retorno">void</div>
+    <div class="prototipo">void runMainLoop(int val)</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">glMatrixMode</div>
+    <div class="descricao">Especifica qual é a matriz atual.</div>
+    <div class="parametros">Variável mode (Especifica qual pilha de matriz é o destino para operações de matriz subsequentes.) Valores aceitos: GL_MODELVIEW, GL_PROJECTION e GL_TEXTURE. Sendo que o valor inicial é GL_MODELVIEW.</div>
+    <div class="retorno">void</div>
+    <div class="prototipo">void glMatrixMode(GLenum(mode))</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">glLoadIdentity</div>
+    <div class="descricao">Substitui a matriz atual pela matriz identidade.</div>
+    <div class="parametros">void</div>
+    <div class="retorno">void</div>
+    <div class="prototipo">void glLoadIdentity(void)</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">glClearColor</div>
+    <div class="descricao">Especifica valores vermelho, verde, azul e alfa usados para a inicialização do buffer de cores. Os valores iniciais são todos iguais a 0.</div>
+    <div class="parametros">Variáveis red, green, blue e alpha.</div>
+    <div class="retorno">void</div>
+    <div class="prototipo">void glClearColor(GLfloat(red), GLfloat(green), GLfloat(blue), GLfloat(alpha))</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">glGetError</div>
+    <div class="descricao">Retorna uma intormação de erro. A cada erro detectado é atribuído um código numérico e um nome simbólico. Quando ocorre um erro, o sinalizador de erro é definido para o valor de código de erro apropriado.</div>
+    <div class="parametros">void</div>
+    <div class="retorno">Valor da flag de erro do tipo GLenum.</div>
+    <div class="prototipo">GLenum glGetError(void)</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">glClear</div>
+    <div class="descricao">Limpa os buffers para valores predefinidos por glClearDepth ou glClearStencil.</div>
+    <div class="parametros">Máscaras (tipo GLbitfield) que indicam os buffers a serem limpos. As três máscaras são: GL_COLOR_BUFFER_BIT, GL_DEPTH_BUFFER_BIT e GL_STENCIL_BUFFER_BIT.</div>
+    <div class="retorno">void</div>
+    <div class="prototipo">void glClear(GLbitfield mask)</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">glBegin</div>
+    <div class="descricao">Delimita os vértices de um tipo primitivo ou um grupo de tipos primitivos.</div>
+    <div class="parametros">Variável mode (Especifica os tipos primitivos que serão criados a partir dos vértices presentes entre o glBegin e o subsequente glEnd) Constantes aceitas: GL_POINTS, GL_LINES, GL_LINE_STRIP, GL_LINE_LOOP, GL_TRIANGLES, GL_TRIANGLE_STRIP, GL_TRIANGLE_FAN,
+        GL_QUADS, GL_QUAD_STRIP e GL_POLYGON.</div>
+    <div class="retorno">void</div>
+    <div class="prototipo">void glBegin(GLenum(mode))</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">glVertex</div>
+    <div class="descricao">Especifica um vértice.</div>
+    <div class="parametros">Coordenadas x,y,z e w do vértice. Nem todos os parâmetros estão presentes em todas as formas do comando.</div>
+    <div class="retorno">void</div>
+    <div class="prototipo">void glVertex(*args)</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">glutSwapBuffers</div>
+    <div class="descricao">Promove a troca do buffer secundário (atual) e seu conteúdo para se tornar o conteúdo do buffer de frente.</div>
+    <div class="parametros">void</div>
+    <div class="retorno">void</div>
+    <div class="prototipo">void glutSwapBuffers(void)</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">glutTimerFunc</div>
+    <div class="descricao">Registra um tempo de retorno a ser acionado em um número especificado de milisegundos.</div>
+    <div class="parametros">Milissegundos tipo unsigned int, ponteiro a função do tipo void (*func)(int value) e o tempo de retorno.</div>
+    <div class="retorno">void</div>
+    <div class="prototipo">void glutTimerFunc(unsigned int msecs,void (*func)(int value), int value)</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">glutInitContextVersion</div>
+    <div class="descricao">Utilizada para definir a versão de contexto do OpenGL. Lembrando que esta função não faz parte do GLUT.</div>
+    <div class="parametros">Numeração da versão, por exemplo, versão x.y, definiremos como glutInitContextVersion(x,y).</div>
+    <div class="retorno">void</div>
+    <div class="prototipo">void glutInitContextVersion(int num1, int num2)</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">glutInitDisplayMode</div>
+    <div class="descricao">Define um modo de display inicial.</div>
+    <div class="parametros">Variável modo (Modo de exibição). Permite as seguintes máscaras: GLUT_RGBA, GLUT_RGB, GLUT_INDEX, GLUT_SINGLE, GLUT_DOUBLE, GLUT_ACCUM, GLUT_ALPHA, GLUT_DEPTH, GLUT_STENCIL, GLUT_MULTISAMPLE, GLUT_STEREO e GLUT_LUMINANCE.</div>
+    <div class="retorno">void</div>
+    <div class="prototipo">void glutInitDisplayMode(unsigned int mode)</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">glutInitWindowSize</div>
+    <div class="descricao">Define o tamanho inicial da janela.</div>
+    <div class="parametros">Variáveis inteiras largura e altura (width e height) em pixels.</div>
+    <div class="retorno">void</div>
+    <div class="prototipo">void glutInitWindowSize(int width, int height)</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">glutCreateWindow</div>
+    <div class="descricao">Cria uma nova janela</div>
+    <div class="parametros">Uma variável nome (ponteiro a char), que vai ser o nome da janela criada.</div>
+    <div class="retorno">O valor retornado é um identificador inteiro pequeno exclusivo para a janela. O intervalo de identificadores alocados começa em um. </div>
+    <div class="prototipo">int glutCreateWindow(char *name)</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">glutDisplayFunc</div>
+    <div class="descricao">Define um display de retorno para a janela atual.</div>
+    <div class="parametros">Uma função com retorno e parâmetro void.</div>
+    <div class="retorno">void</div>
+    <div class="prototipo">void glutDisplayFunc(void (*func)(void))</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">glutMainLoop</div>
+    <div class="descricao">Faz os eventos GLUT entrarem em processo de loop.</div>
+    <div class="parametros">void</div>
+    <div class="retorno">void</div>
+    <div class="prototipo">void glutMainLoop(void)</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">glEnd</div>
+    <div class="descricao">Especifica que os vértices serão enviados e renderiza as figuras.</div>
+    <div class="parametros">void</div>
+    <div class="retorno">void</div>
+    <div class="prototipo">void glEnd(void)</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">glOrtho</div>
+    <div class="descricao">Multiplica a matriz atual por uma matriz ortográfica (2D) com os valores right, left, bottom, top, near e far.</div>
+    <div class="parametros">Coordenadas para os planos de corte vertical esquerdo e direito (left, right);<br>Coordenadas para os planos de corte horizontal superior e inferior (bottom, top);<br>A distância para os planos de corte de profundidade mais próximo e afastado (nearVal,
+        farVal).
+    </div>
+    <div class="retorno">void</div>
+    <div class="prototipo">void glOrtho(GLdouble(left), GLdouble(right), GLdouble(bottom), GLdouble(top), GLdouble(nearVal), GLdouble(farVal))</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">glTranslate</div>
+    <div class="descricao">Multiplica a matriz atual por uma matriz de translação.</div>
+    <div class="parametros">Coordenadas x, y e z do vetor de translação.</div>
+    <div class="retorno">void</div>
+    <div class="prototipo">void glTranslate(args)</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">glColor</div>
+    <div class="descricao">Especifica a cor atual.</div>
+    <div class="parametros">Valores red, green, blue e alpha.</div>
+    <div class="retorno">void</div>
+    <div class="prototipo">glColor(*args)</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">handleKeys</div>
+    <div class="descricao">Essa função pega um valor ASCII de uma tecla pressionada e a posição atual do mouse. Ela simplesmente alterna a flag boleana quando a tecla é pressionada.</div>
+    <div class="parametros">Valor da tecla pressionada (key) e a coordenada x e y da posição do mouse.</div>
+    <div class="retorno">void</div>
+    <div class="prototipo">void handleKeys(unsigned char key,int x,int y)</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">glutKeyboardFunc</div>
+    <div class="descricao">Especifica a tecla de retorno do teclado para a janela atual.</div>
+    <div class="parametros">A nova função de retorno do teclado.</div>
+    <div class="retorno">void</div>
+    <div class="prototipo">void glutKeyboardFunc(void (*func)(unsigned char key,int x, int y))</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">glViewport</div>
+    <div class="descricao">Define um modo de exibição de janela (viewport).</div>
+    <div class="parametros">x e y: especificam o canto inferior esquerdo do retângulo da janela de visualização em pixels. Valor inicial (0,0) width e height: especificam a largura e altura da viewport.</div>
+    <div class="retorno">void</div>
+    <div class="prototipo">void glViewport(GLint(x), GLint(y), GLsizei(width), GLsizei(height))</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">glPushMatrix</div>
+    <div class="descricao">Salva uma cópia da matriz atual e insere em uma pilha para esta ser utilizada mais tarde. Importante lembrar que a pilha de matrizes não é infinita. Inserindo matrizes demais na pilha o programa irá retornar um erro de GL_STACK_OVERFLOW da função
+        glGetError().
+    </div>
+    <div class="parametros">void</div>
+    <div class="retorno">void</div>
+    <div class="prototipo">void glPushMatrix((void))</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">glPopMatrix</div>
+    <div class="descricao">Retira a matriz padrão antiga da pilha de matrizes e mescla com a matriz atual.</div>
+    <div class="parametros">void</div>
+    <div class="retorno">void</div>
+    <div class="prototipo">void glPopMatrix((void))</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">glutPostRedisplay</div>
+    <div class="descricao">Marca que janela atual precisa ser recarregada.</div>
+    <div class="parametros">void</div>
+    <div class="retorno">void</div>
+    <div class="prototipo">void glutPostRedisplay(void)</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">ord</div>
+    <div class="descricao">Retorna o código ASCII daquele caractere.</div>
+    <div class="parametros">Um caractere qualquer(char).</div>
+    <div class="retorno">O código ASCII correspondente àquele caractere.</div>
+    <div class="prototipo">int ord(char)</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">glDeleteTextures</div>
+    <div class="descricao">Deleta uma quantidade definida de texturas.</div>
+    <div class="parametros">O número de texturas a serem deletadas e o array de texturas que serão deletadas.</div>
+    <div class="retorno">void</div>
+    <div class="prototipo">void glDeleteTextures(GLsizei(n), const GLuint *(textures))</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">glGenTextures</div>
+    <div class="descricao">Gera os nomes de uma quantidade determinada de texturas.</div>
+    <div class="parametros">O número de nomes de texturas a serem gerados e o array de texturas a serem nomeadas.</div>
+    <div class="retorno">void</div>
+    <div class="prototipo">void glGenTextures(GLsizei(n), GLuint * (textures)) </div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">glBindTexture</div>
+    <div class="descricao">Vincula uma textura nomeada a uma textura padrão da biblioteca.</div>
+    <div class="parametros">O destino para o qual a textura será vinculada e o nome da textura. As texturas padrão podem ser: GL_TEXTURE_1D, GL_TEXTURE_2D, GL_TEXTURE_3D, GL_TEXTURE_1D_ARRAY, GL_TEXTURE_2D_ARRAY, GL_TEXTURE_RECTANGLE, GL_TEXTURE_CUBE_MAP, GL_TEXTURE_CUBE_MAP_ARRAY,
+        GL_TEXTURE_BUFFER, GL_TEXTURE_2D_MULTISAMPLE ou GL_TEXTURE_2D_MULTISAMPLE_ARRAY.</div>
+    <div class="retorno">void</div>
+    <div class="prototipo">void glBindTexture(GLenum(target), GLuint(texture))</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">glTexImage</div>
+    <div class="descricao">Especifica uma imagem de textura bidimensional.</div>
+    <div class="parametros">A textura padrão a ser vinculada (GL_TEXTURE_2D, GL_PROXY_TEXTURE_2D, GL_TEXTURE_1D_ARRAY, GL_PROXY_TEXTURE_1D_ARRAY, GL_TEXTURE_RECTANGLE, GL_PROXY_TEXTURE_RECTANGLE, GL_TEXTURE_CUBE_MAP_POSITIVE_X, GL_TEXTURE_CUBE_MAP_NEGATIVE_X, GL_TEXTURE_CUBE_MAP_POSITIVE_Y,
+        GL_TEXTURE_CUBE_MAP_NEGATIVE_Y, GL_TEXTURE_CUBE_MAP_POSITIVE_Z, GL_TEXTURE_CUBE_MAP_NEGATIVE_Z ou GL_PROXY_TEXTURE_CUBE_MAP);<br>- O nível de detalhe;<br>- O número de componentes coloridos na textura;<br>- A altura, largura e borda da imagem;<br>-
+        O formato dos dados de pixel (GL_RED, GL_RG, GL_RGB, GL_BGR, GL_RGBA, GL_BGRA, GL_RED_INTEGER, GL_RG_INTEGER, GL_RGB_INTEGER, GL_BGR_INTEGER, GL_RGBA_INTEGER, GL_BGRA_INTEGER, GL_STENCIL_INDEX, GL_DEPTH_COMPONENT, GL_DEPTH_STENCIL);
+        <br>- O tipo de dado dos dados de pixel (GL_UNSIGNED_BYTE, GL_BYTE, GL_UNSIGNED_SHORT, GL_SHORT, GL_UNSIGNED_INT, GL_INT, GL_FLOAT, GL_UNSIGNED_BYTE_3_3_2, GL_UNSIGNED_BYTE_2_3_3_REV, GL_UNSIGNED_SHORT_5_6_5, GL_UNSIGNED_SHORT_5_6_5_REV, GL_UNSIGNED_SHORT_4_4_4_4,
+        GL_UNSIGNED_SHORT_4_4_4_4_REV, GL_UNSIGNED_SHORT_5_5_5_1, GL_UNSIGNED_SHORT_1_5_5_5_REV, GL_UNSIGNED_INT_8_8_8_8, GL_UNSIGNED_INT_8_8_8_8_REV, GL_UNSIGNED_INT_10_10_10_2 e GL_UNSIGNED_INT_2_10_10_10_REV.);<br>- Um ponteiro para os dados da imagem
+        na memória.</div>
+    <div class="retorno">void</div>
+    <div class="prototipo">void glTexImageX(GLenum (target), GLint (level), GLint (internalFormat), GLsizei(width), GLsizei(height), GLint(border), GLenum (format), GLenum (type), const GLvoid *(data))</div>
+    <div class="variacoes">O valor X pode ser: 2D, 2Df, 2Di, 2Ds, 2Dui, 2Dus. Só havendo diferença entre os tipos de dados aceitos.</div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">glTexParameter</div>
+    <div class="descricao">Define os parâmetros da textura.</div>
+    <div class="parametros">- (target) A textura de destino que pode ser: GL_TEXTURE_1D, GL_TEXTURE_2D, GL_TEXTURE_3D, GL_TEXTURE_1D_ARRAY, GL_TEXTURE_2D_ARRAY, GL_TEXTURE_RECTANGLE, or GL_TEXTURE_CUBE_MAP;<br>- (pname) O nome simbólico de um parâmetro de textura de valor único,
+        pode ser: GL_DEPTH_STENCIL_TEXTURE_MODE, GL_TEXTURE_BASE_LEVEL, GL_TEXTURE_COMPARE_FUNC, GL_TEXTURE_COMPARE_MODE, GL_TEXTURE_LOD_BIAS, GL_TEXTURE_MIN_FILTER, GL_TEXTURE_MAG_FILTER, GL_TEXTURE_MIN_LOD, GL_TEXTURE_MAX_LOD, GL_TEXTURE_MAX_LEVEL,
+        GL_TEXTURE_SWIZZLE_R, GL_TEXTURE_SWIZZLE_G, GL_TEXTURE_SWIZZLE_B, GL_TEXTURE_SWIZZLE_A, GL_TEXTURE_WRAP_S, GL_TEXTURE_WRAP_T ou GL_TEXTURE_WRAP_R;<br>- (param ou params) Um valor para pname ou um ponteiro para um array onde os valores de pneme
+        estão guardados.</div>
+    <div class="retorno">void</div>
+    <div class="prototipo">void glTexParameterX(GLenum (target), GLenum (pname), const X_type * (params))</div>
+    <div class="variacoes">O valor de X_type pode ser: const GLint *, const GLuint *, GLfloat, const GLfloat *, GLint, const GLint *.<br>O valor X pode ser: Iiv, Iuiv, f, fv, i, iv. Respectivamente em relação a X_type.</div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">glEnable</div>
+    <div class="descricao">Habilita algum recurso, a partir da constante GL passada.</div>
+    <div class="parametros">Constantes do tipo GL.</div>
+    <div class="retorno">void</div>
+    <div class="prototipo">void glEnable(GLenum)</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">glPixelStore</div>
+    <div class="descricao">Define modos de armazenamento de pixels.</div>
+    <div class="parametros">(pname) Especifica o nome simbólico do parâmetro a ser definido, pode ser: GL_PACK_SWAP_BYTES, GL_PACK_LSB_FIRST, GL_PACK_ROW_LENGTH, GL_PACK_IMAGE_HEIGHT, GL_PACK_SKIP_PIXELS, GL_PACK_SKIP_ROWS, GL_PACK_SKIP_IMAGES ou GL_PACK_ALIGNMENT. GL_UNPACK_SWAP_BYTES,
+        GL_UNPACK_LSB_FIRST, GL_UNPACK_ROW_LENGTH, GL_UNPACK_IMAGE_HEIGHT, GL_UNPACK_SKIP_PIXELS, GL_UNPACK_SKIP_ROWS, GL_UNPACK_SKIP_IMAGES ou GL_UNPACK_ALIGNMENT.<br>(param) especifica o valor que pname está definido.</div>
+    <div class="retorno">void</div>
+    <div class="prototipo">void glPixelStoreX(GLenum(pname), X_type(param))</div>
+    <div class="variacoes">O valor de X pode ser: f ou i;<br>O valor de X_type pode ser: GLfloat ou GLint. Respectivamente em relação a X.</div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">open</div>
+    <div class="descricao">Lê uma imagem de um arquivo.</div>
+    <div class="parametros">O caminho para o arquivo e o modo de carregamento (se for usado deve ser 'r').</div>
+    <div class="retorno">Um objeto do tipo imagem.</div>
+    <div class="prototipo">PIL.Image.open(file,mode='r')</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">close</div>
+    <div class="descricao">Retira a imagem da memória.</div>
+    <div class="parametros">void</div>
+    <div class="retorno">void</div>
+    <div class="prototipo">void Image.close(void)</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">tobytes</div>
+    <div class="descricao">Retorna a imagem como um objeto de bytes.</div>
+    <div class="parametros">Qual codificador usar (O padrão é usar o codificador padrão "raw") e argumentos extras para o codificador.</div>
+    <div class="retorno">Um objeto de bytes.</div>
+    <div class="prototipo">Image.tobytes(encoder_name='raw', *args)</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">lock</div>
+    <div class="descricao">Recebe uma textura, obtem os pixels de textura e retorna se foi possível recupera-los</div>
+    <div class="parametros">Uma textura que esteja desbloqueada</div>
+    <div class="retorno">True:Se os pixels de textura foram recuperados, False: se não foi possível recuperar</div>
+    <div class="prototipo">bool lock()</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">unlock</div>
+    <div class="descricao">Recebe uma textura bloqueada, tenta atualizar os pixels de textura e retorna se foi possível atualizar ou não.</div>
+    <div class="parametros">Uma textura bloqueada</div>
+    <div class="retorno">True: Se os pixels de textura foram atualizados, False: se não foi possível</div>
+    <div class="prototipo">bool unlock()</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">getPixelData</div>
+    <div class="descricao">Recebe o numero de linhas e colunas de pixels da imagem e retorna um ponteiro para matriz de pixels que podem representar uma paleta de cores no sistema RGB.</div>
+    <div class="parametros">void</div>
+    <div class="retorno">Um ponteiro para matriz de pixels</div>
+    <div class="prototipo">*GLuint getPixelData32()</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">getPixel32</div>
+    <div class="descricao">Recebe a posição de um pixel e retorna um valor no sistema ARGB.</div>
+    <div class="parametros">Posição X na matriz de pixels, Posição Y na matriz de pixels.</div>
+    <div class="retorno">Um valor no sistema ARGB. Retorna 0: Se as coordenadas estão fora dos limites da imagem. Retorna -1: Se o bitmap foi criado opaco e não-transparente</div>
+    <div class="prototipo">GLuint getPixel32( GLuint x, GLuint y )</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">setPixel32</div>
+    <div class="descricao">Define os valores de cor e transparência de um único pixel.</div>
+    <div class="parametros">Coordenadas do pixel e um valor de cor no sistema ARGB.</div>
+    <div class="retorno">void</div>
+    <div class="prototipo">void setPixel32 ( GLuint x, GLuint y, GLuint pixel )</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">loadPixelsFromFile</div>
+    <div class="descricao">Carrega os pixels do Arquivo e faz pads para obter duas dimensões.</div>
+    <div class="parametros">Caminho para o arquivo.</div>
+    <div class="retorno">True: Se carregar com sucesso, False: Se não conseguir.</div>
+    <div class="prototipo">bool loadPixelsFromFile( self, File )</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">loadTextureFromPixels32</div>
+    <div class="descricao">Cria uma textura a partir de pixels membros, deleta os pixels membros e reportar erro se não atingir sucesso.</div>
+    <div class="parametros">void</div>
+    <div class="retorno">True: Se obteve sucesso na criação, False: se houve algum erro.</div>
+    <div class="prototipo">bool loadTextureFromPixels32()</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">loadTextureFromFileWithColorKey</div>
+    <div class="descricao">Cria uma textura do arquivo fornecido e define uma cor no sistema ARGB para os pixels.</div>
+    <div class="parametros">Caminho para o arquivo e uma cor no sistema ARGB.</div>
+    <div class="retorno">True: se sucesso, False: se nao conseguir sucesso.</div>
+    <div class="prototipo">bool loadTextureFromFileWithColorKey( std::string path, GLubyte r, GLubyte g, GLubyte b, GLubyte a )</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">memcpy</div>
+    <div class="descricao">Recebe um destino, uma fonte e numero de bytes a copiar e faz uma copia direta da memoria da fonte para o destino.</div>
+    <div class="parametros">matriz destino, a fonte de dados e o numero de bytes a copiar.</div>
+    <div class="retorno">O destino</div>
+    <div class="prototipo">void * memcpy ( void * destination, const void * source, size_t num )</div>
+    <div class="variacoes"></div>
+</section>
+
+<section>
+
+    <div class="nomeFuncao">glDisable</div>
+    <div class="descricao">Desabilita algum recurso do tipo GL.</div>
+    <div class="parametros">Constantes do tipo GL.</div>
+    <div class="retorno">void</div>
+    <div class="prototipo">void glDisable(GLenum)</div>
+    <div class="variacoes"></div>
+</section>

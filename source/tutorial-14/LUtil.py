@@ -114,6 +114,9 @@ def handlekeys(key, x, y):
 		glBindTexture(GL_TEXTURE_2D,gRepeatingTexture.getTextureID())
 		switch(gTextureWrapType)
 
+		#Update screen
+		glutSwapBuffers()
+
 def runMainLoop(val):
 	#Lógica do Frame
 	update()
@@ -126,12 +129,12 @@ def runMainLoop(val):
 
 def caso_0():
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT)
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT)
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT)
 	print(gTextureWrapType,": GL_REPEAT")
 
 def caso_1():
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP)
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP)
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP)
 	print(gTextureWrapType,": GL_CLAMP")
 
 def switch(op):

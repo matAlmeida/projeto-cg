@@ -51,7 +51,7 @@ class LTexture:
 		glBindTexture(GL_TEXTURE_2D,self.mTextureID)
 
 		#Gera textura
-		glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,self.mTextureWidth,self.mTextureHeight,0,GL_RGBA,GL_UNSIGNED_BYTE,self.mPixels)
+		glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,self.mTextureWidth,self.mTextureHeight,0,GL_RGBA,GL_UNSIGNED_BYTE,pixels)
 
 		#Definindo parâmetros da textura
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR)
@@ -65,16 +65,13 @@ class LTexture:
 		#Procurando erros
 		erro = glGetError()
 		if(erro != GL_NO_ERROR):
-			print("Erro ao carregar textura de %p pixels! %s\n",self.mPixels,gluErrorString(erro))
+			print("Erro ao carregar textura de %p pixels! %s\n",pixels,gluErrorString(erro))
 			return False
 		return True
 
 	def loadTextureFromFile(self,imagem):
 		textureLoaded = False
-		#Desalocando dados da textura
-		self.freeTexture(self)
 
-		pixelsLoaded = False
 		im = Image.open(imagem).convert("RGBA")
 		if(im != None):
 			#Inicializando dimensões
@@ -85,20 +82,12 @@ class LTexture:
 			texWidth = self.powerOfTwo(imgWidth)
 			texHeigth = self.powerOfTwo(imgHeight)
 
-			#Obtendo dimensoes de imagem
-			self.mImageWidth = imgWidth
-			self.mImageHeight = imgHeight
-			self.mTextureWidth = texWidth
-			self.mTextureHeight = texHeigth
-
 			imagem = im.tobytes("raw","RGBA",0,-1)
 			textureLoaded = self.loadTextureFromPixels32(imagem,imgWidth,imgHeight,texWidth,texHeigth)
-
-			pixelsLoaded = True
 		im.close()
-		if(pixelsLoaded == False):
+		if(textureLoaded == False):
 			print("Não foi possível carregar a imagem!")
-		return pixelsLoaded
+		return textureLoaded
 
 	def render(self,x,y,clip = None):
 		#Se a textura existe

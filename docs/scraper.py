@@ -26,63 +26,55 @@ def get_my_letter(soup, className):
     
     return clean(soup.findAll('div', {'class' : className}), '<div class="'+ className +'">', '</div>')
 
-sauce = urllib.request.urlopen('http://localhost:5252/modeloTutorial.html').read()
-soup = bs.BeautifulSoup(sauce, 'html.parser')
+def updateTutoriais():
+    sauce = urllib.request.urlopen('http://localhost:5252/modeloTutorial.html').read()
+    soup = bs.BeautifulSoup(sauce, 'html.parser')
 
-tutorialNumbers = get_my_letter(soup, 'numeroTutorial')
-titles = get_my_letter(soup, 'titulo')
-links = get_my_letter(soup, 'linkdotutorial')
-library = get_my_letter(soup, 'bibliotecas')
-description = get_my_letter(soup, 'descricao')
+    tutorialNumbers = get_my_letter(soup, 'numeroTutorial')
+    titles = get_my_letter(soup, 'titulo')
+    links = get_my_letter(soup, 'linkdotutorial')
+    library = get_my_letter(soup, 'bibliotecas')
+    description = get_my_letter(soup, 'descricao')
 
-titulos = ['Numero', 'Titulo', 'Link', 'Bibliotecas', 'Descricao']
-tutoriais = []
+    titulos = ['Numero', 'Titulo', 'Link', 'Bibliotecas', 'Descricao']
+    tutoriais = []
 
-for i in range(len(tutorialNumbers)):
-    elementos = [tutorialNumbers[i], titles[i], links[i], library[i], description[i]]
-    tutoriais.append(my_dictfy(titulos, elementos))
+    for i in range(len(tutorialNumbers)):
+        elementos = [tutorialNumbers[i], titles[i], links[i], library[i], description[i]]
+        tutoriais.append(my_dictfy(titulos, elementos))
 
-funcName = 'function get_info_api() {\n return ' + str(tutoriais) + '; }'
-funcName = funcName.replace('return [', '\treturn [\n')
-funcName = funcName.replace('];', '\n\t];\n')
-funcName = funcName.replace('},', '},\n')
+    funcName = 'function get_info_api() {\n return ' + str(tutoriais) + '; }'
+    funcName = funcName.replace('return [', '\treturn [\n')
+    funcName = funcName.replace('];', '\n\t];\n')
+    funcName = funcName.replace('},', '},\n')
 
-myJs = open('res/tutorial-info.js', 'w')
-myJs.write(funcName)
-myJs.close()
+    myJs = open('res/tutorial-info.js', 'w')
+    myJs.write(funcName)
+    myJs.close()
 
-#function get_info_api() { return []; }
+def updateApi():
+    sauce2 = urllib.request.urlopen('http://localhost:5252/modeloAPI.html').read()
+    soup2 = bs.BeautifulSoup(sauce2, 'html.parser')
 
-# title = soup.select('section > div')
-# data = soup.select('li > p')
-# newData = []
-# newTitle = []
+    funcoes = get_my_letter(soup2, 'nomeFuncao')
+    descricoes = get_my_letter(soup2, 'descricao')
+    params = get_my_letter(soup2, 'parametros')
+    retornos = get_my_letter(soup2, 'retorno')
+    protot = get_my_letter(soup2, 'prototipo')
+    vari = get_my_letter(soup2, 'variacoes')
 
-# for d in data:
-#     d = re.sub('<.*?>', '', str(d))
-#     newData.append(d)
+    uhum = ['Função', 'Descrição', 'Parâmetros', 'Retorno', 'Protótipo', 'Variações da Função']
+    infos = []
 
-# for t in title:
-#     t = re.sub('<.*?>', '', str(t))
-#     newTitle.append(t)
+    for i in range(len(funcoes)):
+        elementos = [funcoes[i], descricoes[i], params[i], retornos[i], protot[i], vari[i]]
+        infos.append(my_dictfy(uhum, elementos))
 
-# api = []
-# f = {}
-# for i in range(len(newData)):
-#     if((i > 0) and (newTitle[i] == "Função: ")):
-#         api.append(f)
-#         print(f)
-#         f = {}
-#         f[newTitle[i]] = newData[i]
-#         continue
-#     f[newTitle[i]] = newData[i]
+    apinames = 'function get_info_api() {\n return ' + str(infos) + '; }'
+    apinames = apinames.replace('return [', '\treturn [\n')
+    apinames = apinames.replace('];', '\n\t];\n')
+    apinames = apinames.replace('},', '},\n')
 
-# output_file = open('output.json', 'w')
-# json.dump(api, output_file)
-# output_file.close
-
-# print(len(newData))
-    
-
-# for i in data:
-#     api.append(re.sub('<.*?>', '', str(i)))
+    myJs = open('res/api-info.js', 'w')
+    myJs.write(apinames)
+    myJs.close()

@@ -6,15 +6,15 @@ function createTutoCard(tutorialNumber, tutorialTitle, tutorialLink, tutorialLib
     div.classList.add("card");
     div.classList.add("hoverable");
     div.classList.add("col");
-    div.classList.add("s4");
+    div.classList.add("m4");
 
     div.innerHTML = `
     <div class="card-image waves-effect waves-block waves-light">
         <img class="activator" src="images/tutorial-${tutorialNumber}.png">
     </div>
     <div class="card-content">
-        <span class="card-title activator grey-text text-darken-4">Tutorial ${tutorialNumber}<i class="material-icons right">more_vert</i></span>
-        <p><a href="${tutorialLink}" target="_blank">${tutorialTitle}</a></p>
+        <span class="card-title activator grey-text text-darken-4 truncate">Tutorial ${tutorialNumber}<i class="material-icons right">more_vert</i></span>
+        <p class="truncate"><a href="${tutorialLink}" target="_blank">${tutorialTitle}</a></p>
     </div>
     <div class="card-reveal">
         <span class="card-title grey-text text-darken-4">Bibliotecas utilizadas<i class="material-icons right">close</i></span>

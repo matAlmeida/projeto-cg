@@ -232,9 +232,19 @@
         Em LUtil temos 3 coisas importantes: A nossa textura que será rotacionada, o ângulo de rotação e o estado de transformação.
         loadMedia() e update() carregam e atualizam nossa textura, respectivamente. Dentro de LUtil, vamos chamar nossa matriz identidade
         para renderizar nosso componente e vamos aplicar as transformações.
-        Caso 0:
-        Vamos mudar nosso componente para o centro da tela com glTranslate(), depois usamos glRotate() para rotacionar em torno do centro
-        da tela, usamos glScale() para dobrar o tamanho da figura e transformamos de volta para o centro do quadrante.
-        
+        Para mudar nosso componente para qualquer posição da tela usamos glTranslate(), depois usamos glRotate() para rotacionar em torno de algum ponto
+        da tela, usamos glScale() para manipular o tamanho da figura .
+       
+       Caso 0:
+            A figura tem o seu centro no centro da tela e rotaciona no eixo desse centro.
+       Caso 1:
+            A parte superior direita da imagem estará no centro da tela e a figura rotacionará com base no novo centro.
+       Caso 2:
+            Neste caso mudamos primeiro o tamanho da figura, como mudamos o tamanho da figura, o novo centro também sera alterado
+            girando no canto inferior direito da tela.
+       Caso 3:
+            As coordenadas (0, 0) da imagem estarão exatamente no centro da tela onde será rotacionada em torno do centro.
+       Caso 4:
+            Rotacionamos primeiro fazendo a figura girar em torno do canto superior esquerdo da tela.
     </div>
 </section>

@@ -219,3 +219,22 @@
         de renderização nunca atualiza objeto algum, ela cuida apenas de renderizá-los como eles são. Se você nunca chamar a função update(), a função render() deverá sempre renderizar a mesma coisa.
     </div>
 </section>
+
+<section>
+    <div class="numeroTutorial">13</div>
+    <div class="titulo">Matrix Rotations</div>
+    <div class="linkdotutorial">http://lazyfoo.net/tutorials/OpenGL/13_matrix_transformations/index.php</div>
+    <div class="bibliotecas">OpenGL.GL, OpenGL.GLU, OpenGL.GLUT, PIL</div>
+    <div class="descricao">
+        Neste tutorial vamos utilizar transformações matriciais para rotacionar uma textura sem alterar sua composição original.
+        Em LTexture não vamos chamar aqui a nossa matriz identidade, para não perder qualquer transformação feita, de resto é semelhante
+        aos tutoriais passados.
+        Em LUtil temos 3 coisas importantes: A nossa textura que será rotacionada, o ângulo de rotação e o estado de transformação.
+        loadMedia() e update() carregam e atualizam nossa textura, respectivamente. Dentro de LUtil, vamos chamar nossa matriz identidade
+        para renderizar nosso componente e vamos aplicar as transformações.
+        Caso 0:
+        Vamos mudar nosso componente para o centro da tela com glTranslate(), depois usamos glRotate() para rotacionar em torno do centro
+        da tela, usamos glScale() para dobrar o tamanho da figura e transformamos de volta para o centro do quadrante.
+        
+    </div>
+</section>

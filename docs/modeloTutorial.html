@@ -248,3 +248,30 @@
             Rotacionamos primeiro fazendo a figura girar em torno do canto superior esquerdo da tela.
     </div>
 </section>
+
+
+<section>
+    <div class="numeroTutorial">14</div>
+    <div class="titulo">Repeating Textures</div>
+    <div class="linkdotutorial">http://lazyfoo.net/tutorials/OpenGL/14_repeating_textures/index.php</div>
+    <div class="bibliotecas">OpenGL.GL, OpenGL.GLU, OpenGL.GLUT</div>
+    <div class="descricao">
+        Neste tutorial, vamos criar um efeito de mosaico fazendo modificações nas coordenadas de textura.
+        Primeiro vamos configurar a nossa textura padrão e vamos passar a ela GL_REPEAT que forma um padrão de repetição. Depois,
+        vamos carregar a nossa textura e defini-las usando glTexParameter() para os eixos s e t. Em LUTil vamos declarar variaveis
+        globais, a primera delas vai nos apontar para a textura que queremos marcar. A segunda vai ter as compensaçoes de textura para
+        nos usarmos quando for rolar a textura na tela e gTextureWrapType que controla o revestimento da textura. Vamos usar loadMedia()
+        para carregar nossa textura, como nos tutoriais anteriores. A nossa função update() vai atualizar o compensamento de textura
+        para dar a sensação de rolagem na tela. E também redefinimos as coordenadas sempre que ela passa do limite da tela permitindo
+        a continuação do loop. Dentro de render() vamos calcular as coordenadas da textura em função do canto direito inferior da tela
+        Agora vamos usar a textura carregada com glBindTexture(), em seguida definimos a matriz atual como a matriz de textura e iniciali-
+        zamos ela. Após a inicialização da matriz, vamos passar para o offset de textura dividindo cada offset pelo comprimento
+        da textura e depois vamos renderizar nossa textura. Conforme o usuário pressiona "q" vamos alterar entre GL_REPEAT e GL_CLAMP,
+        o primeiro continua mapeando e repetindo além da textura e o segundo mapeia apenas até o limite da textura, se passar ela será
+        suprimida dentro do limite.
+    </div>
+</section>
+
+
+
+

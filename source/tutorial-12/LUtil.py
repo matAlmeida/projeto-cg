@@ -9,7 +9,7 @@ SCREEN_FPS = 60;
 gRotatingTexture = LTexture();
 
 #Ângulo de rotação
-gAngle = 0.0
+gAngle = 360.0
 
 def initGL():
 	#Definindo a janela de exibição (Viewport)
@@ -52,11 +52,11 @@ def loadMedia():
 def update():
 	global gAngle
 	#Rotacionando
-	gAngle += 360.0 / SCREEN_FPS
+	gAngle -= 360.0 / SCREEN_FPS
 
 	#Angulação
 	if(gAngle > 360.0):
-		gAngle -= 360.0
+		gAngle += 360.0
 
 def render():
 	#Limpando o buffer de cor

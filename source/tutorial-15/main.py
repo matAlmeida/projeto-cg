@@ -1,7 +1,11 @@
 """
 	Neste tutorial, usaremos diferentes formas de envelopamento de textura.
 	Em opengl 1.1 há apenas dois modos de envelopamento de textura, já em opengl 2.1 há cinco tipos.
-	Basicamente, nosso programa é o mesmo de antes, com a diferença de que agora usamos cinco formas de envelopar a textura. Além das que já tinhamos, agora temos GL_CLAMP_TO_BORDER que fará a textura parar de ser mapeada além de 0.0 ou 1.0. GL_CLAMP_TO_EDGE que usará valores texel no limite da texture e repetir até o limite do polígono. E GL_MIRRORED_REPEAT que irá repetir a textura para valores além de 0 e 1, com a diferença de que a textura será espelhada a cada repetição.
+	Basicamente, nosso programa é o mesmo de antes, com a diferença de que agora usamos cinco formas 
+	de envelopamento da textura. Além das que já tinhamos, agora temos GL_CLAMP_TO_BORDER que fará a textura 
+	parar de ser mapeada além de 0.0 ou 1.0. GL_CLAMP_TO_EDGE que usará valores texel (pixels de textura) no limite da textura 
+	e irá repetir até o limite do polígono, como se a imagem fosse esticada. E GL_MIRRORED_REPEAT que irá repetir a textura para valores além de 
+	0.0 e 1.0, com a diferença de que a textura será espelhada a cada repetição.
 """
 
 from LUtil import *

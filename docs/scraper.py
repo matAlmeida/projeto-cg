@@ -43,7 +43,7 @@ def updateTutoriais():
         elementos = [tutorialNumbers[i], titles[i], links[i], library[i], description[i]]
         tutoriais.append(my_dictfy(titulos, elementos))
 
-    funcName = 'function get_info_api() {\n return ' + str(tutoriais) + '; }'
+    funcName = 'function get_info_tuto() {\n return ' + str(tutoriais) + '; }'
     funcName = funcName.replace('return [', '\treturn [\n')
     funcName = funcName.replace('];', '\n\t];\n')
     funcName = funcName.replace('},', '},\n')
@@ -78,3 +78,6 @@ def updateApi():
     myJs = open('res/api-info.js', 'w')
     myJs.write(apinames)
     myJs.close()
+
+updateTutoriais()
+updateApi()

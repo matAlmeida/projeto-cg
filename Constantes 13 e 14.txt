@@ -1,0 +1,12 @@
+GL_REPEAT : Ignora a parte inteira da variável e forma um padrão de repetição
+GL_ClAMP: A coordenada é suprimida para um valor entre 0 e 1
+GL_COLOR_BUFFER_BIT: Limpa o buffer de cor
+GL_TEXTURE_2D: Indica que o alvo é uma textura 2D
+GL_RGBA: Indica um elemento no sistema RGBA
+GL_UNSIGNED_BYTE: Indica que o elemento é um byte sem sinal
+GL_TEXTURE_MAG_FILTER: Indica que a textura poderá ser ampliada além da área mapeada.
+GL_LINEAR: Indica que será retornado a média dos 4 elementos de textura mais próximos.
+GL_TEXTURE_MIN_FILTER: É usada sempre que o pixel que está sendo texturado mapeia para uma área maior do que um elemento de textura.  
+GL_TEXTURE_WRAP_S: Define o parâmetro de revestimento para as coordenadas da textura
+GL_NO_ERROR:  avisa que nenhum erro foi encontrado.
+

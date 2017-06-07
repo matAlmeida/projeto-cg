@@ -1,6 +1,4 @@
-
 from LTexture import*
-
 
 #Constantes de Tela
 SCREEN_WIDTH = 640;

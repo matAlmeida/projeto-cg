@@ -24,32 +24,30 @@ class LTexture:
 	def initVBO(self):
 		#Se atextura for carregada e VBO não existe 
 		if (self.mTextureID !=0 and self.mVBOID == 0):
-			#Dados do vertice 
-			vData = []
-			iData = []
-			for i in range(0,4):
-				vData.append(LVertexData2D())
-				iData.append(GLuint())
+			#Dados do vertice
+			#vData array(position(x,y), s, t)
+			vData = array([[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]], dtype = 'float32')
+			iData = array([0,0,0,0], dtype = 'int32')
 
 			#Definindo indices de renderização
-			iData [0] = 0
-			iData [1] = 1
-			iData [2] = 2
-			iData [3] = 3
+			iData[0] = 0
+			iData[1] = 1
+			iData[2] = 2
+			iData[3] = 3
 
 			#Criando VBO
-			glGenBuffers (1,self.mVBOID)
+			self.mVBOID = glGenBuffers(1)
 			glBindBuffer(GL_ARRAY_BUFFER, self.mVBOID)
-			glBufferData(GL_ELEMENT_ARRAY_BUFFER,4*(LVertexData2D().__sizeof__()),vData,GL_DYNAMIC_DRAW)
+			glBufferData(GL_ARRAY_BUFFER,4*(LVertexData2D().__sizeof__()),vData,GL_DYNAMIC_DRAW)
 
 			#Criando IBO 
-			glGenBuffers (1,self.mIBOID)
+			self.mIBOID = glGenBuffers(1)
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, self.mIBOID)
 			glBufferData(GL_ELEMENT_ARRAY_BUFFER,4*(GLuint().__sizeof__()),iData,GL_DYNAMIC_DRAW)
 
 			#Desativando buffer
-			glBindBuffer(GL_ARRAY_BUFFER, None);
-			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,None)
+			glBindBuffer(GL_ARRAY_BUFFER, 0);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0)
 
 
 	@staticmethod
@@ -67,12 +65,12 @@ class LTexture:
 		self.mImageHeight = 0
 		self.mImageWidth = 0
 
-	def __del__(self):
+	#def __del__(self):
 		#Limpa dados da textura se preciso
 		#self.freeTexture(self)
 
 		#Liberar o VBO e IBO se preciso 
-		self.freeVBO()
+		#self.freeVBO()
 
 	def loadTextureFromPixels32(self,pixels,imgWidth,imgHeight,texWidth,texHeigth):
 		#Obtendo dimensoes de imagem
@@ -159,31 +157,28 @@ class LTexture:
 			glTranslatef(x,y,0)
 
 			#Definindo dados do vertice 
-			vData = []
-			for i in range(0,4):
-				
-				vData.append(LVertexData2D())
+			vData = array([[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]], dtype = 'float32')
 
 			#Coordenadas da textura 
 
-			vData[0].texCoord.s = texLeft 
-			vData[0].texCoord.t = texTop 
-			vData[1].texCoord.s = texRight
-			vData[1].texCoord.t = texTop
-			vData[2].texCoord.s = texRight
-			vData[2].texCoord.t = texBottom
-			vData[3].texCoord.s = texLeft
-			vData[3].texCoord.t = texBottom
+			vData[0][2] = texLeft 
+			vData[0][3] = texTop 
+			vData[1][2] = texRight
+			vData[1][3] = texTop
+			vData[2][2] = texRight
+			vData[2][3] = texBottom
+			vData[3][2] = texLeft
+			vData[3][3] = texBottom
 
 			#Posições dos vertices 
-			vData[0].position.x = 0.0
-			vData[0].position.y = 0.0
-			vData[1].position.x = quadWidth
-			vData[1].position.y = 0.0
-			vData[2].position.x = quadWidth
-			vData[2].position.y = quadHeight
-			vData[3].position.x = 0.0
-			vData[3].position.y = quadHeight
+			vData[0][0] = 0.0
+			vData[0][1] = 0.0
+			vData[1][0] = quadWidth
+			vData[1][1] = 0.0
+			vData[2][0] = quadWidth
+			vData[2][1] = quadHeight
+			vData[3][0] = 0.0
+			vData[3][1] = quadHeight
 
 			#Renderizando textura do quadrado
 			glBegin(GL_QUADS)
@@ -209,9 +204,6 @@ class LTexture:
 
 			#Atualizando dados do buffer do vertice 
 			glBufferSubData(GL_ARRAY_BUFFER,0,4*LVertexData2D().__sizeof__(),vData)
-
-			#Definindo coordenadas dos dados da textura
-			glTexCoordPointer(2,GL_FLOAT,LVertexData2D.__sizeof__())#FALTA AQUI<---------------------------------
 
 			#Desenhando quadrado usando os dados do vertice e os dados do indice
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,self.mIBOID)
@@ -249,7 +241,6 @@ class LTexture:
 	def powerOfTwo(self,num):
 		if(num != 0):
 			num -= 1
-			num = num | (num >> 4)
 			num = num | (num >> 8)
 			num = num | (num >> 16)
 			num += 1

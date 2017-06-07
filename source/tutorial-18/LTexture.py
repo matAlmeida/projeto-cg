@@ -65,12 +65,12 @@ class LTexture:
 		self.mImageHeight = 0
 		self.mImageWidth = 0
 
-	#def __del__(self):
+	def __del__(self):
 		#Limpa dados da textura se preciso
-		#self.freeTexture(self)
+		self.freeTexture(self)
 
 		#Liberar o VBO e IBO se preciso 
-		#self.freeVBO()
+		self.freeVBO()
 
 	def loadTextureFromPixels32(self,pixels,imgWidth,imgHeight,texWidth,texHeigth):
 		#Obtendo dimensoes de imagem

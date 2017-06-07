@@ -579,7 +579,7 @@
 	<div class="parametros">O número de coordenadas por vértice, o tipo de dado, o deslocamento de bytes, apontador para
 	                        a primeira coordenada no vetor de vértices.</div>
 	<div class="retorno">void</div>
-        <div class="prototipo"> void glVertexPointer(GLint size, Glenum type, GLsizei stride, const GLvoid* pointer)</div>
+        <div class="prototipo"> void glVertexPointer(GLint, Glenum, GLsizei, const GLvoid*)</div>
 </section>
 
 <section>
@@ -588,7 +588,35 @@
 	<div class="parametros">O tipo de geometria a ser criada, o índice na matriz de vértices de onde vamos começar a desenhar
 	                        e a quantidade de vértices que serão criados.</div>
 	<div class="retorno">void</div>
-        <div class="prototipo"> void glDrawArrays(GLenum mode, GLint first, GLsizei count)</div>
+        <div class="prototipo"> void glDrawArrays(GLenum, GLint, GLsizei)</div>
 </section>
+
+<section>
+        <div class="nomeFuncao">glDrawElements</div>        
+	<div class="descricao">Usa os elementos em sequencia de uma matriz de índices habilitadas para construir uma figura</div>
+	<div class="parametros">Alguma constante que especifica o tipo de desenho, o numero de elementos a ser renderizado, o tipo do índice e o local dos índices</div>
+	<div class="retorno">void</div>
+        <div class="prototipo"> void glDrawElements(GLenum, GLsizei, GLenum, GLvoid *)</div>
+</section>
+
+<section>
+        <div class="nomeFuncao">glGenBuffers</div>        
+	<div class="descricao">Gera nomes para objetos de buffer</div>
+	<div class="parametros">O numero de nome de objetos a serem gerados, a matriz onde serão armazenados </div>
+	<div class="retorno">void</div>
+        <div class="prototipo"> void glGenBuffers(GLsizei, GLuint*)</div>
+</section>
+
+<section>
+        <div class="nomeFuncao">glBindBuffer</div>        
+	<div class="descricao">Vincula um objeto a um buffer</div>
+	<div class="parametros">Uma constante GL que é o destino, o nome do objeto </div>
+	<div class="retorno">void</div>
+        <div class="prototipo"> void glBindBuffer(GLEnum, GLuint)</div>
+</section>
+
+
+
+
 
 

@@ -14,5 +14,7 @@ GL_TEXTURE_WRAP_S: Define o parâmetro de revestimento para as coordenadas da te
 GL_NO_ERROR:  avisa que nenhum erro foi encontrado.
 GL_QUADS: Exibe um quadrado preenchido conectando cada quatro pontos definidos por glVertex;
 GL_VERTEX_ARRAY: Habilita a matriz(vetor) de vértices para ser escrita e renderizada.
-
+GL_ARRAY_BUFFER: Especifica que o alvo do objeto de buffer é um vetor de vértices.
+GL_STATIC_DRAW: Especifica que o conteudo armazenado será modificado uma vez e pode ser usado como fonte para os comandos GL
+GL_ELEMENT_ARRAY_BUFFER: Indica que o buffer que você está apresentando, contém os elementos de outro buffer.
 

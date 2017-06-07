@@ -314,3 +314,38 @@
 	idêntico aos outros tutoriais.
 	</div>
 </section>
+
+<section>
+    <div class="numeroTutorial">17</div>
+    <div class="titulo">Vertex Buffer Objects</div>
+    <div class="linkdotutorial">http://lazyfoo.net/tutorials/OpenGL/17_vertex_buffer_objects/index.php</div>
+    <div class="bibliotecas">OpenGL.GL, OpenGL.GLU, OpenGL.GLUT</div>
+    <div class="descricao"> 
+	    No tutorial passado vimos que é mais eficiente enviar os dados de vértices via vetor, mas existe uma 
+	    forma ainda mais eficiente, que é enviar os seus dados para um objeto de buffer de vértice, com eles você pode enviar todos
+    	    os seus dados de vértice de uma só vez e terá armazenado na GPU quando precisar utilizar.
+	    Em LUTil vamos definir os vértices e os índices, no tutorial passado usamos apenas os vértices para desenhar, nesse vamos
+	    utilizar um função que desenha em qualquer ordem por isso precisamos definir também os índices. Após fazer as definições
+	    precisamos armazenar na GPU atravez do seu identificador gIndexBuffer.
+	    Em loadMedia(), vamos definir nossos dados de vértice como nos outros tutoriais, depois vamos definir os índices de renderização e
+	    vamos chamar a função glDrawElements() que pegará a matriz de índices e desenha o vértice no índice inicial	, depois pega o segundo
+	    índice e desenha o segundo vértice e assim sucessivamente. Imagine um cubo com 6 lados e 4 vértices cada, resultando 24 vértices
+	    total, mas vamos usar apenas 8 cantos no cubo, para otimizar usamos as posições de vértices apenas nos cantos e os índices para desenhar
+	    desenhar os outros vértices conforme precisarmos.
+	    Após obter os dados, precisamos enviar a GPU via buffer, para isso vamos chamar uma função para gerar um nome de buffer que é 
+	    a função glGenBuffers(), e capturamos o buffer com glBindBuffer() e vamos especificar que é um vetor de vértice com a constante
+	    GL_ARRAY_BUFFER.
+	    Para passar os dados do vértice para o buffer vamos chamar a função glBufferData(), o primeiro argumento é o tipo de dado, o segundo
+	    é o tamanho do buffer em bytes, o terceiro é o endereço dos dados de vértice e o ultimo é como os dados devem ser tratados que vamos
+	    passar a constante GL_STATIC_DRAW uma vez que enviamos os dados uma vez e vamos desenhar varias vezes, o mesmo procedimento será
+	    feito com os dados de índice.
+	    A criação da figura é idêntica, a diferença é que tratamos com índices e no outro tutorial tratamos com vértices, para específicar
+	    essa mudança temos que passar a constante GL_ELEMENT_ARRAY_BUFFER na função de criação. Dentro d função de renderização vamos
+	    habilitar as matrizes de vértices, porém vamos usar os dados do buffer , usando glBindBuffer() para fazer essa vinculação.
+	    Chamamos também glVertexPointer(), para configurar os daddos de vértice.
+	    Depois de configurar o buffer de indice e vértice, vamos desenhar usando glDrawElements(), que pega o tipo de geometria
+	    a quantidade de elementos que serão desenhados, o tipo de dados dos indices e o endereço dos indices.
+	</div>
+</section>
+
+

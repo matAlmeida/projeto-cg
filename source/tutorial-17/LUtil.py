@@ -1,7 +1,7 @@
 from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
-from numpy import array
+from numpy import *
 
 #Constantes de Tela
 SCREEN_WIDTH = 640;
@@ -9,10 +9,11 @@ SCREEN_HEIGHT = 480;
 SCREEN_FPS = 60;
 
 #Vértices do quadrado
-gQuadVertices = [[0,0],[0,0],[0,0],[0,0]]
+gQuadVertices = array([[0,0],[0,0],[0,0],[0,0]], dtype='float32')
+
 
 #Índices dos vértices
-gIndices = [0,0,0,0]
+gIndices = array([0,0,0,0], dtype='int32')
 
 #Buffer do Vértice
 gVertexBuffer = 0
@@ -75,14 +76,15 @@ def loadMedia():
 	gIndices[3] = 3
 
 	#Criando VBO(Vertex Buffer Object)
-	glGenBuffers(1, gVertexBuffer)
+	gVertexBuffer = glGenBuffers(1)
 	glBindBuffer(GL_ARRAY_BUFFER, gVertexBuffer)
 	#(2*float.__sizeof__(0.0)) pois são duas coordenadas para cada vértice
 	glBufferData(GL_ARRAY_BUFFER, 4 * (2*float.__sizeof__(0.0)), gQuadVertices, GL_STATIC_DRAW)
 
+
 	#Criando IBO(Index Buffer Object)
-	glGenBuffers(1, gIndexBuffer)
-	gBindBuffer(GL_ELEMENT_ARRAY_BUFFER, gIndexBuffer)
+	gIndexBuffer = glGenBuffers(1)
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, gIndexBuffer)
 	#(2*float.__sizeof__(0.0)) pois são duas coordenadas para cada vértice
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, 4 * (int.__sizeof__(1)), gIndices, GL_STATIC_DRAW)
 

@@ -559,7 +559,10 @@
 
 <section>
         <div class="nomeFuncao">glEnableClientState</div>        
-	<div class="descricao">Ativa recursos individuais a partir da constante passada.</div>
+	<div class="descricao">Ativa recursos individuais a partir da constante passada, são aceitos:
+	GL_COLOR_ARRAY, GL_EDGE_FLAG_ARRAY, GL_FOG_COORD_ARRAY, GL_INDEX_ARRAY, GL_NORMAL_ARRAY, 
+	GL_SECONDARY_COLOR_ARRAY, GL_TEXTURE_COORD_ARRAY, e GL_VERTEX_ARRAY.
+	</div>
 	<div class="parametros">O recurso específico a ser ativado</div>
 	<div class="retorno">void</div>
         <div class="prototipo"> void glEnableClientState(GLenum)</div>
@@ -567,7 +570,10 @@
 
 <section>
         <div class="nomeFuncao">glDisableClientState</div>        
-	<div class="descricao">Desativa recursos individuais a partir da constante passada.</div>
+	<div class="descricao">Desativa recursos individuais a partir da constante passada, são aceitos:
+	GL_COLOR_ARRAY, GL_EDGE_FLAG_ARRAY, GL_FOG_COORD_ARRAY, GL_INDEX_ARRAY, GL_NORMAL_ARRAY, 
+	GL_SECONDARY_COLOR_ARRAY, GL_TEXTURE_COORD_ARRAY, e GL_VERTEX_ARRAY.
+	</div>
 	<div class="parametros">O recurso específico a ser desativado</div>
 	<div class="retorno">void</div>
         <div class="prototipo"> void glDisableClientState(GLenum)</div>
@@ -614,9 +620,5 @@
 	<div class="retorno">void</div>
         <div class="prototipo"> void glBindBuffer(GLEnum, GLuint)</div>
 </section>
-
-
-
-
 
 

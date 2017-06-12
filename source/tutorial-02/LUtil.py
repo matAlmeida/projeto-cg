@@ -1,6 +1,7 @@
 ﻿from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
+import math as mt
 
 #Constantes de Tela
 SCREEN_WIDTH = 640;
@@ -51,15 +52,34 @@ def render():
 	#Movendo a  para o centro da tela
 	glTranslatef(SCREEN_WIDTH / 2.0, SCREEN_HEIGHT / 2.0, 0.0);
 
+	# Variaveis pro crirculo
+	r = 50
+	alpha = 0.0
+	dalpha = mt.pi / 20
+
 	#Renderizando o quadrado
 	if(gColorMode == COLOR_MODE_CYAN):
 		#Renderizando uma cor sólida, a partir da cor inicial ciano
-		glBegin(GL_QUADS);
+		# glBegin(GL_QUADS);
+		# 	glColor3f(0.0,1.0,1.0);
+		# 	glVertex2f(-50, -50);
+		# 	glVertex2f(50, -50);
+		# 	glVertex2f(50, 50);
+		# 	glVertex2f(-50, 50);
+		# glEnd();
+
+		# Criando circulo utilizando triangulos
+		x = r * mt.cos(alpha)
+		y = r * mt.sin(alpha)
+		glBegin(GL_TRIANGLES);
 		glColor3f(0.0,1.0,1.0);
-		glVertex2f(-50, -50);
-		glVertex2f(50, -50);
-		glVertex2f(50, 50);
-		glVertex2f(-50, 50);
+		for i in range(40):
+			glVertex2f(x, y);
+			glVertex2f(0.0, 0.0);
+			alpha += dalpha
+			x = r * mt.cos(alpha)
+			y = r * mt.sin(alpha)
+			glVertex2f(x, y);
 		glEnd();
 	else:
 		#Se não é ciano então pode-se assumir que deve ser multicolor

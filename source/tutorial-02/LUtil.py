@@ -13,6 +13,7 @@ COLOR_MODE_CYAN = 0
 COLOR_MODE_MULTI = 1
 RENDER_SQUARE = 2
 RENDER_CIRCLE = 3
+RENDER_PACMAN = 4
 
 #Modo atual de renderização de cor
 gColorMode = COLOR_MODE_CYAN
@@ -164,8 +165,10 @@ def render():
 
 	if (renderType == RENDER_SQUARE):
 		renderSquare()
-	else:
+	elif(renderType == RENDER_CIRCLE):
 		renderCircle()
+	else:
+		renderPacman()
 
 	#Atualizando tela
 	glutSwapBuffers()
@@ -205,6 +208,8 @@ def handleKeys(key,x,y):
 	elif(key == 109):
 		if (gRenderMode == RENDER_SQUARE):
 			gRenderMode = RENDER_CIRCLE
+		elif(gRenderMode == RENDER_CIRCLE):
+			gRenderMode = RENDER_PACMAN
 		else:
 			gRenderMode = RENDER_SQUARE
 		glutPostRedisplay()

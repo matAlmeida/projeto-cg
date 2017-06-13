@@ -167,6 +167,7 @@ def handleKeys(key,x,y):
 		else:
 			gColorMode = COLOR_MODE_CYAN
 		glutPostRedisplay()
+	#Se o usuário pressiona e
 	elif(key == 101):
 		# Ciclos através de escalas de projeção
 		if(gProjectionScale == 1.0):
@@ -176,6 +177,7 @@ def handleKeys(key,x,y):
 			#Zoom in
 			gProjectionScale = 1.0
 		glutPostRedisplay()
+	#Se o usuário pressiona m
 	elif(key == 109):
 		if (gRenderMode == RENDER_SQUARE):
 			gRenderMode = RENDER_CIRCLE

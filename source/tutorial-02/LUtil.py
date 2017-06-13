@@ -133,12 +133,10 @@ def renderPacman():
 	alpha = 0.0
 	dalpha = mt.pi / 20
 
-	alpha -= 5 * dalpha
-
 	x = r * mt.cos(alpha)
 	y = r * mt.sin(alpha)
 	glBegin(GL_TRIANGLES)
-	for i in range(10):
+	for i in range(5):
 		alpha += dalpha
 		x = r * mt.cos(alpha)
 		y = r * mt.sin(alpha)

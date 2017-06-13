@@ -67,7 +67,7 @@ def renderSquare():
 		glVertex2f(50, 50)
 		glColor3f(0,0,1)
 		glVertex2f(-50, 50)
-		glEnd();
+		glEnd()
 
 def renderCircle():
 	# Variaveis para o circulo
@@ -125,6 +125,32 @@ def renderCircle():
 			x = r * mt.cos(alpha)
 			y = r * mt.sin(alpha)
 			glVertex2f(x, y)
+		glEnd()
+
+
+def renderPacman():
+	r = 50
+	alpha = 0.0
+	dalpha = mt.pi / 20
+
+	alpha -= 5 * dalpha
+
+	x = r * mt.cos(alpha)
+	y = r * mt.sin(alpha)
+	glBegin(GL_TRIANGLES)
+	for i in range(10):
+		alpha += dalpha
+		x = r * mt.cos(alpha)
+		y = r * mt.sin(alpha)
+	glColor3f(1,1,0)
+	for i in range(30):
+		glVertex2f(x, y)
+		glVertex2f(0.0, 0.0)
+		alpha += dalpha
+		x = r * mt.cos(alpha)
+		y = r * mt.sin(alpha)
+		glVertex2f(x, y)
+	glEnd()
 
 
 def render():

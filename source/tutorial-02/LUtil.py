@@ -50,23 +50,23 @@ def renderSquare():
 	if (gColorMode == COLOR_MODE_CYAN):
 		#Renderizando uma cor sólida, a partir da cor inicial ciano
 		glBegin(GL_QUADS)
-			glColor3f(0.0,1.0,1.0)
-			glVertex2f(-50, -50)
-			glVertex2f(50, -50)
-			glVertex2f(50, 50)
-			glVertex2f(-50, 50)
+		glColor3f(0.0,1.0,1.0)
+		glVertex2f(-50, -50)
+		glVertex2f(50, -50)
+		glVertex2f(50, 50)
+		glVertex2f(-50, 50)
 		glEnd()
 	else:
 		#Se não é ciano então pode-se assumir que deve ser multicolor
 		glBegin(GL_QUADS)
-			glColor3f(1,0,0)
-			glVertex2f(-50, -50)
-			glColor3f(1,1,0)
-			glVertex2f(50, -50)
-			glColor3f(0,1,0)
-			glVertex2f(50, 50)
-			glColor3f(0,0,1)
-			glVertex2f(-50, 50)
+		glColor3f(1,0,0)
+		glVertex2f(-50, -50)
+		glColor3f(1,1,0)
+		glVertex2f(50, -50)
+		glColor3f(0,1,0)
+		glVertex2f(50, 50)
+		glColor3f(0,0,1)
+		glVertex2f(-50, 50)
 		glEnd();
 
 def renderCircle():
@@ -162,7 +162,7 @@ def handleKeys(key,x,y):
 	#Se o usuário pressiona q
 	if(key == 113):
 		#Altera modo de cor
-		if(gColorMode == COLOR_MODE_CYAN)
+		if(gColorMode == COLOR_MODE_CYAN):
 			gColorMode = COLOR_MODE_MULTI
 		else:
 			gColorMode = COLOR_MODE_CYAN

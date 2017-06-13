@@ -4,32 +4,36 @@ from OpenGL.GLUT import *
 import math as mt
 
 #Constantes de Tela
-SCREEN_WIDTH = 640;
-SCREEN_HEIGHT = 480;
-SCREEN_FPS = 60;
+SCREEN_WIDTH = 640
+SCREEN_HEIGHT = 480
+SCREEN_FPS = 60
 
 #Modos de cor
-COLOR_MODE_CYAN = 0;
-COLOR_MODE_MULTI = 1;
+COLOR_MODE_CYAN = 0
+COLOR_MODE_MULTI = 1
+RENDER_SQUARE = 2
+RENDER_CIRCLE = 3
 
 #Modo atual de renderização de cor
-gColorMode = COLOR_MODE_CYAN;
+gColorMode = COLOR_MODE_CYAN
+
+gRenderMode = RENDER_SQUARE
 
 #Scala de projeção
 gProjectionScale = 1.0; #Tipo: GLfloat
 
 def initGL():
 	#Inicializando Matriz de Projeção
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	glOrtho(0.0, SCREEN_WIDTH, SCREEN_HEIGHT, 0.0, 1.0, -1.0);
+	glMatrixMode(GL_PROJECTION)
+	glLoadIdentity()
+	glOrtho(0.0, SCREEN_WIDTH, SCREEN_HEIGHT, 0.0, 1.0, -1.0)
 
 	#Inicializando Matriz de modelo de exibição (Modelview)
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
+	glMatrixMode(GL_MODELVIEW)
+	glLoadIdentity()
 
 	#Inicializando a tela com a cor preta
-	glClearColor(0,0,0,1);
+	glClearColor(0,0,0,1)
 
 	#Verificando se há erros
 	erro = glGetError()
@@ -41,61 +45,106 @@ def initGL():
 def update():
 	pass
 
-def render():
-	#Limpando o buffer de cor
-	glClear(GL_COLOR_BUFFER_BIT);
+def renderSquare():
+	#Renderizando o quadrado
+	if (gColorMode == COLOR_MODE_CYAN):
+		#Renderizando uma cor sólida, a partir da cor inicial ciano
+		glBegin(GL_QUADS)
+			glColor3f(0.0,1.0,1.0)
+			glVertex2f(-50, -50)
+			glVertex2f(50, -50)
+			glVertex2f(50, 50)
+			glVertex2f(-50, 50)
+		glEnd()
+	else:
+		#Se não é ciano então pode-se assumir que deve ser multicolor
+		glBegin(GL_QUADS)
+			glColor3f(1,0,0)
+			glVertex2f(-50, -50)
+			glColor3f(1,1,0)
+			glVertex2f(50, -50)
+			glColor3f(0,1,0)
+			glVertex2f(50, 50)
+			glColor3f(0,0,1)
+			glVertex2f(-50, 50)
+		glEnd();
 
-	#Reiniciando a matriz Modelview
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-
-	#Movendo a  para o centro da tela
-	glTranslatef(SCREEN_WIDTH / 2.0, SCREEN_HEIGHT / 2.0, 0.0);
-
-	# Variaveis pro crirculo
+def renderCircle():
+	# Variaveis para o crirculo
 	r = 50
 	alpha = 0.0
 	dalpha = mt.pi / 20
 
-	#Renderizando o quadrado
-	if(gColorMode == COLOR_MODE_CYAN):
-		#Renderizando uma cor sólida, a partir da cor inicial ciano
-		# glBegin(GL_QUADS);
-		# 	glColor3f(0.0,1.0,1.0);
-		# 	glVertex2f(-50, -50);
-		# 	glVertex2f(50, -50);
-		# 	glVertex2f(50, 50);
-		# 	glVertex2f(-50, 50);
-		# glEnd();
-
-		# Criando circulo utilizando triangulos
+	if (gColorMode == COLOR_MODE_CYAN):
+		# Renderizando um circulo com cor sólida, a partir da cor inicial ciano, utilizando tringulos
 		x = r * mt.cos(alpha)
 		y = r * mt.sin(alpha)
-		glBegin(GL_TRIANGLES);
-		glColor3f(0.0,1.0,1.0);
+		glBegin(GL_TRIANGLES)
+		glColor3f(0,1,1)
 		for i in range(40):
-			glVertex2f(x, y);
-			glVertex2f(0.0, 0.0);
+			glVertex2f(x, y)
+			glVertex2f(0.0, 0.0)
 			alpha += dalpha
 			x = r * mt.cos(alpha)
 			y = r * mt.sin(alpha)
-			glVertex2f(x, y);
-		glEnd();
+			glVertex2f(x, y)
+		glEnd()
 	else:
-		#Se não é ciano então pode-se assumir que deve ser multicolor
-		glBegin(GL_QUADS);
-		glColor3f(1,0,0);
-		glVertex2f(-50, -50);
-		glColor3f(1,1,0);
-		glVertex2f(50, -50);
-		glColor3f(0,1,0);
-		glVertex2f(50, 50);
+		x = r * mt.cos(alpha)
+		y = r * mt.sin(alpha)
+		glBegin(GL_TRIANGLES)
+		glColor3f(1,0,0)
+		for i in range(10):
+			glVertex2f(x, y)
+			glVertex2f(0.0, 0.0)
+			alpha += dalpha
+			x = r * mt.cos(alpha)
+			y = r * mt.sin(alpha)
+			glVertex2f(x, y)
+		glColor3f(1,1,0)
+		for i in range(10):
+			glVertex2f(x, y)
+			glVertex2f(0.0, 0.0)
+			alpha += dalpha
+			x = r * mt.cos(alpha)
+			y = r * mt.sin(alpha)
+			glVertex2f(x, y)
+		glColor3f(0,1,0)
+		for i in range(10):
+			glVertex2f(x, y)
+			glVertex2f(0.0, 0.0)
+			alpha += dalpha
+			x = r * mt.cos(alpha)
+			y = r * mt.sin(alpha)
+			glVertex2f(x, y)
 		glColor3f(0,0,1);
-		glVertex2f(-50, 50);
-		glEnd();
+		for i in range(10):
+			glVertex2f(x, y)
+			glVertex2f(0.0, 0.0)
+			alpha += dalpha
+			x = r * mt.cos(alpha)
+			y = r * mt.sin(alpha)
+			glVertex2f(x, y)
+
+
+def render():
+	#Limpando o buffer de cor
+	glClear(GL_COLOR_BUFFER_BIT)
+
+	#Reiniciando a matriz Modelview
+	glMatrixMode(GL_MODELVIEW)
+	glLoadIdentity()
+
+	#Movendo a  para o centro da tela
+	glTranslatef(SCREEN_WIDTH / 2.0, SCREEN_HEIGHT / 2.0, 0.0)
+
+	if (renderType == RENDER_SQUARE):
+		renderSquare()
+	else:
+		renderCircle()
 
 	#Atualizando tela
-	glutSwapBuffers();
+	glutSwapBuffers()
 
 def runMainLoop(val):
 	#Lógica do Frame
@@ -113,22 +162,22 @@ def handleKeys(key,x,y):
 	#Se o usuário pressiona q
 	if(key == 113):
 		#Altera modo de cor
-		if(gColorMode == COLOR_MODE_CYAN):
-			gColorMode = COLOR_MODE_MULTI;
+		if(gColorMode == COLOR_MODE_CYAN)
+			gColorMode = COLOR_MODE_MULTI
 		else:
-			gColorMode = COLOR_MODE_CYAN;
+			gColorMode = COLOR_MODE_CYAN
 		glutPostRedisplay()
 	elif(key == 101):
 		# Ciclos através de escalas de projeção
 		if(gProjectionScale == 1.0):
 			#Zoom out
-			gProjectionScale = 2.0;
+			gProjectionScale = 2.0
 		elif(gProjectionScale == 2.0):
 			#Zoom in
-			gProjectionScale = 1.0;
+			gProjectionScale = 1.0
 		glutPostRedisplay()
 
 	#Atualizando matriz de projeção
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	glOrtho(0.0, SCREEN_WIDTH * gProjectionScale, SCREEN_HEIGHT * gProjectionScale, 0.0, 1.0, -1.0);
+	glMatrixMode(GL_PROJECTION)
+	glLoadIdentity()
+	glOrtho(0.0, SCREEN_WIDTH * gProjectionScale, SCREEN_HEIGHT * gProjectionScale, 0.0, 1.0, -1.0)

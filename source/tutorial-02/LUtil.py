@@ -70,7 +70,7 @@ def renderSquare():
 		glEnd();
 
 def renderCircle():
-	# Variaveis para o crirculo
+	# Variaveis para o circulo
 	r = 50
 	alpha = 0.0
 	dalpha = mt.pi / 20
@@ -175,6 +175,12 @@ def handleKeys(key,x,y):
 		elif(gProjectionScale == 2.0):
 			#Zoom in
 			gProjectionScale = 1.0
+		glutPostRedisplay()
+	elif(key == 109):
+		if (gRenderMode == RENDER_SQUARE):
+			gRenderMode = RENDER_CIRCLE
+		else:
+			gRenderMode = RENDER_SQUARE
 		glutPostRedisplay()
 
 	#Atualizando matriz de projeção

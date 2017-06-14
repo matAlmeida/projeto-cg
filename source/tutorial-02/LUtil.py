@@ -12,7 +12,7 @@ COLOR_MODE_CYAN = 0;
 COLOR_MODE_MULTI = 1;
 
 #Modo atual de renderização de cor
-gColorMode = COLOR_MODE_CYAN;
+gColorMode = COLOR_MODE_CYAN; # inicializa com zero
 
 #Scala de projeção
 gProjectionScale = 1.0; #Tipo: GLfloat
@@ -21,7 +21,7 @@ def initGL():
 	#Inicializando Matriz de Projeção
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glOrtho(0.0, SCREEN_WIDTH, SCREEN_HEIGHT, 0.0, 1.0, -1.0);
+	glOrtho(0.0, SCREEN_WIDTH, SCREEN_HEIGHT, 0.0, 1.0, -1.0); #multiplica a matriz pelo vetor (direita,esquerda,base,topo,perto,longe )
 
 	#Inicializando Matriz de modelo de exibição (Modelview)
 	glMatrixMode(GL_MODELVIEW);
@@ -100,7 +100,7 @@ def handleKeys(key,x,y):
 		glutPostRedisplay()
 	elif(key == 101):
 		# Ciclos através de escalas de projeção
-		if(gProjectionScale == 1.0):
+		if(gProjectionScale == 1.0): # diminui a escala e passa para glOrtho
 			#Zoom out
 			gProjectionScale = 2.0;
 		elif(gProjectionScale == 2.0):

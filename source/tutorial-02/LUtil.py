@@ -129,7 +129,7 @@ def renderCircle():
 		glEnd()
 
 
-def renderPacman():
+def renderPacman(abertura):
 	r = 50
 	alpha = 0.0
 	dalpha = mt.pi / 20
@@ -137,12 +137,12 @@ def renderPacman():
 	x = r * mt.cos(alpha)
 	y = r * mt.sin(alpha)
 	glBegin(GL_TRIANGLES)
-	for i in range(5):
+	for i in range(abertura):
 		alpha += dalpha
 		x = r * mt.cos(alpha)
 		y = r * mt.sin(alpha)
 	glColor3f(1,1,0)
-	for i in range(30):
+	for i in range(40 - (abertura * 2)):
 		glVertex2f(x, y)
 		glVertex2f(0.0, 0.0)
 		alpha += dalpha
@@ -163,12 +163,12 @@ def render():
 	#Movendo a  para o centro da tela
 	glTranslatef(SCREEN_WIDTH / 2.0, SCREEN_HEIGHT / 2.0, 0.0)
 
-	if (renderType == RENDER_SQUARE):
+	if (gRenderMode == RENDER_SQUARE):
 		renderSquare()
-	elif(renderType == RENDER_CIRCLE):
+	elif(gRenderMode == RENDER_CIRCLE):
 		renderCircle()
 	else:
-		renderPacman()
+		renderPacman(2)
 
 	#Atualizando tela
 	glutSwapBuffers()
@@ -183,6 +183,7 @@ def runMainLoop(val):
 
 def handleKeys(key,x,y):
 	global gColorMode
+	global gRenderMode
 	global gProjectionScale
 	key = ord(key)
 	print ("key: "+str(key))

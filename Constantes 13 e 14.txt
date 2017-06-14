@@ -1,12 +1,13 @@
-GL_REPEAT : Ignora a parte inteira da vari·vel e forma um padr„o de repetiÁ„o
-GL_ClAMP: A coordenada È suprimida para um valor entre 0 e 1
+GL_REPEAT : Ignora a parte inteira da vari√°vel e forma um padr√£o de repeti√ß√£o
+GL_ClAMP: A coordenada √© suprimida para um valor entre 0 e 1
 GL_COLOR_BUFFER_BIT: Limpa o buffer de cor
-GL_TEXTURE_2D: Indica que o alvo È uma textura 2D
+GL_TEXTURE_2D: Indica que o alvo √© uma textura 2D
 GL_RGBA: Indica um elemento no sistema RGBA
-GL_UNSIGNED_BYTE: Indica que o elemento È um byte sem sinal
-GL_TEXTURE_MAG_FILTER: Indica que a textura poder· ser ampliada alÈm da ·rea mapeada.
-GL_LINEAR: Indica que ser· retornado a mÈdia dos 4 elementos de textura mais prÛximos.
-GL_TEXTURE_MIN_FILTER: … usada sempre que o pixel que est· sendo texturado mapeia para uma ·rea maior do que um elemento de textura.  
-GL_TEXTURE_WRAP_S: Define o par‚metro de revestimento para as coordenadas da textura
+GL_UNSIGNED_BYTE: Indica que o elemento √© um byte sem sinal
+GL_TEXTURE_MAG_FILTER: Indica que a textura poder√° ser ampliada al√©m da √°rea mapeada.
+GL_LINEAR: Indica que ser√° retornado a m√©dia dos 4 elementos de textura mais pr√≥ximos.
+GL_TEXTURE_MIN_FILTER: √â usada sempre que o pixel que est√° sendo texturado mapeia para uma √°rea maior do que um elemento de textura.  
+GL_TEXTURE_WRAP_S: Define o par√¢metro de revestimento para as coordenadas da textura
 GL_NO_ERROR:  avisa que nenhum erro foi encontrado.
-
+GL_QUADS: Exibe um quadrado preenchido conectando cada quatro pontos definidos por glVertex;
+GL_VERTEX_ARRAY: Habilita a matriz(vetor) de v√©rtices para ser escrita e renderizada.

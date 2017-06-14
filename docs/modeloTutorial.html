@@ -286,5 +286,66 @@
 	parar de ser mapeada além de 0.0 ou 1.0. GL_CLAMP_TO_EDGE que usará valores texel (pixels de textura) no limite da textura 
 	e irá repetir até o limite do polígono, como se a imagem fosse esticada. E GL_MIRRORED_REPEAT que irá repetir a textura para valores além de 
 	0.0 e 1.0, com a diferença de que a textura será espelhada a cada repetição.
-    </div>
+    </div> 
 </section>
+
+<section>
+    <div class="numeroTutorial">16</div>
+    <div class="titulo">Vertex Arrays</div>
+    <div class="linkdotutorial">http://lazyfoo.net/tutorials/OpenGL/16_vertex_arrays/index.php</div>
+    <div class="bibliotecas">OpenGL.GL, OpenGL.GLU, OpenGL.GLUT</div>
+    <div class="descricao">
+	Neste tutorial, vamos apresentar algumas mudanças em relação aos vértices. Antes nós usavamos glVertex()para cada vértice 
+	do nosso poligono e isso pode ser muito custoso se formos trabalhar com uma quantidade muito grande de polígonos, nestes
+	casos podemos usar um vetor de vértices para enviar dados em conjuntos ao invés de enviar individualmente.
+	Vamos ter uma estrutura neste tutorial LVextexPos2D, que define a posição de um vértice. Dentro de LUtil vamos criar um
+	array de 4 posições do tipo LVertexPos2D, que será os vértices do nosso polígono. Em loadMedia(), dessa vez não carregaremos
+	nenhum arquivo, nós vamos definir os vértices do poligono.
+	Dentro de render(), vamos limpar a tela, após isso vamos fazer uma chamada a GlEnableClientState()para habilitar o vetor
+	de vértices para receber nossos dados de vértices. Após isso, vamos fazer uma chamada a glVertexPointer() para fazer a defini-
+	ção dos dados do vértice. O primeiro argumento passado é a quantidade de coordenadas por vértice ( no nosso caso é 2, pois 
+	estamos trabalhando em duas dimensões), o segundo parâmetro é o tipo de dado para cada coordenada, o terceiro é o stride,
+	que vamos explicar em tutoriais futuros, por enquanto vamos passar zero e o quarto argumento é um apontador para o nosso vetor
+	de vértices.
+	Agora a GPU tem o endereço dos nossos dados do vértice, vamos fazer uma chamada a glDrawArrays() para criar o desenho com
+	os vértices que enviamos. O primeiro parâmetro é o tipo de geometria que queremos criar, o segundo é o índice na matriz de 
+	vértices ( no nosso caso um vetor) vamos passar 0 para desenhar a partir do início e o último argumento é a quantidade de 
+	vértices que serão desenhados. Após isso vamos desativar o envio de dados com a função glDisableClientState(). De resto é
+	idêntico aos outros tutoriais.
+	</div>
+</section>
+
+<section>
+    <div class="numeroTutorial">17</div>
+    <div class="titulo">Vertex Buffer Objects</div>
+    <div class="linkdotutorial">http://lazyfoo.net/tutorials/OpenGL/17_vertex_buffer_objects/index.php</div>
+    <div class="bibliotecas">OpenGL.GL, OpenGL.GLU, OpenGL.GLUT</div>
+    <div class="descricao"> 
+	    No tutorial passado vimos que é mais eficiente enviar os dados de vértices via vetor, mas existe uma 
+	    forma ainda mais eficiente, que é enviar os seus dados para um objeto de buffer de vértice, com eles você pode enviar todos
+    	    os seus dados de vértice de uma só vez e terá armazenado na GPU quando precisar utilizar.
+	    Em LUTil vamos definir os vértices e os índices, no tutorial passado usamos apenas os vértices para desenhar, nesse vamos
+	    utilizar um função que desenha em qualquer ordem por isso precisamos definir também os índices. Após fazer as definições
+	    precisamos armazenar na GPU atravez do seu identificador gIndexBuffer.
+	    Em loadMedia(), vamos definir nossos dados de vértice como nos outros tutoriais, depois vamos definir os índices de renderização e
+	    vamos chamar a função glDrawElements() que pegará a matriz de índices e desenha o vértice no índice inicial	, depois pega o segundo
+	    índice e desenha o segundo vértice e assim sucessivamente. Imagine um cubo com 6 lados e 4 vértices cada, resultando 24 vértices
+	    total, mas vamos usar apenas 8 cantos no cubo, para otimizar usamos as posições de vértices apenas nos cantos e os índices para desenhar
+	    desenhar os outros vértices conforme precisarmos.
+	    Após obter os dados, precisamos enviar a GPU via buffer, para isso vamos chamar uma função para gerar um nome de buffer que é 
+	    a função glGenBuffers(), e capturamos o buffer com glBindBuffer() e vamos especificar que é um vetor de vértice com a constante
+	    GL_ARRAY_BUFFER.
+	    Para passar os dados do vértice para o buffer vamos chamar a função glBufferData(), o primeiro argumento é o tipo de dado, o segundo
+	    é o tamanho do buffer em bytes, o terceiro é o endereço dos dados de vértice e o ultimo é como os dados devem ser tratados que vamos
+	    passar a constante GL_STATIC_DRAW uma vez que enviamos os dados uma vez e vamos desenhar varias vezes, o mesmo procedimento será
+	    feito com os dados de índice.
+	    A criação da figura é idêntica, a diferença é que tratamos com índices e no outro tutorial tratamos com vértices, para específicar
+	    essa mudança temos que passar a constante GL_ELEMENT_ARRAY_BUFFER na função de criação. Dentro d função de renderização vamos
+	    habilitar as matrizes de vértices, porém vamos usar os dados do buffer , usando glBindBuffer() para fazer essa vinculação.
+	    Chamamos também glVertexPointer(), para configurar os daddos de vértice.
+	    Depois de configurar o buffer de indice e vértice, vamos desenhar usando glDrawElements(), que pega o tipo de geometria
+	    a quantidade de elementos que serão desenhados, o tipo de dados dos indices e o endereço dos indices.
+	</div>
+</section>
+
+

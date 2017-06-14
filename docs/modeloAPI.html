@@ -556,3 +556,74 @@
         <div class="prototipo">glRotate(angulo, x, y, z)</div>
 	<div class="variacoes">glRotatef ( recebe float), glRotaded (recebe double) </div>
 </section>
+
+<section>
+        <div class="nomeFuncao">glEnableClientState</div>        
+	<div class="descricao">Ativa recursos individuais a partir da constante passada, são aceitos:
+	GL_COLOR_ARRAY, GL_EDGE_FLAG_ARRAY, GL_FOG_COORD_ARRAY, GL_INDEX_ARRAY, GL_NORMAL_ARRAY, 
+	GL_SECONDARY_COLOR_ARRAY, GL_TEXTURE_COORD_ARRAY, e GL_VERTEX_ARRAY.
+	</div>
+	<div class="parametros">O recurso específico a ser ativado</div>
+	<div class="retorno">void</div>
+        <div class="prototipo"> void glEnableClientState(GLenum)</div>
+	<div class="variacoes"></div>
+</section>
+
+<section>
+        <div class="nomeFuncao">glDisableClientState</div>        
+	<div class="descricao">Desativa recursos individuais a partir da constante passada, são aceitos:
+	GL_COLOR_ARRAY, GL_EDGE_FLAG_ARRAY, GL_FOG_COORD_ARRAY, GL_INDEX_ARRAY, GL_NORMAL_ARRAY, 
+	GL_SECONDARY_COLOR_ARRAY, GL_TEXTURE_COORD_ARRAY, e GL_VERTEX_ARRAY.
+	</div>
+	<div class="parametros">O recurso específico a ser desativado</div>
+	<div class="retorno">void</div>
+        <div class="prototipo"> void glDisableClientState(GLenum)</div>
+	<div class="variacoes"></div>
+</section>
+
+<section>
+        <div class="nomeFuncao">glVertexPointer</div>        
+	<div class="descricao">Define um vetor de dados de vértice.</div>
+	<div class="parametros">O número de coordenadas por vértice, o tipo de dado, o deslocamento de bytes, apontador para
+	                        a primeira coordenada no vetor de vértices.</div>
+	<div class="retorno">void</div>
+        <div class="prototipo"> void glVertexPointer(GLint, Glenum, GLsizei, const GLvoid*)</div>
+	<div class="variacoes"></div>
+</section>
+
+<section>
+        <div class="nomeFuncao">glDrawArrays</div>        
+	<div class="descricao">Cria uma forma a partir de um vetor de dados.</div>
+	<div class="parametros">O tipo de geometria a ser criada, o índice na matriz de vértices de onde vamos começar a desenhar
+	                        e a quantidade de vértices que serão criados.</div>
+	<div class="retorno">void</div>
+        <div class="prototipo"> void glDrawArrays(GLenum, GLint, GLsizei)</div>
+	<div class="variacoes"></div>
+</section>
+
+<section>
+        <div class="nomeFuncao">glDrawElements</div>        
+	<div class="descricao">Usa os elementos em sequencia de uma matriz de índices habilitadas para construir uma figura</div>
+	<div class="parametros">Alguma constante que especifica o tipo de desenho, o numero de elementos a ser renderizado, o tipo do índice e o local dos índices</div>
+	<div class="retorno">void</div>
+        <div class="prototipo"> void glDrawElements(GLenum, GLsizei, GLenum, GLvoid *)</div>
+	<div class="variacoes"></div>
+</section>
+
+<section>
+        <div class="nomeFuncao">glGenBuffers</div>        
+	<div class="descricao">Gera nomes para objetos de buffer</div>
+	<div class="parametros">O numero de nome de objetos a serem gerados, a matriz onde serão armazenados </div>
+	<div class="retorno">void</div>
+        <div class="prototipo"> void glGenBuffers(GLsizei, GLuint*)</div>
+	<div class="variacoes"></div>
+</section>
+
+<section>
+        <div class="nomeFuncao">glBindBuffer</div>        
+	<div class="descricao">Vincula um objeto a um buffer</div>
+	<div class="parametros">Uma constante GL que é o destino, o nome do objeto </div>
+	<div class="retorno">void</div>
+        <div class="prototipo"> void glBindBuffer(GLEnum, GLuint)</div>
+	<div class="variacoes"></div>
+</section>

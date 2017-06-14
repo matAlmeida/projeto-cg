@@ -11,6 +11,8 @@ SCREEN_FPS = 60
 #Modos de cor
 COLOR_MODE_CYAN = 0
 COLOR_MODE_MULTI = 1
+
+#Modos de renderização
 RENDER_SQUARE = 2
 RENDER_CIRCLE = 3
 RENDER_PACMAN = 4
@@ -18,18 +20,28 @@ RENDER_PACMAN = 4
 #Modo atual de renderização de cor
 gColorMode = COLOR_MODE_CYAN
 
+#Tipo de objeto a ser renderizado
 gRenderMode = RENDER_SQUARE
 
+#Define a abertura da boca. Inicia-se em 0 (boca fechada)
 gAberturaBoca = 0
+
+#Flag de verificação de boca aberta ou fechada
 bocaAbrindo = True
 
+#Coordenadas para movimento do objeto
 gCameraX = 0
 gCameraY = 0
+
+#Ângulo de abertura de boca
 gAngle = mt.pi
+
+#Define a direção da boca
 gBocaDir = 0
 
 #Scala de projeção
-gProjectionScale = 1.0; #Tipo: GLfloat
+gProjectionScale = 1.0;
+
 
 def initGL():
 	#Inicializando Matriz de Projeção
@@ -140,8 +152,8 @@ def renderCircle():
 		glEnd()
 
 
-def renderPacman(abertura):
-	global gBocaDir
+def renderPacman():
+	global gBocaDir, gAberturaBoca, bocaAbrindo
 	r = 50
 	alpha = 0.0
 	dalpha = mt.pi / 40
@@ -149,6 +161,7 @@ def renderPacman(abertura):
 	#Movendo a câmera para uma posição
 	glTranslatef(gCameraX,gCameraY,0)
 
+	#Rotacionando a boca na direção correta
 	if (gBocaDir == 0):
 		glRotatef(0,0,0,1)
 	elif(gBocaDir == 2):
@@ -161,12 +174,12 @@ def renderPacman(abertura):
 	x = r * mt.cos(alpha)
 	y = r * mt.sin(alpha)
 	glBegin(GL_TRIANGLES)
-	for i in range(abertura):
+	for i in range(gAberturaBoca):
 		alpha += dalpha
 		x = r * mt.cos(alpha)
 		y = r * mt.sin(alpha)
 	glColor3f(1,1,0)
-	for i in range(80 - (abertura * 2)):
+	for i in range(80 - (gAberturaBoca * 2)):
 		glVertex2f(x, y)
 		glVertex2f(0.0, 0.0)
 		alpha += dalpha
@@ -174,6 +187,18 @@ def renderPacman(abertura):
 		y = r * mt.sin(alpha)
 		glVertex2f(x, y)
 	glEnd()
+
+	#Verificando e alterando abertura da boca
+	if(bocaAbrindo):
+		gAberturaBoca += 1
+		if(gAberturaBoca > 10):
+			bocaAbrindo = False
+			gAberturaBoca -= 2
+	else:
+		gAberturaBoca -= 1
+		if(gAberturaBoca < 0):
+			bocaAbrindo = True
+			gAberturaBoca += 2
 
 
 def render():
@@ -193,22 +218,13 @@ def render():
 	#Movendo a  para o centro da tela
 	glTranslatef(SCREEN_WIDTH / 2.0, SCREEN_HEIGHT / 2.0, 0.0)
 
+	#Verificando qual objeto renderizar
 	if (gRenderMode == RENDER_SQUARE):
 		renderSquare()
 	elif(gRenderMode == RENDER_CIRCLE):
 		renderCircle()
 	else:
-		renderPacman(gAberturaBoca)
-		if(bocaAbrindo):
-			gAberturaBoca += 1
-			if(gAberturaBoca > 10):
-				bocaAbrindo = False
-				gAberturaBoca -= 2
-		else:
-			gAberturaBoca -= 1
-			if(gAberturaBoca < 0):
-				bocaAbrindo = True
-				gAberturaBoca += 2
+		renderPacman()
 
 	#Atualizando tela
 	glutSwapBuffers()
@@ -242,7 +258,7 @@ def handleKeys(key,x,y):
 		elif(gProjectionScale == 2.0):
 			#Zoom in
 			gProjectionScale = 1.0
-		glutPostRedisplay()
+
 	#Se o usuário pressiona m
 	elif(key == 109):
 		if (gRenderMode == RENDER_SQUARE):
@@ -251,6 +267,7 @@ def handleKeys(key,x,y):
 			gRenderMode = RENDER_PACMAN
 		else:
 			gRenderMode = RENDER_SQUARE
+
 	#se o usuario pressiona a
 	elif(key == 97):
 		gCameraX -= 16
@@ -269,6 +286,7 @@ def handleKeys(key,x,y):
 		gBocaDir = 3
 
 	
+	#Atualizando matriz projeção
 	glMatrixMode( GL_PROJECTION );
 	glLoadIdentity()
 	glOrtho(0.0, SCREEN_WIDTH * gProjectionScale, SCREEN_HEIGHT * gProjectionScale, 0.0, 1.0, -1.0)

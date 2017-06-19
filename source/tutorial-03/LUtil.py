@@ -137,6 +137,19 @@ def render():
 		glVertex2f(-SCREEN_WIDTH/4, SCREEN_HEIGHT / 4)
 		glEnd()
 
+		'''
+		glViewport(SCREEN_WIDTH//4,SCREEN_HEIGHT//4,SCREEN_WIDTH//2,SCREEN_HEIGHT//2)
+		glBegin(GL_QUADS)
+		glColor3f(0,0,1)
+		glVertex2f(-SCREEN_WIDTH/4, -SCREEN_HEIGHT / 4)
+		glColor3f(1,1,0)
+		glVertex2f(SCREEN_WIDTH/4, -SCREEN_HEIGHT / 4)
+		glColor3f(0,1,0)
+		glVertex2f(SCREEN_WIDTH/4, SCREEN_HEIGHT / 4)
+		glColor3f(1,0,0)
+		glVertex2f(-SCREEN_WIDTH/4, SCREEN_HEIGHT / 4)
+		glEnd()'''
+
 	#Viewport com subjanela de exibição
 	elif(gViewportMode == VIEWPORT_MODE_RADAR):
 		#Quadrado de tamanho completo

@@ -8,6 +8,7 @@ SCREEN_HEIGHT = 480;
 SCREEN_FPS = 60;
 
 #Vértices do quadrado
+#4 coordenadas (x,y): posição 2D do vértice
 gQuadVertices = [[0,0],[0,0],[0,0],[0,0]]
 
 def initGL():
@@ -52,11 +53,11 @@ def loadMedia():
 	gQuadVertices[1][0] = SCREEN_WIDTH * 3.0/4.0
 	gQuadVertices[1][1] = SCREEN_HEIGHT * 1.0/4.0
 
-	gQuadVertices[2][0] = SCREEN_WIDTH * 3.0/4.0
-	gQuadVertices[2][1] = SCREEN_HEIGHT * 3.0/4.0
+	gQuadVertices[2][0] = SCREEN_WIDTH * 3.0/4.0 
+	gQuadVertices[2][1] = SCREEN_HEIGHT * 3.0/4.0 
 
 	gQuadVertices[3][0] = SCREEN_WIDTH * 1.0/4.0
-	gQuadVertices[3][1] = SCREEN_HEIGHT * 3.0/4.0
+	gQuadVertices[3][1] = SCREEN_HEIGHT * 3.0/4.0 
 
 	return True
 
@@ -76,7 +77,7 @@ def render():
 	glVertexPointer(2, GL_FLOAT, 0, gQuadVertices)
 
 	#Desenhando quadrado usando os dados do vértice
-	glDrawArrays(GL_QUADS, 0, 4)
+	glDrawArrays(GL_QUADS,0,4)
 
 	#Desabilitando array de vértices
 	glDisableClientState(GL_VERTEX_ARRAY)

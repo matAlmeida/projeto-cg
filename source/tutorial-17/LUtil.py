@@ -85,7 +85,7 @@ def loadMedia():
 	#Criando IBO(Index Buffer Object)
 	gIndexBuffer = glGenBuffers(1)
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, gIndexBuffer)
-	#(2*float.__sizeof__(0.0)) pois são duas coordenadas para cada vértice
+	#(2*float.__sizeof__(1)) pois são duas coordenadas para cada vértice
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, 4 * (int.__sizeof__(1)), gIndices, GL_STATIC_DRAW)
 
 	return True

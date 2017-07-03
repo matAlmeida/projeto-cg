@@ -1,6 +1,12 @@
+from LVertexPos2D import *
 from LTexCoord import *
 from numpy import *
 
-class LVertexData2D:
-	position = array([0,0], dtype = 'float32')
-	texCoord = LTexCoord()
+class LVertexData2D(Structure):
+	_fields_=[
+		('position', LVertexPos2D),
+		('texCoord', LTexCoord)
+	]
+	def __init__(self):
+		self.position = LVertexPos2D()
+		self.texCoord = LTexCoord()

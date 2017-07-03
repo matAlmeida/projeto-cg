@@ -1,4 +1,6 @@
-from LTexture import*
+from LTexture import *
+from OpenGL.GLU import *
+from OpenGL.GLUT import *
 
 #Constantes de Tela
 SCREEN_WIDTH = 640;
@@ -6,7 +8,7 @@ SCREEN_HEIGHT = 480;
 SCREEN_FPS = 60;
 
 #Textura VBO renderizada 
-gVBOTexture = LTexture()
+gVBOTexture = None
 
 def initGL():
 	#Definindo a janela de exibição (Viewport)
@@ -32,6 +34,8 @@ def initGL():
 	glDisable(GL_DEPTH_TEST)
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
 
+	global gVBOTexture
+	gVBOTexture = LTexture()
 	#Verificando se há erros
 	erro = glGetError()
 	if(erro != GL_NO_ERROR):

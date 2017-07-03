@@ -1,4 +1,7 @@
 from LSpriteSheet import *
+from OpenGL.GL import *
+from OpenGL.GLU import *
+from OpenGL.GLUT import *
 
 #Constantes de Tela
 SCREEN_WIDTH = 640;
@@ -53,17 +56,20 @@ def loadMedia():
 	clip.y = 0
 	gArrowSprites.addClipSprite(clip)
 
+	clip = LFRect(0,0,128,128)
 	#Superior direita
 	clip.x = 128
 	clip.y = 0
 	gArrowSprites.addClipSprite(clip)
 
+	clip = LFRect(0,0,128,128)
 	#Inferior esquerda
 	clip.x = 0
 	clip.y = 128
 	gArrowSprites.addClipSprite(clip)
 
-	#Superior esquerda
+	clip = LFRect(0,0,128,128)
+	#Inferior direita
 	clip.x = 128
 	clip.y = 128
 	gArrowSprites.addClipSprite(clip)

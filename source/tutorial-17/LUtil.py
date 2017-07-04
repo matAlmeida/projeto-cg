@@ -1,7 +1,7 @@
-from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
 from numpy import *
+from LVertexPos2D import *
 
 #Constantes de Tela
 SCREEN_WIDTH = 640;
@@ -9,17 +9,17 @@ SCREEN_HEIGHT = 480;
 SCREEN_FPS = 60;
 
 #Vértices do quadrado
-gQuadVertices = array([[0,0],[0,0],[0,0],[0,0]], dtype='float32')
+gQuadVertices = (LVertexPos2D * 4)(LVertexPos2D())
 
 
 #Índices dos vértices
-gIndices = array([0,0,0,0], dtype='int32')
+gIndices = (c_uint * 4)(c_uint())
 
 #Buffer do Vértice
-gVertexBuffer = 0
+gVertexBuffer = GLuint(0)
 
 #Index buffer
-gIndexBuffer = 0
+gIndexBuffer = GLuint(0)
 
 def initGL():
 	#Definindo a janela de exibição (Viewport)
@@ -57,17 +57,17 @@ def loadMedia():
 	global gQuadVertices, gVertexBuffer, gIndexBuffer, gIndices
 
 	#Definindo vértices do quadrado
-	gQuadVertices[0][0] = SCREEN_WIDTH * 1.0/4.0
-	gQuadVertices[0][1] = SCREEN_HEIGHT * 1.0/4.0
+	gQuadVertices[0].x = GLdouble(SCREEN_WIDTH * 1.0/4.0)
+	gQuadVertices[0].y = GLdouble(SCREEN_HEIGHT * 1.0/4.0)
 
-	gQuadVertices[1][0] = SCREEN_WIDTH * 3.0/4.0
-	gQuadVertices[1][1] = SCREEN_HEIGHT * 1.0/4.0
+	gQuadVertices[1].x = GLdouble(SCREEN_WIDTH * 3.0/4.0)
+	gQuadVertices[1].y = GLdouble(SCREEN_HEIGHT * 1.0/4.0)
 
-	gQuadVertices[2][0] = SCREEN_WIDTH * 3.0/4.0
-	gQuadVertices[2][1] = SCREEN_HEIGHT * 3.0/4.0
+	gQuadVertices[2].x = GLdouble(SCREEN_WIDTH * 3.0/4.0)
+	gQuadVertices[2].y = GLdouble(SCREEN_HEIGHT * 3.0/4.0)
 
-	gQuadVertices[3][0] = SCREEN_WIDTH * 1.0/4.0
-	gQuadVertices[3][1] = SCREEN_HEIGHT * 3.0/4.0
+	gQuadVertices[3].x = GLdouble(SCREEN_WIDTH * 1.0/4.0)
+	gQuadVertices[3].y = GLdouble(SCREEN_HEIGHT * 3.0/4.0)
 
 	#Definindo índices de renderização
 	gIndices[0] = 0
@@ -78,15 +78,15 @@ def loadMedia():
 	#Criando VBO(Vertex Buffer Object)
 	gVertexBuffer = glGenBuffers(1)
 	glBindBuffer(GL_ARRAY_BUFFER, gVertexBuffer)
-	#(2*float.__sizeof__(0.0)) pois são duas coordenadas para cada vértice
-	glBufferData(GL_ARRAY_BUFFER, 4 * (2*float.__sizeof__(0.0)), gQuadVertices, GL_STATIC_DRAW)
+
+	glBufferData(GL_ARRAY_BUFFER, sizeof(gQuadVertices), gQuadVertices, GL_STATIC_DRAW)
 
 
 	#Criando IBO(Index Buffer Object)
 	gIndexBuffer = glGenBuffers(1)
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, gIndexBuffer)
-	#(2*float.__sizeof__(0.0)) pois são duas coordenadas para cada vértice
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, 4 * (int.__sizeof__(1)), gIndices, GL_STATIC_DRAW)
+
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(gIndices), gIndices, GL_STATIC_DRAW)
 
 	return True
 
@@ -104,7 +104,7 @@ def render():
 
 	#Definindo dados do vértice
 	glBindBuffer(GL_ARRAY_BUFFER, gVertexBuffer)
-	glVertexPointer(2, GL_FLOAT, 0, None)
+	glVertexPointer(2, GL_DOUBLE, sizeof(LVertexPos2D), c_void_p(LVertexPos2D.x.offset))
 
 	#Desenhando quadrado usando os dados dos índices
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, gIndexBuffer)

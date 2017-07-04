@@ -1,14 +1,12 @@
-from LTexture import *
-from OpenGL.GLU import *
-from OpenGL.GLUT import *
+from LFont import *
 
 #Constantes de Tela
-SCREEN_WIDTH = 640;
-SCREEN_HEIGHT = 480;
-SCREEN_FPS = 60;
+SCREEN_WIDTH = 640
+SCREEN_HEIGHT = 480
+SCREEN_FPS = 60
 
 #Textura VBO renderizada 
-gVBOTexture = None
+gFont = LFont()
 
 def initGL():
 	#Definindo a janela de exibição (Viewport)
@@ -34,8 +32,6 @@ def initGL():
 	glDisable(GL_DEPTH_TEST)
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
 
-	global gVBOTexture
-	gVBOTexture = LTexture()
 	#Verificando se há erros
 	erro = glGetError()
 	if(erro != GL_NO_ERROR):
@@ -45,9 +41,9 @@ def initGL():
 
 
 def loadMedia():
-	global gVBOTexture
-	if (not gVBOTexture.loadTextureFromFile("opengl.png")):
-		print("Não foi possivel carregar textura OpenGL\n")
+	global gFont
+	if (not gFont.loadBitmap("lazy_font.png")):
+		print("Não foi possivel carregar bitmap\n")
 		return False
 	return True
 		
@@ -59,12 +55,11 @@ def render():
 
 	#Limpando o buffer de cor
 	glClear(GL_COLOR_BUFFER_BIT)
-
-	#Inicializando matriz de exibição 
 	glLoadIdentity()
 
-	#Renderizando textura do quadrado usando VBOs
-	gVBOTexture.render((SCREEN_WIDTH - gVBOTexture.imageWidth()) / 2 , (SCREEN_HEIGHT - gVBOTexture.imageHeight()) / 2 )
+	#Renderizando texto vermelho
+	glColor3f(1,0,0)
+	gFont.renderText(0,0,"Texto em vermelho.\nAula prática CG.")
 
 	#Atualizando tela
 	glutSwapBuffers()

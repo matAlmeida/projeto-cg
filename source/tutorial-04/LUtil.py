@@ -115,13 +115,13 @@ def handleKeys(key,x,y):
 	key = ord(key)
 	#print ("key: "+str(key))
 	#Se o usuário pressiona w/a/s/d, muda a posição da câmera
-	if(key == 119):
+	if(key == 119):#w
 		gCameraY -= 16
-	elif(key == 115):
+	elif(key == 115):#s
 		gCameraY += 16
-	elif(key == 97):
+	elif(key == 97):#a
 		gCameraX -= 16
-	elif(key == 100):
+	elif(key == 100):#d
 		gCameraX += 16
 	glutPostRedisplay()
 

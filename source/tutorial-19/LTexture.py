@@ -1,4 +1,5 @@
-from LVertexData2D import*
+from LVertexData2D import *
+from LFRect import *
 from PIL import Image
 from PIL.Image import open
 
@@ -171,19 +172,6 @@ class LTexture:
 			vData[2].texCoord.t = GLdouble(texTop);		vData[2].position.y = GLdouble(quadHeight)
 			vData[3].texCoord.s = GLdouble(texLeft);	vData[3].position.x = GLdouble(0.0)
 			vData[3].texCoord.t = GLdouble(texTop);		vData[3].position.y = GLdouble(quadHeight)
-
-			
-			#Renderizando textura do quadrado
-			#glBegin(GL_QUADS)
-			#glTexCoord2f(texLeft,texTop)
-			#glVertex2f(0,quadHeight)
-			#glTexCoord2f(texRight,texTop)
-			#glVertex2f(quadWidth,quadHeight)
-			#glTexCoord2f(texRight,texBottom)
-			#glVertex2f(quadWidth,0)
-			#glTexCoord2f(texLeft,texBottom)
-			#glVertex2f(0,0)
-			#glEnd()
 
 			#Definindo textura ID
 			glBindTexture(GL_TEXTURE_2D,self.mTextureID)

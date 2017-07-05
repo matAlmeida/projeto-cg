@@ -1,5 +1,6 @@
 from LVertexData2D import*
 from LFRect import *
+from pdb import *
 
 DEFAULT_TEXTURE_WRAP = GL_REPEAT
 
@@ -29,20 +30,20 @@ class LTexture:
 			iData =  (GLuint * 4)(GLuint(0))
 
 			#Definindo indices de renderização
-			iData[0] = 0
-			iData[1] = 1
-			iData[2] = 2
-			iData[3] = 3
+			iData[0] = GLuint(0)
+			iData[1] = GLuint(1)
+			iData[2] = GLuint(2)
+			iData[3] = GLuint(3)
 
 			#Criando VBO
 			self.mVBOID = glGenBuffers(1)
 			glBindBuffer(GL_ARRAY_BUFFER, self.mVBOID)
-			glBufferData(GL_ARRAY_BUFFER,4*(LVertexData2D().__sizeof__()),vData,GL_DYNAMIC_DRAW)
+			glBufferData(GL_ARRAY_BUFFER,sizeof(vData),vData,GL_DYNAMIC_DRAW)
 
 			#Criando IBO 
 			self.mIBOID = glGenBuffers(1)
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, self.mIBOID)
-			glBufferData(GL_ELEMENT_ARRAY_BUFFER,4*(GLuint().__sizeof__()),iData,GL_DYNAMIC_DRAW)
+			glBufferData(GL_ELEMENT_ARRAY_BUFFER,sizeof(iData),iData,GL_DYNAMIC_DRAW)
 
 			#Desativando buffer
 			glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -97,7 +98,6 @@ class LTexture:
 
 			#Liberando textura
 			glBindTexture(GL_TEXTURE_2D,0)
-
 			#Procurando erros
 			erro = glGetError()
 			if(erro != GL_NO_ERROR):
@@ -110,44 +110,6 @@ class LTexture:
 
 				self.initVBO()
 		return success
-
-	
-#	def loadTextureFromPixels32(self,pixels,imgWidth,imgHeight,texWidth,texHeigth):
-#		#Obtendo dimensoes de imagem
-#		self.mImageWidth = imgWidth
-#		self.mImageHeight = imgHeight
-#		self.mTextureWidth = texWidth
-#		self.mTextureHeight = texHeigth
-#
-#		#Gera textura ID
-#		glGenTextures(1,self.mTextureID)
-#
-#		#Define a ID da textura
-#		self.mTextureID = 1
-#
-#		#Cria textura ID
-#		glBindTexture(GL_TEXTURE_2D,self.mTextureID)
-#
-#		#Gera textura
-#		glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,self.mTextureWidth,self.mTextureHeight,0,GL_RGBA,GL_UNSIGNED_BYTE,pixels)
-#
-#		#Definindo parâmetros da textura
-#		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR)
-#		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR)
-#		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, DEFAULT_TEXTURE_WRAP)
-#		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, DEFAULT_TEXTURE_WRAP)
-#
-#		#Liberando textura
-#		glBindTexture(GL_TEXTURE_2D,0)
-#
-#		#Procurando erros
-#		erro = glGetError()
-#		if(erro != GL_NO_ERROR):
-#			print("Erro ao carregar textura de %p pixels! %s\n",pixels,gluErrorString(erro))
-#			return False
-#		#Gerando VBO
-#		self.initVBO()
-#		return True
 		
 	def loadPixelsFromFile(self,imagem):
 		#Desalocando dados da textura

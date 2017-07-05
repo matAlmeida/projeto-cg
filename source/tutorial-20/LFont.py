@@ -1,4 +1,5 @@
 from LSpriteSheet import *
+from pdb import *
 
 class LFont(LSpriteSheet):
 	def __init__(self):
@@ -43,12 +44,10 @@ class LFont(LSpriteSheet):
 			#Iniciando analise de fonte bitmap
 			currentChar = 0
 			nextClip = LFRect(0,0,cellW,cellH)
-
 			#Navegando pelas linhas de células
 			for rows in range(0,16):
 				for cols in range(0,16):
 					#Iniciando analise de celula
-
 					#Setando base offsets
 					bX = cellW * cols
 					bY = cellH * rows
@@ -77,20 +76,20 @@ class LFont(LSpriteSheet):
 								pRow = cellH
 
 					#Lado direito
-					for pCol_w in range(cellW-1,0):
+					for pCol_w in range(cellW-1,-1,-1):
 						for pRow_w in range(0,cellH):
 							#Setando pixel offset
 							pX = bX + pCol_w
 							pY = bY + pRow_w
 
 							#Nenhum pixel de fundo encontrado
-							if(getPixel32(pX,pY) != BLACK_PIXEL):
+							if(self.getPixel32(pX,pY) != BLACK_PIXEL):
 								#Setando largura do offset sprite
 								nextClip.w = (pX - nextClip.x) + 1
 
 								#Quebrando os loops
-								pCol = -1
-								pRow = cellH
+								pCol_w = -1
+								pRow_w = cellH
 
 					#Encontrando topo
 					for pRow in range(0,cellH):
@@ -110,21 +109,21 @@ class LFont(LSpriteSheet):
 								pRow = cellH
 
 					#Encontrando parte inferior
-					for pRow_b in range(cellH-1,0):
+					for pRow_b in range(cellH-1,-1,-1):
 						for pCol_b in range(0,cellW):
 							#Setando pixel offset
 							pX = bX + pCol_b
 							pY = bY + pRow_b
 
 							#Nenhum pixel de fundo encontrado
-							if(getPixel32(pX,pY) != BLACK_PIXEL):
+							if(self.getPixel32(pX,pY) != BLACK_PIXEL):
 								#Setando BaseLine
-								if(currentChar == 'A'):
+								if(currentChar == ord('A')):
 									aBottom = pRow_b
 
 								#Quebrando os loops
-								pCol = cellW
-								pRow = -1
+								pCol_b = cellW
+								pRow_b = -1
 					#Indo para o proximo caractere
 					self.mClips.append(nextClip)
 					currentChar += 1
@@ -138,20 +137,20 @@ class LFont(LSpriteSheet):
 			GREEN_BYTE = 1
 			BLUE_BYTE = 2
 			ALPHA_BYTE = 3
-
+			print("GET OVER HERE!")
 			#Andando através os pixels
 			PIXEL_COUNT = self.textureWidth() * self.textureHeight()
 			pixels = self.getPixelData32()
+			#set_trace()
 			'''
-			for i in range(0,PIXEL_COUNT):
-				#Obtendo cores individuais de componentes
-				colors = pixels[i]
+			for i in range(0,PIXEL_COUNT,4):
+				#Obtendo cores individuais de componentes#
 
 				#Pixel branco como transparente
-				colors[ALPHA_BYTE] = colors[RED_BYTE]
-				colors[RED_BYTE] = 0xFF
-				colors[GREEN_BYTE] = 0xFF
-				colors[BLUE_BYTE] = 0xFF
+				self.mPixels[i+ALPHA_BYTE] = self.mPixels[i+RED_BYTE]
+				self.mPixels[i+RED_BYTE] = 0xFF
+				self.mPixels[i+GREEN_BYTE] = 0xFF
+				self.mPixels[i+BLUE_BYTE] = 0xFF
 			'''
 			#Criando textura a partir de pixels manipulados
 			if(self.loadTextureFromPixels32()):
@@ -174,11 +173,12 @@ class LFont(LSpriteSheet):
 			mLineHeight = bottom - top
 		else:
 			print("Não foi possível carregar imagem de fonte bitmap: %s!\n",imagem)
+		
 		return success
 
 	def freeFont(self):
 		#Liberando sprite sheet
-		#self.freeTexture()
+		self.freeTexture()
 
 		#Reinicializando constantes de espaço
 		self.mSpace = 0
@@ -226,9 +226,9 @@ class LFont(LSpriteSheet):
 				else:
 					#Obtendo caractere ASCII
 					asc = ord(text[i])
-					print(chr(self.mIndexBuffers[ 15 ]))
+					#print(chr(self.mIndexBuffers[asc-self.mIndexBuffers[0]]))
 					#Desenhando quadrado usando dados do vertice e dados do índice
-					glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, GLuint(self.mIndexBuffers[asc]) )
+					glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, self.mIndexBuffers[asc-self.mIndexBuffers[0]])
 					glDrawElements( GL_QUADS, 4, GL_UNSIGNED_INT, None )
 
 					#Movendo

@@ -32,9 +32,9 @@ class LSpriteSheet(LTexture):
 			#Alocando dados do vértice de buffers
 			totalSprites = len(self.mClips)
 			#(position(x,y), s, t)
-			vertexData = array(totalSprites*4*[[0,0,0,0]], dtype = 'float32')
-			self.mIndexBuffers = array(totalSprites*[0], dtype = 'int32')
+			vertexData = (LVertexData2D * (4 * totalSprites))(LVertexData2D())
 
+			self.mIndexBuffers = (GLuint * 4)(GLuint(0))
 			#Alocando dados do vértice de nomes de buffers
 			self.mVertexDataBuffer = glGenBuffers(1)
 
@@ -44,7 +44,7 @@ class LSpriteSheet(LTexture):
 			#Andando através dos clips
 			tw = self.textureWidth()
 			th = self.textureHeight()
-			spriteIndices = array([0,0,0,0], dtype = 'int32')
+			spriteIndices = (GLuint * 4)(GLuint(0))
 
 			#Variáveis de origem
 			vTop = 0.0
@@ -87,39 +87,39 @@ class LSpriteSheet(LTexture):
 					vRight = self.mClips[i].w / 2
 
 				#Superior esquerda
-				vertexData[spriteIndices[0]][0] = -(self.mClips[i].w / 2)
-				vertexData[spriteIndices[0]][1] = -(self.mClips[i].h / 2)
+				vertexData[spriteIndices[0]].position.x = -(self.mClips[i].w / 2)
+				vertexData[spriteIndices[0]].position.y = -(self.mClips[i].h / 2)
 
-				vertexData[spriteIndices[0]][2] = (self.mClips[i].x) / tw
-				vertexData[spriteIndices[0]][3] = (self.mClips[i].y) / th
+				vertexData[spriteIndices[0]].texCoord.s  = (self.mClips[i].x) / tw
+				vertexData[spriteIndices[0]].texCoord.t = (self.mClips[i].y) / th
 
 				#Superior direita
-				vertexData[spriteIndices[1]][0] = -self.mClips[i].w / 2
-				vertexData[spriteIndices[1]][1] = -self.mClips[i].h / 2
+				vertexData[spriteIndices[1]].position.x = -self.mClips[i].w / 2
+				vertexData[spriteIndices[1]].position.y = -self.mClips[i].h / 2
 
-				vertexData[spriteIndices[1]][2] = (self.mClips[ i ].x + self.mClips[ i ].w) / tw
-				vertexData[spriteIndices[1]][3] = (self.mClips[i].y) / th
+				vertexData[spriteIndices[1]].texCoord.s = (self.mClips[ i ].x + self.mClips[ i ].w) / tw
+				vertexData[spriteIndices[1]].texCoord.t = (self.mClips[i].y) / th
 
 				#Inferior direita
-				vertexData[spriteIndices[1]][0] = -self.mClips[i].w / 2
-				vertexData[spriteIndices[1]][1] = -self.mClips[i].h / 2
+				vertexData[spriteIndices[2]].position.x = -self.mClips[i].w / 2
+				vertexData[spriteIndices[2]].position.y = -self.mClips[i].h / 2
 
-				vertexData[spriteIndices[1]][2] = (self.mClips[i].x + self.mClips[i].w) / tw
-				vertexData[spriteIndices[1]][3] = (self.mClips[i].y + self.mClips[i].h) / th;
+				vertexData[spriteIndices[2]].texCoord.s = (self.mClips[i].x + self.mClips[i].w) / tw
+				vertexData[spriteIndices[2]].texCoord.t = (self.mClips[i].y + self.mClips[i].h) / th;
 
 				#Inferior esquerda
-				vertexData[spriteIndices[1]][0] = -self.mClips[i].w / 2
-				vertexData[spriteIndices[1]][1] = -self.mClips[i].h / 2
+				vertexData[spriteIndices[3]].position.x = -self.mClips[i].w / 2
+				vertexData[spriteIndices[3]].position.y = -self.mClips[i].h / 2
 
-				vertexData[spriteIndices[1]][2] = (self.mClips[i].x) / tw
-				vertexData[spriteIndices[1]][3] = (self.mClips[i].y + self.mClips[i].h) / th;
+				vertexData[spriteIndices[3]].texCoord.s = (self.mClips[i].x) / tw
+				vertexData[spriteIndices[3]].texCoord.t = (self.mClips[i].y + self.mClips[i].h) / th;
 
 				#Ativando dados dos índices do buffer
 				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, self.mIndexBuffers[i])
-				glBufferData(GL_ELEMENT_ARRAY_BUFFER, 4 * GLuint().__sizeof__(), spriteIndices, GL_STATIC_DRAW)
+				glBufferData(GL_ELEMENT_ARRAY_BUFFER,sizeof(spriteIndices), spriteIndices, GL_STATIC_DRAW)
 			#Ativando dados do vértice
 			glBindBuffer( GL_ARRAY_BUFFER, self.mVertexDataBuffer );
-			glBufferData( GL_ARRAY_BUFFER, totalSprites * 4 * LVertexData2D().__sizeof__(), vertexData, GL_STATIC_DRAW );
+			glBufferData( GL_ARRAY_BUFFER,sizeof(vertexData), vertexData, GL_STATIC_DRAW );
 
 			del vertexData
 
@@ -144,13 +144,13 @@ class LSpriteSheet(LTexture):
 
 		self.mClips.clear()
 
-	'''
+	
 	def freeTexture(self):
 		#Liberando dados de sprite sheet
 		self.freeSheet()
 		#Liberando textura
-		self.freeTexture()
-	'''
+		LTexture.freeTexture(self)
+	
 	def renderSprite(self,index):
 		#Se dados de sprite sheet existe
 		if(self.mVertexDataBuffer != None):
@@ -165,15 +165,16 @@ class LSpriteSheet(LTexture):
 			glBindBuffer(GL_ARRAY_BUFFER, self.mVertexDataBuffer)
 
 			#Setando dados de coordenada de textura
-			#glTexCoordPointer( 2, GL_FLOAT, LVertexData2D().__sizeof__(), offsetof( LVertexData2D, texCoord ));
+			glTexCoordPointer( 2, GL_DOUBLE,sizeof(LVertexData2D), c_void_p(LVertexData2D.texCoord.offset));
 
 			#Setando dados do vértice
-			#glVertexPointer( 2, GL_FLOAT, LVertexData2D().__sizeof__(), offsetof( LVertexData2D, position) );
+			glVertexPointer( 2, GL_DOUBLE, sizeof(LVertexData2D), c_void_p( LVertexData2D.position.offset));
 
 			#Desenhando quadrado usando dados do vértice e dados do índice
 			glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, self.mIndexBuffers[ index ] );
 			glDrawElements(GL_QUADS, 4, GL_UNSIGNED_INT, None);
-
+			import pdb
+			pdb.set_trace()
 		#Desabilitando coordenada de arrays de vértice e textura
 		glDisableClientState( GL_TEXTURE_COORD_ARRAY );
 		glDisableClientState( GL_VERTEX_ARRAY );

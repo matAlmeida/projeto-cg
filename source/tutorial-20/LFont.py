@@ -206,10 +206,10 @@ class LFont(LSpriteSheet):
 			glBindBuffer( GL_ARRAY_BUFFER, self.mVertexDataBuffer )
 
 			#Setando dados da coordenada da textura
-			#glTexCoordPointer( 2, GL_FLOAT, LVertexData2D().__sizeof__(), offsetof( LVertexData2D, texCoord ) )
+			glTexCoordPointer( 2, GL_DOUBLE, sizeof(LVertexData2D), c_void_p(LVertexData2D.texCoord.offset) )
 			
 			#Setando dados do vértice
-			#glVertexPointer( 2, GL_FLOAT, LVertexData2D().__sizeof__(), offsetof( LVertexData2D, position ) )
+			glVertexPointer( 2, GL_DOUBLE, sizeof(LVertexData2D), c_void_p(LVertexData2D.position.offset) )
 
 			#Navegando através da string
 			for i in range(0,len(text)):

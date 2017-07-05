@@ -25,8 +25,8 @@ class LTexture:
 		if (self.mTextureID !=0 and self.mVBOID == 0):
 			#Dados do vertice
 			#vData array(position(x,y), s, t)
-			vData = array([[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]], dtype = 'float32')
-			iData = array([0,0,0,0], dtype = 'int32')
+			vData =  (LVertexData2D * 4)(LVertexData2D())
+			iData =  (GLuint * 4)(GLuint(0))
 
 			#Definindo indices de renderização
 			iData[0] = 0
@@ -66,7 +66,7 @@ class LTexture:
 	
 	def __del__(self):
 		#Limpa dados da textura se preciso
-		self.freeTexture(self)
+		self.freeTexture()
 
 		#Liberar o VBO e IBO se preciso 
 		self.freeVBO()
@@ -110,47 +110,48 @@ class LTexture:
 
 				self.initVBO()
 		return success
-	'''
-	def loadTextureFromPixels32(self,pixels,imgWidth,imgHeight,texWidth,texHeigth):
-		#Obtendo dimensoes de imagem
-		self.mImageWidth = imgWidth
-		self.mImageHeight = imgHeight
-		self.mTextureWidth = texWidth
-		self.mTextureHeight = texHeigth
 
-		#Gera textura ID
-		glGenTextures(1,self.mTextureID)
-
-		#Define a ID da textura
-		self.mTextureID = 1
-
-		#Cria textura ID
-		glBindTexture(GL_TEXTURE_2D,self.mTextureID)
-
-		#Gera textura
-		glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,self.mTextureWidth,self.mTextureHeight,0,GL_RGBA,GL_UNSIGNED_BYTE,pixels)
-
-		#Definindo parâmetros da textura
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR)
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR)
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, DEFAULT_TEXTURE_WRAP)
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, DEFAULT_TEXTURE_WRAP)
-
-		#Liberando textura
-		glBindTexture(GL_TEXTURE_2D,0)
-
-		#Procurando erros
-		erro = glGetError()
-		if(erro != GL_NO_ERROR):
-			print("Erro ao carregar textura de %p pixels! %s\n",pixels,gluErrorString(erro))
-			return False
-		#Gerando VBO
-		self.initVBO()
-		return True
-		'''
+	
+#	def loadTextureFromPixels32(self,pixels,imgWidth,imgHeight,texWidth,texHeigth):
+#		#Obtendo dimensoes de imagem
+#		self.mImageWidth = imgWidth
+#		self.mImageHeight = imgHeight
+#		self.mTextureWidth = texWidth
+#		self.mTextureHeight = texHeigth
+#
+#		#Gera textura ID
+#		glGenTextures(1,self.mTextureID)
+#
+#		#Define a ID da textura
+#		self.mTextureID = 1
+#
+#		#Cria textura ID
+#		glBindTexture(GL_TEXTURE_2D,self.mTextureID)
+#
+#		#Gera textura
+#		glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,self.mTextureWidth,self.mTextureHeight,0,GL_RGBA,GL_UNSIGNED_BYTE,pixels)
+#
+#		#Definindo parâmetros da textura
+#		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR)
+#		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR)
+#		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, DEFAULT_TEXTURE_WRAP)
+#		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, DEFAULT_TEXTURE_WRAP)
+#
+#		#Liberando textura
+#		glBindTexture(GL_TEXTURE_2D,0)
+#
+#		#Procurando erros
+#		erro = glGetError()
+#		if(erro != GL_NO_ERROR):
+#			print("Erro ao carregar textura de %p pixels! %s\n",pixels,gluErrorString(erro))
+#			return False
+#		#Gerando VBO
+#		self.initVBO()
+#		return True
+		
 	def loadPixelsFromFile(self,imagem):
 		#Desalocando dados da textura
-		self.freeTexture(self)
+		self.freeTexture()
 		pixelsLoaded = False
 
 		im = Image.open(imagem).convert("RGBA")
@@ -225,40 +226,28 @@ class LTexture:
 			glTranslatef(x,y,0)
 
 			#Definindo dados do vertice 
-			vData = array([[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]], dtype = 'float32')
+			vData = (LVertexPos2D * 4)(LVertexData2D())
 
 			#Coordenadas da textura 
 
-			vData[0][2] = texLeft 
-			vData[0][3] = texTop 
-			vData[1][2] = texRight
-			vData[1][3] = texTop
-			vData[2][2] = texRight
-			vData[2][3] = texBottom
-			vData[3][2] = texLeft
-			vData[3][3] = texBottom
+			vData[0].texCoord.s = texLeft 
+			vData[0].texCoord.t = texTop 
+			vData[1].texCoord.s = texRight
+			vData[1].texCoord.t = texTop
+			vData[2].texCoord.s = texRight
+			vData[2].texCoord.t = texBottom
+			vData[3].texCoord.s = texLeft
+			vData[3].texCoord.t = texBottom
 
 			#Posições dos vertices 
-			vData[0][0] = 0.0
-			vData[0][1] = 0.0
-			vData[1][0] = quadWidth
-			vData[1][1] = 0.0
-			vData[2][0] = quadWidth
-			vData[2][1] = quadHeight
-			vData[3][0] = 0.0
-			vData[3][1] = quadHeight
-
-			#Renderizando textura do quadrado
-			glBegin(GL_QUADS)
-			glTexCoord2f(texLeft,texTop)
-			glVertex2f(0,quadHeight)
-			glTexCoord2f(texRight,texTop)
-			glVertex2f(quadWidth,quadHeight)
-			glTexCoord2f(texRight,texBottom)
-			glVertex2f(quadWidth,0)
-			glTexCoord2f(texLeft,texBottom)
-			glVertex2f(0,0)
-			glEnd()
+			vData[0].position.x = 0.0
+			vData[0].position.y = 0.0
+			vData[1].position.x = quadWidth
+			vData[1].position.y = 0.0
+			vData[2].position.x = quadWidth
+			vData[2].position.y = quadHeight
+			vData[3].position.x = 0.0
+			vData[3].position.y = quadHeight
 
 			#Definindo textura ID
 			glBindTexture(GL_TEXTURE_2D,self.mTextureID)
@@ -271,7 +260,13 @@ class LTexture:
 			glBindBuffer(GL_ARRAY_BUFFER,self.mVBOID)
 
 			#Atualizando dados do buffer do vertice 
-			glBufferSubData(GL_ARRAY_BUFFER,0,4*LVertexData2D().__sizeof__(),vData)
+			glBufferSubData(GL_ARRAY_BUFFER,0,sizeof(vData),vData)
+
+			#Set texture coordinate data
+			glTexCoordPointer(2, GL_DOUBLE, sizeof(LVertexData2D), c_void_p(LVertexData2D.texCoord.offset))
+
+		        #Set vertex data
+			glVertexPointer(2, GL_DOUBLE, sizeof(LVertexData2D), c_void_p(LVertexData2D.position.offset))
 
 			#Desenhando quadrado usando os dados do vertice e os dados do indice
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,self.mIBOID)

@@ -376,7 +376,34 @@
 	</div>
 </section>
 
-
+<section>
+    <div class="numeroTutorial">19</div>
+    <div class="titulo">Sprite Sheets</div>
+    <div class="linkdotutorial">http://lazyfoo.net/tutorials/OpenGL/19_sprite_sheets/index.php</div>
+    <div class="bibliotecas">OpenGL.GL, OpenGL.GLU, OpenGL.GLUT</div>
+    <div class="descricao">
+	Neste tutorial vamos utilizar um conjunto de imagens Sprite reutilizando os frames pre-alocando os dados do vértice.
+	    Vamos ter uma classe que herda de LTexture, na classe filha vamos substituir como são liberadas as texturas. Essa
+	    classe será LSpriteSheet que no nosso caso será uma textura Sprite. No inicio vamos criar o construtor da classe 
+	    e o seu destrutor, vamos usar o addClipSprite() que adiciona um clipe de um retangulo para a matriz de membros, temos
+	    também a função getClip() que obtém uma matriz de membros. Após definir todos os retangulos de clipe, usaremos a função
+	    generateDataBuffer() para gerar os VBOs e IBOs e dpois de terminar vamos chamar FreeSheet() para desalocar os nossos
+	    dados.
+	    Como Ltexture é herdado publicamente, nós ainda podemos acessar as suas funções que também são publicas. Teremos novas
+	    variáveis, mClips que representa nossa matriz de clipes de retangulo e mVertexDataBuffer que usaremos para armazenar 
+	    os dados do vértice para os nossos Sprite, teremos também mIndexBuffers, que serão uma série de IBOs. O construtor
+	    inicializa as variáveis membro e o destrutor desaloca os dados da sprite sheet. A função AddClipSprite()adiciona o 
+	    objeto no vetor STL e retorna a posição do ultimo elemento. GetClip() retorna o objeto que foi solicitado. Depois
+	    de carregar a nossa textura vamos gerar os dados do VBO e alocar os nossos dados de vértice que são 4 vértices por
+	    sprite. Em seguida vamos gerar o VBO e IBO para cada sprite, depois conseguiremos a altura e largura da textura para 
+	    mapear e após isso vamos passar os nossos dados de indices e vértices.
+	    No topo do for passamos os dados do indice para o sprite atual, depois vamos definir os indices para o sprite atual, com 
+	    a origem no centro, em seguida vamos configurar o IBO para o sprite. Após o for, vamos definir todos os VBO para nossa folha
+	    sprite. Na função freeSheet() vamos desalocar os dados da folha sprite. Na função renderSprite() ativamos a VBO cm as coorde
+	    nadas de vértices e de textura .
+	    Em loadMedia() vamos carregar normalmente como fazemos cm LTexture. E na render() renderizamos cada sprite em seu canto.
+	</div>
+</section>
 
 
 

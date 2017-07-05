@@ -206,6 +206,7 @@ class LFont(LSpriteSheet):
 			glBindBuffer( GL_ARRAY_BUFFER, self.mVertexDataBuffer )
 
 			#Setando dados da coordenada da textura
+
 			glTexCoordPointer( 2, GL_FLOAT, sizeof(LVertexData2D()), c_void_p(LVertexData2D.texCoord.offset) )
 			
 			#Setando dados do vértice

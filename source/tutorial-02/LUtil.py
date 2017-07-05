@@ -252,7 +252,7 @@ def handleKeys(key,x,y):
 	#Se o usuário pressiona e
 	elif(key == 101):
 		# Ciclos através de escalas de projeção
-		if(gProjectionScale == 1.0):
+		if(gProjectionScale == 1.0): # diminui a escala e passa para glOrtho
 			#Zoom out
 			gProjectionScale = 2.0
 		elif(gProjectionScale == 2.0):

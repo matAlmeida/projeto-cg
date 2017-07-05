@@ -25,6 +25,7 @@ class LTexture:
 		if (self.mTextureID != 0 and self.mVBOID == 0):
 			#Dados do vertice
 			#vData array(position(x,y), s, t)
+
 			verData = (LVertexData2D * 4)(LVertexData2D())
 			iData = (GLuint * 4)(GLuint(0))
 
@@ -68,7 +69,7 @@ class LTexture:
 
 	def __del__(self):
 		#Limpa dados da textura se preciso
-		self.freeTexture(self)
+		self.freeTexture()
 
 		#Liberar o VBO e IBO se preciso 
 		self.freeVBO()
@@ -111,6 +112,7 @@ class LTexture:
 
 				self.initVBO()
 		return success
+
 	'''
 	def loadTextureFromPixels32(self,pixels,imgWidth,imgHeight,texWidth,texHeigth):
 		#Obtendo dimensoes de imagem
@@ -227,6 +229,7 @@ class LTexture:
 			glTranslatef(x,y,0)
 
 			#Definindo dados do vertice 
+
 			vData = (LVertexData2D * 4)(LVertexData2D())
 
 			#Coordenadas da textura e dos vértices

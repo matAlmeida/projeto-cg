@@ -348,4 +348,39 @@
 	</div>
 </section>
 
+<section>
+    <div class="numeroTutorial">18</div>
+    <div class="titulo">Textured Vertex Buffers</div>
+    <div class="linkdotutorial">http://lazyfoo.net/tutorials/OpenGL/18_textured_vertex_buffers/index.php</div>
+    <div class="bibliotecas">OpenGL.GL, OpenGL.GLU, OpenGL.GLUT</div>
+    <div class="descricao">
+	    Neste tutorial nos vamos utilizar novos métodos para renderizar as nossas implementações, a partir de agora vamos
+	utilizar VBOs. Teremos um novo arquivo o LTexCoord para manipular as coordenadas da textura. Vamos criar um objeto LVertexData2D
+	já que o nosso vértice tem uma posição e uma coordenada de textura e nós precisaremos juntar isso. Vamos criar variáveis para
+	o nosso VBOs e IBOs. Vamos ter 2 novas funções initVBO() e freeVBO() para manipular nossas variaveis VBO. Em LTexture vamos
+	nossas variáveis, o nosso inicializador do VBO só será executado se uma textura já estiver carregada pois não há um ponto
+	no VBO se não estiver texturizado. Em seguida, declaramos nossos dados de Vértice e de Índices (VBO e IBO) e vamos enviar
+	para GPU, os nossos dados de vértice serão configurados pela função de renderização. Utilizamos GL_DINAMIC_DRAW para indicar
+	que vamos atualizar os dados do vértice, ao contrário do tutorial anterior onde reutilizavamos os dados de vértice. Depois
+	disso vamos gerar os buffers e desvincular eles.
+	    O carregamento da textura é idêntico ao anterior, porém vamos chamar o inicializador do VBO para carregar a textura
+	para que o VBO esteja pronto para renderizar a figura.
+	    Na função de renderização o calculo das coordenadas de vértice e textura é igual ao anterior , o que muda é como passamos
+	para a GPU, depois vamos definir os dados na matriz de vértices.
+	    Agora para renderizar a nossa textura vamos habilitar os arrays de coordenadas e de textura. Temos que definir o ponteiro
+	para os vértices e agora o ponteiro para as coordenadas. Agora vamos chamas as funções glPointer() e passar a quantidade
+	de eixos por coordenada, o tipo de dados e o passo. Vamos usar o offsetof macro para passar aos ponteiros de vertices e coordenadas
+	endereços de partida diferentes e usamos o deslocamento de bytes para usar no objeto do tipo LVertexData2D. Depois de 
+	renderizar a textura VBO vamos liberar os arrays de vértice e textura. Para liberar o VBO e IBO vamos usar glDeleteBuffers().
+	Nós liberamos o VBO depois que o LTexture é desallocado cm freeTexture().
+	</div>
+</section>
+
+
+
+
+
+
+
+
 

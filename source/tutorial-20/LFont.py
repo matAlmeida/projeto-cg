@@ -206,10 +206,10 @@ class LFont(LSpriteSheet):
 			glBindBuffer( GL_ARRAY_BUFFER, self.mVertexDataBuffer )
 
 			#Setando dados da coordenada da textura
-			#glTexCoordPointer( 2, GL_FLOAT, LVertexData2D().__sizeof__(), offsetof( LVertexData2D, texCoord ) )
+			glTexCoordPointer( 2, GL_FLOAT, sizeof(LVertexData2D()), c_void_p(LVertexData2D.texCoord.offset) )
 			
 			#Setando dados do vértice
-			#glVertexPointer( 2, GL_FLOAT, LVertexData2D().__sizeof__(), offsetof( LVertexData2D, position ) )
+			glVertexPointer( 2, GL_FLOAT, sizeof(LVertexData2D()), c_void_p(LVertexData2D.position.offset) )
 
 			#Navegando através da string
 			for i in range(0,len(text)):
@@ -226,7 +226,6 @@ class LFont(LSpriteSheet):
 				else:
 					#Obtendo caractere ASCII
 					asc = ord(text[i])
-					print(chr(self.mIndexBuffers[ 15 ]))
 					#Desenhando quadrado usando dados do vertice e dados do índice
 					glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, GLuint(self.mIndexBuffers[asc]) )
 					glDrawElements( GL_QUADS, 4, GL_UNSIGNED_INT, None )

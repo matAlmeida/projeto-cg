@@ -1,4 +1,13 @@
-class LTexCoord :
+from OpenGL.GL import *
+from OpenGL.GLU import *
+from OpenGL.GLUT import *
+from ctypes import *
+
+class LTexCoord (Structure):
+	_fields_=[
+		('s', GLdouble),
+		('t', GLdouble)
+	]
 	def __init__(self):
-		self.s=0.0
-		self.t=0.0
+		self.s = GLdouble(0.0)
+		self.t = GLdouble(0.0)

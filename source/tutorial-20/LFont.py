@@ -17,7 +17,7 @@ class LFont(LSpriteSheet):
 		success = True
 
 		#Pixel de fundo
-		BLACK_PIXEL = 0xFF000000
+		BLACK_PIXEL = 0xFF
 
 		#Liberando a fonte, se ela existe
 		self.freeFont()
@@ -58,7 +58,6 @@ class LFont(LSpriteSheet):
 
 					nextClip.w = cellW
 					nextClip.h = cellH
-
 					#Encontrando lado esquerdo do caractere
 					for pCol in range(0,cellW):
 						for pRow in range(0,cellH):
@@ -70,11 +69,10 @@ class LFont(LSpriteSheet):
 							if(self.getPixel32(pX,pY) != BLACK_PIXEL):
 								#Setando x do offset sprite
 								nextClip.x = pX
-
+								
 								#Quebrando os loops
 								pCol = cellW
 								pRow = cellH
-
 					#Lado direito
 					for pCol_w in range(cellW-1,-1,-1):
 						for pRow_w in range(0,cellH):
@@ -228,7 +226,10 @@ class LFont(LSpriteSheet):
 					asc = ord(text[i])
 					#print(chr(self.mIndexBuffers[asc-self.mIndexBuffers[0]]))
 					#Desenhando quadrado usando dados do vertice e dados do índice
-					glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, self.mIndexBuffers[asc-self.mIndexBuffers[0]])
+					if(asc < 4):	
+						glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, self.mIndexBuffers[asc-self.mIndexBuffers[0]])
+					else:
+						glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, self.mIndexBuffers[asc-self.mIndexBuffers[0]])
 					glDrawElements( GL_QUADS, 4, GL_UNSIGNED_INT, None )
 
 					#Movendo

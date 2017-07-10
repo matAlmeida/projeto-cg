@@ -34,7 +34,7 @@ class LSpriteSheet(LTexture):
 			#(position(x,y), s, t)
 			vertexData = (LVertexData2D * (4 * totalSprites))(LVertexData2D())
 			
-			self.mIndexBuffers = (GLuint * 4)(GLuint(0))
+			self.mIndexBuffers = None
 			#Alocando dados do vértice de nomes de buffers
 			self.mVertexDataBuffer = glGenBuffers(1)
 
@@ -44,7 +44,7 @@ class LSpriteSheet(LTexture):
 			#Andando através dos clips
 			tw = self.textureWidth()
 			th = self.textureHeight()
-			spriteIndices = (GLuint * 4)(GLuint(0))
+			
 
 			#Variáveis de origem
 			vTop = GLdouble(0.0)
@@ -54,6 +54,7 @@ class LSpriteSheet(LTexture):
 
 			for i in range(0,totalSprites):
 				#Inicializando indices
+				spriteIndices = (GLuint * 4)(GLuint(0))
 				spriteIndices[0] = GLuint(i * 4 + 0)
 				spriteIndices[1] = GLuint(i * 4 + 1)
 				spriteIndices[2] = GLuint(i * 4 + 2)

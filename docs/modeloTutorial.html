@@ -348,4 +348,69 @@
 	</div>
 </section>
 
+<<<<<<< HEAD
+=======
+<section>
+    <div class="numeroTutorial">18</div>
+    <div class="titulo">Textured Vertex Buffers</div>
+    <div class="linkdotutorial">http://lazyfoo.net/tutorials/OpenGL/18_textured_vertex_buffers/index.php</div>
+    <div class="bibliotecas">OpenGL.GL, OpenGL.GLU, OpenGL.GLUT</div>
+    <div class="descricao">
+	    Neste tutorial nos vamos utilizar novos métodos para renderizar as nossas implementações, a partir de agora vamos
+	utilizar VBOs. Teremos um novo arquivo o LTexCoord para manipular as coordenadas da textura. Vamos criar um objeto LVertexData2D
+	já que o nosso vértice tem uma posição e uma coordenada de textura e nós precisaremos juntar isso. Vamos criar variáveis para
+	o nosso VBOs e IBOs. Vamos ter 2 novas funções initVBO() e freeVBO() para manipular nossas variaveis VBO. Em LTexture vamos
+	nossas variáveis, o nosso inicializador do VBO só será executado se uma textura já estiver carregada pois não há um ponto
+	no VBO se não estiver texturizado. Em seguida, declaramos nossos dados de Vértice e de Índices (VBO e IBO) e vamos enviar
+	para GPU, os nossos dados de vértice serão configurados pela função de renderização. Utilizamos GL_DINAMIC_DRAW para indicar
+	que vamos atualizar os dados do vértice, ao contrário do tutorial anterior onde reutilizavamos os dados de vértice. Depois
+	disso vamos gerar os buffers e desvincular eles.
+	    O carregamento da textura é idêntico ao anterior, porém vamos chamar o inicializador do VBO para carregar a textura
+	para que o VBO esteja pronto para renderizar a figura.
+	    Na função de renderização o calculo das coordenadas de vértice e textura é igual ao anterior , o que muda é como passamos
+	para a GPU, depois vamos definir os dados na matriz de vértices.
+	    Agora para renderizar a nossa textura vamos habilitar os arrays de coordenadas e de textura. Temos que definir o ponteiro
+	para os vértices e agora o ponteiro para as coordenadas. Agora vamos chamas as funções glPointer() e passar a quantidade
+	de eixos por coordenada, o tipo de dados e o passo. Vamos usar o offsetof macro para passar aos ponteiros de vertices e coordenadas
+	endereços de partida diferentes e usamos o deslocamento de bytes para usar no objeto do tipo LVertexData2D. Depois de 
+	renderizar a textura VBO vamos liberar os arrays de vértice e textura. Para liberar o VBO e IBO vamos usar glDeleteBuffers().
+	Nós liberamos o VBO depois que o LTexture é desallocado cm freeTexture().
+	</div>
+</section>
+
+<section>
+    <div class="numeroTutorial">19</div>
+    <div class="titulo">Sprite Sheets</div>
+    <div class="linkdotutorial">http://lazyfoo.net/tutorials/OpenGL/19_sprite_sheets/index.php</div>
+    <div class="bibliotecas">OpenGL.GL, OpenGL.GLU, OpenGL.GLUT</div>
+    <div class="descricao">
+	Neste tutorial vamos utilizar um conjunto de imagens Sprite reutilizando os frames pre-alocando os dados do vértice.
+	    Vamos ter uma classe que herda de LTexture, na classe filha vamos substituir como são liberadas as texturas. Essa
+	    classe será LSpriteSheet que no nosso caso será uma textura Sprite. No inicio vamos criar o construtor da classe 
+	    e o seu destrutor, vamos usar o addClipSprite() que adiciona um clipe de um retangulo para a matriz de membros, temos
+	    também a função getClip() que obtém uma matriz de membros. Após definir todos os retangulos de clipe, usaremos a função
+	    generateDataBuffer() para gerar os VBOs e IBOs e dpois de terminar vamos chamar FreeSheet() para desalocar os nossos
+	    dados.
+	    Como Ltexture é herdado publicamente, nós ainda podemos acessar as suas funções que também são publicas. Teremos novas
+	    variáveis, mClips que representa nossa matriz de clipes de retangulo e mVertexDataBuffer que usaremos para armazenar 
+	    os dados do vértice para os nossos Sprite, teremos também mIndexBuffers, que serão uma série de IBOs. O construtor
+	    inicializa as variáveis membro e o destrutor desaloca os dados da sprite sheet. A função AddClipSprite()adiciona o 
+	    objeto no vetor STL e retorna a posição do ultimo elemento. GetClip() retorna o objeto que foi solicitado. Depois
+	    de carregar a nossa textura vamos gerar os dados do VBO e alocar os nossos dados de vértice que são 4 vértices por
+	    sprite. Em seguida vamos gerar o VBO e IBO para cada sprite, depois conseguiremos a altura e largura da textura para 
+	    mapear e após isso vamos passar os nossos dados de indices e vértices.
+	    No topo do for passamos os dados do indice para o sprite atual, depois vamos definir os indices para o sprite atual, com 
+	    a origem no centro, em seguida vamos configurar o IBO para o sprite. Após o for, vamos definir todos os VBO para nossa folha
+	    sprite. Na função freeSheet() vamos desalocar os dados da folha sprite. Na função renderSprite() ativamos a VBO cm as coorde
+	    nadas de vértices e de textura .
+	    Em loadMedia() vamos carregar normalmente como fazemos cm LTexture. E na render() renderizamos cada sprite em seu canto.
+	</div>
+</section>
+
+
+
+
+
+
+>>>>>>> 6cb49287870d0d5b472602fd91681a1af2d743be
 

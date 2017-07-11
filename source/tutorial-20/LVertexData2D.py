@@ -1,6 +1,5 @@
 from LVertexPos2D import *
 from LTexCoord import *
-from LVertexPos2D import *
 
 class LVertexData2D(Structure):
 	_fields_=[

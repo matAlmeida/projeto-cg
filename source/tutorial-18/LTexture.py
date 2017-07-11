@@ -198,10 +198,10 @@ class LTexture:
 			#Atualizando dados do buffer do vertice 
 			glBufferSubData(GL_ARRAY_BUFFER,0,sizeof(vData),vData)
 
-			#Setando dados da coordenada da textura
+			#Set texture coordinate data
 			glTexCoordPointer(2, GL_DOUBLE, sizeof(LVertexData2D), c_void_p(LVertexData2D.texCoord.offset))
 
-		    #Setando dados do vértice
+		        #Set vertex data
 			glVertexPointer(2, GL_DOUBLE, sizeof(LVertexData2D), c_void_p(LVertexData2D.position.offset))
 
 			#Desenhando quadrado usando os dados do vertice e os dados do indice

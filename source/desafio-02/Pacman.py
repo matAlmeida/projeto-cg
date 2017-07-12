@@ -72,7 +72,7 @@ class Pacman:
         for i in range(self.__renderRange - (self.__actualAmplitude * 2)):
             glVertex2f(x, y)
             glVertex2f(0.0, 0.0)
-            __calculateAlpha()
+            self._alpha += self._dalpha
             x = self.__calculateX()
             y = self.__calculateY()
             glVertex2f(x, y)

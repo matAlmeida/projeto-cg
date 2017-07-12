@@ -17,6 +17,10 @@ Projeto da matéria de Computação Gráfica utilizando OpenGL e Python
 > `Instala a biblioteca PIL, para manipular imagens` <br>
 > $ pip3 install Pillow <br>
 
+> `Instalando o FreeType` <br>
+> $ sudo apt-get install freetype2-demos<br>
+> $ sudo pip3 install freetype-py
+
 ### Windows
 > `Baixe e instale o Python3.x no site abaixo de acordo com a arquitetura do seu computador:` </br>
 > [`Python3.x`](https://www.python.org/downloads/windows/) </br>
@@ -33,10 +37,6 @@ Projeto da matéria de Computação Gráfica utilizando OpenGL e Python
 > $ pip install Pillow <br>
 > `ou` <br>
 > $ easy_install Pillow <br>
-
-> `Instalando o FreeType` <br>
-> $ sudo apt-get install freetype2-demos<br>
-> $ sudo pip3 install freetype-py
 
 > `Agora com os módulos já instalados, baixe e instale uma IDE, ou use seu editor de texto preferido. O link abaixo é da IDE PyCharm:` </br>
 > [`PyCharm`](https://www.jetbrains.com/pycharm/download/#section=windows) </br>

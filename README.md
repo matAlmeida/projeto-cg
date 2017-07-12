@@ -48,7 +48,7 @@ from OpenGL.GLU import *
 from OpenGL.GLUT import *
 from PIL import Image
 from PIL.Image import open
-from freetype import *
+import freetype
 ```
 ## OBJETIVO
 > `Refazer os primeiros 36 projetos do site abaixo utilizando a versão 3 do Python e os pacotes PyOpenGL e o Pygame e fazer a documentação dos mesmos:`

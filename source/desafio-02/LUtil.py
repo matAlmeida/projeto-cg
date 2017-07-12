@@ -2,6 +2,7 @@
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
 import math as mt
+from random import *
 
 #Constantes de Tela
 SCREEN_WIDTH = 640
@@ -50,8 +51,28 @@ def initGL():
 def update():
 	pass
 
+def renderCircle():
+	# Variaveis para o circulo
+	r = 5
+	alpha = 0.0
+	dalpha = mt.pi / 20
+
+	# Renderizando um circulo com cor sólida, a partir da cor inicial ciano, utilizando tringulos
+	x = r * mt.cos(alpha)
+	y = r * mt.sin(alpha)
+	glBegin(GL_TRIANGLES)
+	glColor3f(0,1,1)
+	for i in range(40):
+		glVertex2f(x, y)
+		glVertex2f(0.0, 0.0)
+		alpha += dalpha
+		x = r * mt.cos(alpha)
+		y = r * mt.sin(alpha)
+		glVertex2f(x, y)
+	glEnd()
+
 def renderPacman():
-	global gBocaDir, gAberturaBoca, bocaAbrindo
+	global gBocaDir, gAberturaBoca, bocaAbrindo, gCameraX, gBocaDir
 	r = 30
 	alpha = 0.0
 	dalpha = mt.pi / 40
@@ -97,6 +118,9 @@ def renderPacman():
 		if(gAberturaBoca < 0):
 			bocaAbrindo = True
 			gAberturaBoca += 2
+	
+	#gCameraX -= 5
+	#gBocaDir = 2
 
 
 def render():
@@ -113,9 +137,29 @@ def render():
 	#Salvando a matriz patrão novamente
 	glPushMatrix()
 
-	#Movendo a  para o centro da tela
-	glTranslatef(SCREEN_WIDTH / 2.0, SCREEN_HEIGHT / 2.0, 0.0)
+	coordPacX = SCREEN_WIDTH / 2.0
+	coordPacY = SCREEN_HEIGHT / 2.0
+
+	#Movendo para o centro da tela
+	glTranslatef(coordX,coordY, 0.0)
 	renderPacman()
+	
+	distancia = math.sqrt(coordX - coordPacX + coordY - coordPacY)
+
+	if(distancia < 1):
+		#Iniciando renderização da bola
+		coordX = randint(50,SCREEN_WIDTH-50)
+		coordY = randint(50,SCREEN_HEIGHT-50)
+		#Reiniciando a matriz Modelview
+		glPopMatrix()
+		glLoadIdentity()
+
+		#Salvando a matriz patrão novamente
+		glPushMatrix()
+
+		#Movendo a  para o centro da tela
+		glTranslatef(coordX,coordY, 0.0)
+		renderCircle()
 
 	#Atualizando tela
 	glutSwapBuffers()
@@ -129,7 +173,7 @@ def runMainLoop(val):
 	glutTimerFunc(1000 // SCREEN_FPS, runMainLoop, val)
 
 def handleKeys(key,x,y):
-	global gColorMode, gRenderMode, gCameraX, gCameraY, gAngle, gBocaDir
+	global gRenderMode, gCameraX, gCameraY, gAngle, gBocaDir
 	key = ord(key)
 
 	#se o usuario pressiona a

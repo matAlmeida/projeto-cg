@@ -12,7 +12,7 @@ class Pacman:
         self._alpha = 0.0
         self._dalpha = mt.pi / 40
 
-    def render(self):
+    def render(self, gCameraX, gCameraY):
         #Movendo a câmera para uma posição
         glTranslatef(gCameraX,gCameraY,0)
 
@@ -20,14 +20,14 @@ class Pacman:
         y = self.__calculateY()
         glBegin(GL_TRIANGLES)
         for i in range(self._aberturaBoca):
-            __calculateAlpha()
+            self._alpha += self._dalpha
             x = self.__calculateX()
             y = self.__calculateY()
         glColor3f(1,1,0)
         for i in range(80 - (self._aberturaBoca * 2)):
             glVertex2f(x, y)
             glVertex2f(0.0, 0.0)
-            __calculateAlpha()
+            self._alpha += self._dalpha
             x = self.__calculateX()
             y = self.__calculateY()
             glVertex2f(x, y)
@@ -63,6 +63,6 @@ class Pacman:
 
         return self._size * mt.sin(self._alpha)
 
-    def __calculateAlpha(self):
+    #def __calculateAlpha(self):
 
-        return self._alpha += self._dalpha
+        #return self._alpha += self._dalpha

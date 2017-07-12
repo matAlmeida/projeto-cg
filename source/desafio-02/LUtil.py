@@ -3,6 +3,7 @@ from OpenGL.GLU import *
 from OpenGL.GLUT import *
 import math as mt
 from random import *
+from Pacman import *
 
 #Constantes de Tela
 SCREEN_WIDTH = 640
@@ -24,6 +25,9 @@ gAngle = mt.pi
 
 #Define a direção da boca
 gBocaDir = 0
+
+#Criando pacman
+pacman = Pacman(30)
 
 def initGL():
 	#Inicializando Matriz de Projeção
@@ -81,6 +85,7 @@ def renderPacman():
 	glTranslatef(gCameraX,gCameraY,0)
 
 	#Rotacionando a boca na direção correta
+	'''
 	if (gBocaDir == 0):
 		glRotatef(0,0,0,1)
 	elif(gBocaDir == 2):
@@ -89,7 +94,7 @@ def renderPacman():
 		glRotatef(90,0,0,1)
 	else:
 		glRotatef(-90,0,0,1)
-
+	'''
 	x = r * mt.cos(alpha)
 	y = r * mt.sin(alpha)
 	glBegin(GL_TRIANGLES)
@@ -124,7 +129,7 @@ def renderPacman():
 
 
 def render():
-	global gAberturaBoca, bocaAbrindo
+	global gAberturaBoca, bocaAbrindo, gCameraX, gCameraY
 
 	#Limpando o buffer de cor
 	glClear(GL_COLOR_BUFFER_BIT)
@@ -137,19 +142,21 @@ def render():
 	#Salvando a matriz patrão novamente
 	glPushMatrix()
 
+	#Iniciando renderização da bola e do pacman
+	coordX = randint(50,SCREEN_WIDTH-50)
+	coordY = randint(50,SCREEN_HEIGHT-50)
 	coordPacX = SCREEN_WIDTH / 2.0
 	coordPacY = SCREEN_HEIGHT / 2.0
 
 	#Movendo para o centro da tela
-	glTranslatef(coordX,coordY, 0.0)
+	glTranslatef(coordPacX,coordPacY, 0.0)
 	renderPacman()
+	#pacman.render(gCameraX,gCameraY)
 	
-	distancia = math.sqrt(coordX - coordPacX + coordY - coordPacY)
+	distancia = mt.sqrt((coordX - coordPacX)**2 + (coordY - coordPacY)**2)
 
+	#Se o pacman chegar na bola, renderiza a bola novamente
 	if(distancia < 1):
-		#Iniciando renderização da bola
-		coordX = randint(50,SCREEN_WIDTH-50)
-		coordY = randint(50,SCREEN_HEIGHT-50)
 		#Reiniciando a matriz Modelview
 		glPopMatrix()
 		glLoadIdentity()
@@ -178,8 +185,9 @@ def handleKeys(key,x,y):
 
 	#se o usuario pressiona a
 	if(key == 97):
-		gCameraX -= 16
-		gBocaDir = 2
+		pacman.rotate(90)
+		#gCameraX -= 16
+		#gBocaDir = 2
 	#se o usuario pressiona d
 	elif(key == 100):
 		gCameraX += 16

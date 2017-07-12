@@ -294,7 +294,7 @@ class LTexture:
 			size = imgWidth * imgHeight
 			self.mPixels8 = (GLuint * size)(GLuint())
 			# Ao alocar o pixel de 8bits seta o default como 0. Dessa maneira o pizel fica transparente
-			memset(self.mPixels8, 0, size)
+			# memset(self.mPixels8, 0, size)
 
 			#Copiando dados do pixel
 			self.mImageWidth = imgWidth

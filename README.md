@@ -34,17 +34,21 @@ Projeto da matéria de Computação Gráfica utilizando OpenGL e Python
 > `ou` <br>
 > $ easy_install Pillow <br>
 
+> `Instalando o FreeType` <br>
+> $ sudo apt-get install freetype2-demos<br>
+> $ sudo pip3 install freetype-py
+
 > `Agora com os módulos já instalados, baixe e instale uma IDE, ou use seu editor de texto preferido. O link abaixo é da IDE PyCharm:` </br>
 > [`PyCharm`](https://www.jetbrains.com/pycharm/download/#section=windows) </br>
 
 ## Usando no codigo
 ```python
-import pygame
-from pygame.locals import *
 from OpenGL.GL import *
 from OpenGL.GLU import *
+from OpenGL.GLUT import *
 from PIL import Image
 from PIL.Image import open
+from freetype import *
 ```
 ## OBJETIVO
 > `Refazer os primeiros 36 projetos do site abaixo utilizando a versão 3 do Python e os pacotes PyOpenGL e o Pygame e fazer a documentação dos mesmos:`

@@ -59,7 +59,7 @@ def render():
 
 	#Renderizando texto vermelho
 	glColor3f(1,0,0)
-	gFont.renderText(0,0,"Texto em vermelho.\nAula prática CG.")
+	gFont.renderText(0,0,"Texto")
 
 	#Atualizando tela
 	glutSwapBuffers()

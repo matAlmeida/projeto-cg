@@ -17,7 +17,7 @@ class LFont(LSpriteSheet):
 		success = True
 
 		#Pixel de fundo
-		BLACK_PIXEL = 0xFF
+		BLACK_PIXEL = b'\x00\x00\x00\xff'
 
 		#Liberando a fonte, se ela existe
 		self.freeFont()
@@ -43,10 +43,11 @@ class LFont(LSpriteSheet):
 
 			#Iniciando analise de fonte bitmap
 			currentChar = 0
-			nextClip = LFRect(0,0,cellW,cellH)
+			
 			#Navegando pelas linhas de células
 			for rows in range(0,16):
 				for cols in range(0,16):
+					nextClip = LFRect(0,0,cellW,cellH)
 					#Iniciando analise de celula
 					#Setando base offsets
 					bX = cellW * cols
@@ -58,6 +59,7 @@ class LFont(LSpriteSheet):
 
 					nextClip.w = cellW
 					nextClip.h = cellH
+					
 					#Encontrando lado esquerdo do caractere
 					for pCol in range(0,cellW):
 						for pRow in range(0,cellH):
@@ -69,12 +71,14 @@ class LFont(LSpriteSheet):
 							if(self.getPixel32(pX,pY) != BLACK_PIXEL):
 								#Setando x do offset sprite
 								nextClip.x = pX
+								#set_trace()
+								break
+						else:
+							continue
+						break
 								
-								#Quebrando os loops
-								pCol = cellW
-								pRow = cellH
 					#Lado direito
-					for pCol_w in range(cellW-1,-1,-1):
+					for pCol_w in range(cellW-1,-1):
 						for pRow_w in range(0,cellH):
 							#Setando pixel offset
 							pX = bX + pCol_w
@@ -84,10 +88,14 @@ class LFont(LSpriteSheet):
 							if(self.getPixel32(pX,pY) != BLACK_PIXEL):
 								#Setando largura do offset sprite
 								nextClip.w = (pX - nextClip.x) + 1
-
+								pCol_b = cellW
+								pRow_b = -1
 								#Quebrando os loops
-								pCol_w = -1
-								pRow_w = cellH
+								#set_trace()
+								break
+						else:
+							continue
+						break
 
 					#Encontrando topo
 					for pRow in range(0,cellH):
@@ -103,9 +111,11 @@ class LFont(LSpriteSheet):
 									top = pRow
 
 								#Quebrando os loops
-								pCol = cellW
-								pRow = cellH
-
+								#set_trace()
+								break
+						else:
+							continue
+						break
 					#Encontrando parte inferior
 					for pRow_b in range(cellH-1,-1,-1):
 						for pCol_b in range(0,cellW):
@@ -120,9 +130,13 @@ class LFont(LSpriteSheet):
 									aBottom = pRow_b
 
 								#Quebrando os loops
-								pCol_b = cellW
-								pRow_b = -1
+								#set_trace()
+								break
+						else:
+							continue
+						break
 					#Indo para o proximo caractere
+					#set_trace()
 					self.mClips.append(nextClip)
 					currentChar += 1
 			#Setando topo
@@ -135,11 +149,9 @@ class LFont(LSpriteSheet):
 			GREEN_BYTE = 1
 			BLUE_BYTE = 2
 			ALPHA_BYTE = 3
-			print("GET OVER HERE!")
 			#Andando através os pixels
 			PIXEL_COUNT = self.textureWidth() * self.textureHeight()
 			pixels = self.getPixelData32()
-			#set_trace()
 			'''
 			for i in range(0,PIXEL_COUNT,4):
 				#Obtendo cores individuais de componentes#
@@ -227,11 +239,10 @@ class LFont(LSpriteSheet):
 					#print(chr(self.mIndexBuffers[asc-self.mIndexBuffers[0]]))
 					#Desenhando quadrado usando dados do vertice e dados do índice
 					if(asc < 4):	
-						glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, self.mIndexBuffers[asc-self.mIndexBuffers[0]])
+						glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, self.mIndexBuffers[asc])
 					else:
-						glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, self.mIndexBuffers[asc-self.mIndexBuffers[0]])
+						glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, self.mIndexBuffers[asc])
 					glDrawElements( GL_QUADS, 4, GL_UNSIGNED_INT, None )
-
 					#Movendo
 					glTranslatef( self.mClips[ asc ].w, 0, 0 )
 					dX += self.mClips[ asc ].w

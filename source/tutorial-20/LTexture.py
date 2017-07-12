@@ -132,7 +132,7 @@ class LTexture:
 			self.mTextureWidth = texWidth
 			self.mTextureHeight = texHeigth
 
-			self.mPixels = im.tobytes("raw","RGBA",0,-1)
+			self.mPixels = im.tobytes("raw","RGBA",0,1)
 
 			pixelsLoaded = True
 		im.close()
@@ -153,7 +153,7 @@ class LTexture:
 			texWidth = self.powerOfTwo(imgWidth)
 			texHeigth = self.powerOfTwo(imgHeight)
 
-			imagem = im.tobytes("raw","RGBA",0,-1)
+			imagem = im.tobytes("raw","RGBA",0,1)
 			textureLoaded = self.loadTextureFromPixels32(imagem,imgWidth,imgHeight,texWidth,texHeigth)
 		im.close()
 		if(textureLoaded == False):
@@ -249,7 +249,9 @@ class LTexture:
 		return self.mPixels
 
 	def getPixel32(self,x,y):
-		return self.mPixels[y * self.mTextureWidth + x]
+		x *= 4
+		y *= 4
+		return self.mPixels[(y*self.mTextureWidth + x):(y * self.mTextureWidth + x)+4]
 
 	def getTextureID(self):
 		return self.mTextureID

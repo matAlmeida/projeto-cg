@@ -5,11 +5,12 @@ import math as mt
 
 class Pacman:
 
-    def __init__(self, size, maxAmplitude, speed = 40, color = [1, 1, 0]):
+    def __init__(self, size, movSpeed = 4, mouthSpeed = 1, maxAmplitude = 10,  color = [1, 1, 0]):
         self.__size = size
-        self.__angle = 0
+        self.__mouthDirection = 0
         self.__maxAmplitude = maxAmplitude
-        self.__speed = speed
+        self.__mouthSpeed = mouthSpeed
+        self.__movSpeed = movSpeed
         self.__color = color
         
         # Starting the variables
@@ -19,11 +20,13 @@ class Pacman:
         self.__isOpen = True
         self.__actualAmplitude = self.__maxAmplitude
         self.__initAlpha()        
-        self.__renderRange = (self.__speed * 2)
+        self.__renderRange = 80
+        self.gCameraX = 0
+        self.gCameraY = 0
 
     def __initAlpha(self):
         self.__alpha = 0.0
-        self.__dalpha = mt.pi / self.__speed
+        self.__dalpha = mt.pi / 40
 
     def __calculateX(self):
 
@@ -34,18 +37,18 @@ class Pacman:
         return self.__size * mt.sin(self.__alpha)
 
     def __calculateAlpha(self):
-
-        self.__alpha = self.__alpha + self.__dalpha
-        return True
+        self.__alpha += self.__dalpha
+        
+        return
 
     def __ôpenTheTcheka(self):
         if(self.__isOpen):
-            self.__actualAmplitude += 1
+            self.__actualAmplitude += self.__mouthSpeed
             if(self.__actualAmplitude > 10):
                 self.__isOpen = False
                 self.__actualAmplitude -= 2
         else:
-            self.__actualAmplitude -= 1
+            self.__actualAmplitude -= self.__mouthSpeed
             if(self.__actualAmplitude < 0):
                 self.__isOpen = True
                 self.__actualAmplitude += 2
@@ -59,7 +62,11 @@ class Pacman:
 
     def render(self):
         self.__initAlpha()
-        # glTranslatef(gCameraX, gCameraY, 0)
+
+        self.__moveAwayB1tch3()
+
+        glTranslatef(self.gCameraX, self.gCameraY, 0)
+        glRotatef(self.__mouthDirection, 0, 0, 1)
 
         x = self.__calculateX()
         y = self.__calculateY()
@@ -73,7 +80,7 @@ class Pacman:
 
         glColor3f(self.__color[0], self.__color[1], self.__color[2])
 
-        for i in range((self.__speed * 2) - (self.__actualAmplitude * 2)):
+        for i in range(self.__renderRange - (self.__actualAmplitude * 2)):
             glVertex2f(x, y)
             glVertex2f(0.0, 0.0)
             self.__alpha += self.__dalpha
@@ -83,6 +90,29 @@ class Pacman:
 
         glEnd()
 
+        # Olho do buneco
+        # glBegin(GL_TRIANGLES)
+        # glEnd()
+
         self.__ôpenTheTcheka()
+
+        return
+
+    def __moveAwayB1tch3(self):
+
+        if (self.__mouthDirection == 0):
+            self.gCameraX += self.__movSpeed
+        elif (self.__mouthDirection == 90):
+            self.gCameraY += self.__movSpeed
+        elif (self.__mouthDirection == 180):
+            self.gCameraX -= self.__movSpeed
+        else:
+            self.gCameraY -= self.__movSpeed
+
+        return
+
+    def rodaRodaJequiti(self, rotationAngle):
+
+        self.__mouthDirection = rotationAngle
 
         return

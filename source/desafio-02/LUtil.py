@@ -1,8 +1,4 @@
-﻿from OpenGL.GL import *
-from OpenGL.GLU import *
-from OpenGL.GLUT import *
-import math as mt
-from random import *
+﻿from random import *
 from Pacman import *
 
 #Constantes de Tela
@@ -10,24 +6,17 @@ SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
 SCREEN_FPS = 60
 
-#Define a abertura da boca. Inicia-se em 0 (boca fechada)
-gAberturaBoca = 0
-
-#Flag de verificação de boca aberta ou fechada
-bocaAbrindo = True
-
 #Coordenadas para movimento do objeto
 gCameraX = 0
 gCameraY = 0
 
-#Ângulo de abertura de boca
-gAngle = mt.pi
-
-#Define a direção da boca
-gBocaDir = 0
-
 #Criando pacman
-pacman = Pacman(30,10)
+pacman = Pacman(30)
+
+#Distancia entre os objetos
+distancia = 3
+coordX = 1
+coordY = 1
 
 def initGL():
 	#Inicializando Matriz de Projeção
@@ -65,7 +54,7 @@ def renderCircle():
 	x = r * mt.cos(alpha)
 	y = r * mt.sin(alpha)
 	glBegin(GL_TRIANGLES)
-	glColor3f(0,1,1)
+	glColor3f(1, 0, 0)
 	for i in range(40):
 		glVertex2f(x, y)
 		glVertex2f(0.0, 0.0)
@@ -75,64 +64,27 @@ def renderCircle():
 		glVertex2f(x, y)
 	glEnd()
 
-def renderPacman():
-	global gBocaDir, gAberturaBoca, bocaAbrindo, gCameraX, gBocaDir
-	r = 30
-	alpha = 0.0
-	dalpha = mt.pi / 40
-
-	#Movendo a câmera para uma posição
-	glTranslatef(gCameraX,gCameraY,0)
-
-	#Rotacionando a boca na direção correta
-	'''
-	if (gBocaDir == 0):
-		glRotatef(0,0,0,1)
-	elif(gBocaDir == 2):
-		glRotatef(180,0,0,1)
-	elif(gBocaDir == 3):
-		glRotatef(90,0,0,1)
-	else:
-		glRotatef(-90,0,0,1)
-	'''
-	x = r * mt.cos(alpha)
-	y = r * mt.sin(alpha)
-	glBegin(GL_TRIANGLES)
-	for i in range(gAberturaBoca):
-		alpha += dalpha
-		x = r * mt.cos(alpha)
-		y = r * mt.sin(alpha)
-	glColor3f(1,1,0)
-	for i in range(80 - (gAberturaBoca * 2)):
-		glVertex2f(x, y)
-		glVertex2f(0.0, 0.0)
-		alpha += dalpha
-		x = r * mt.cos(alpha)
-		y = r * mt.sin(alpha)
-		glVertex2f(x, y)
-	glEnd()
-
-	#Verificando e alterando abertura da boca
-	if(bocaAbrindo):
-		gAberturaBoca += 1
-		if(gAberturaBoca > 10):
-			bocaAbrindo = False
-			gAberturaBoca -= 2
-	else:
-		gAberturaBoca -= 1
-		if(gAberturaBoca < 0):
-			bocaAbrindo = True
-			gAberturaBoca += 2
-	
-	#gCameraX -= 5
-	#gBocaDir = 2
-
 
 def render():
-	global gAberturaBoca, bocaAbrindo, gCameraX, gCameraY
+	global gAberturaBoca, bocaAbrindo, coordX, coordY, distancia
 
 	#Limpando o buffer de cor
 	glClear(GL_COLOR_BUFFER_BIT)
+
+	#Se o pacman chegar na bola, renderiza a bola novamente
+	if(distancia < 10):
+		coordX = randint(50,SCREEN_WIDTH-50)
+		coordY = randint(50,SCREEN_HEIGHT-50)
+	
+	#Reiniciando a matriz Modelview
+	glPopMatrix()
+	glLoadIdentity()
+
+	#Salvando a matriz patrão novamente
+	glPushMatrix()
+
+	glTranslatef(coordX,coordY, 0.0)
+	renderCircle()
 
 	#Reiniciando a matriz Modelview
 	glMatrixMode(GL_MODELVIEW)
@@ -143,30 +95,14 @@ def render():
 	glPushMatrix()
 
 	#Iniciando renderização da bola e do pacman
-	coordX = randint(50,SCREEN_WIDTH-50)
-	coordY = randint(50,SCREEN_HEIGHT-50)
-	coordPacX = SCREEN_WIDTH / 2.0
-	coordPacY = SCREEN_HEIGHT / 2.0
+	coordPacX = SCREEN_WIDTH // 2
+	coordPacY = SCREEN_HEIGHT // 2
 
 	#Movendo para o centro da tela
 	glTranslatef(coordPacX,coordPacY, 0.0)
-	#renderPacman()
 	pacman.render()
-	
+
 	distancia = mt.sqrt((coordX - coordPacX)**2 + (coordY - coordPacY)**2)
-
-	#Se o pacman chegar na bola, renderiza a bola novamente
-	if(distancia < 1):
-		#Reiniciando a matriz Modelview
-		glPopMatrix()
-		glLoadIdentity()
-
-		#Salvando a matriz patrão novamente
-		glPushMatrix()
-
-		#Movendo a  para o centro da tela
-		glTranslatef(coordX,coordY, 0.0)
-		renderCircle()
 
 	#Atualizando tela
 	glutSwapBuffers()
@@ -185,21 +121,23 @@ def handleKeys(key,x,y):
 
 	#se o usuario pressiona a
 	if(key == 97):
-		pacman.rotate(90)
-		#gCameraX -= 16
-		#gBocaDir = 2
+		# pacman.rotate(90)
+		gCameraX -= 5
+		gBocaDir = 180
 	#se o usuario pressiona d
 	elif(key == 100):
-		gCameraX += 16
+		gCameraX += 5
 		gBocaDir = 0
 	#se o usuario pressiona w
 	elif(key == 119):
-		gCameraY -= 16
-		gBocaDir = 1
+		gCameraY -= 5
+		gBocaDir = 270
 	#se o usuario pressiona s
 	elif(key == 115):
-		gCameraY += 16
-		gBocaDir = 3
+		gCameraY += 5
+		gBocaDir = 90
+
+	pacman.rodaRodaJequiti(gBocaDir)
 
 	
 	#Atualizando matriz projeção

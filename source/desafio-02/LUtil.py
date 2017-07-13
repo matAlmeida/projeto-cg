@@ -54,6 +54,7 @@ def renderCircle():
 	x = r * mt.cos(alpha)
 	y = r * mt.sin(alpha)
 	glBegin(GL_TRIANGLES)
+
 	glColor3f(1, 0, 0)
 	for i in range(40):
 		glVertex2f(x, y)
@@ -62,8 +63,8 @@ def renderCircle():
 		x = r * mt.cos(alpha)
 		y = r * mt.sin(alpha)
 		glVertex2f(x, y)
-	glEnd()
 
+	glEnd()
 
 def render():
 	global gAberturaBoca, bocaAbrindo, coordX, coordY, distancia
@@ -137,7 +138,7 @@ def handleKeys(key,x,y):
 		gCameraY += 5
 		gBocaDir = 90
 
-	pacman.rodaRodaJequiti(gBocaDir)
+	pacman.changeDirection(gBocaDir)
 
 	
 	#Atualizando matriz projeção

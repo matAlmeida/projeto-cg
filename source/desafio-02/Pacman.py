@@ -5,10 +5,10 @@ import math as mt
 
 class Pacman:
 
-    def __init__(self, size, movSpeed = 4, mouthSpeed = 1, maxAmplitude = 10,  color = [1, 1, 0]):
+    def __init__(self, size, movSpeed = 4, mouthSpeed = 1,  color = [1, 1, 0]):
         self.__size = size
         self.__mouthDirection = 0
-        self.__maxAmplitude = maxAmplitude
+        self.__maxAmplitude = 10
         self.__mouthSpeed = mouthSpeed
         self.__movSpeed = movSpeed
         self.__color = color
@@ -60,10 +60,14 @@ class Pacman:
 
         return
 
+    def getSize(self):
+
+        return self.__size
+
     def render(self):
         self.__initAlpha()
 
-        self.__moveAwayB1tch3()
+        self.__move()
 
         glTranslatef(self.gCameraX, self.gCameraY, 0)
         glRotatef(self.__mouthDirection, 0, 0, 1)
@@ -90,15 +94,11 @@ class Pacman:
 
         glEnd()
 
-        # Olho do buneco
-        # glBegin(GL_TRIANGLES)
-        # glEnd()
-
         self.__ôpenTheTcheka()
 
         return
 
-    def __moveAwayB1tch3(self):
+    def __move(self):
 
         if (self.__mouthDirection == 0):
             self.gCameraX += self.__movSpeed
@@ -111,7 +111,7 @@ class Pacman:
 
         return
 
-    def rodaRodaJequiti(self, rotationAngle):
+    def changeDirection(self, rotationAngle):
 
         self.__mouthDirection = rotationAngle
 

@@ -5,7 +5,7 @@ from Dot import *
 #Constantes de Tela
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
-SCREEN_FPS = 60
+SCREEN_FPS = 120
 
 #Coordenadas para movimento do objeto
 gCameraX = 0
@@ -15,12 +15,14 @@ gBocaDir = 0
 
 #Criando pacman
 pacman = Pacman(30)
+
+#Criando ponto
 dot = Dot()
 
 #Distancia entre os objetos
 distancia = 3
-coordX = 1
-coordY = 1
+coordX = 50
+coordY = 50
 
 def initGL():
 	#Inicializando Matriz de Projeção
@@ -82,10 +84,12 @@ def render():
 	#Salvando a matriz padrão novamente
 	glPushMatrix()
 
-	if(distancia < 10):
+	#Se a distância entre o ponto e o pacman for menor que 10, outra coordenada do ponto é calculada
+	if(distancia < 1):
 		coordX = randint(50, SCREEN_WIDTH-50)
 		coordY = randint(50, SCREEN_HEIGHT-50)
-
+	
+	#Renderizando ponto
 	dot.render(coordX, coordY)
 
 	#Reiniciando a matriz Modelview
@@ -104,20 +108,24 @@ def render():
 	# glTranslatef(coordPacX,coordPacY, 0.0)
 	pacman.render()
 
+	#Obtendo posição do pacman
 	pacPos = pacman.getPos()
 
+	#Movendo pacman em direção ao ponto
 	movePacman(pacPos[0], pacPos[1], coordX, coordY)
 
+	#Realizando o cálculo da distância entre o pacman e o ponto
 	_dX = coordX - pacPos[0]
 	_dY = coordY - pacPos[1]
 	distancia = mt.sqrt(_dX**2 + _dY**2)
-
-	# distancia = mt.sqrt((coordX - coordPacX)**2 + (coordY - coordPacY)**2)
 
 	#Atualizando tela
 	glutSwapBuffers()
 
 def movePacman(coordPacX, coordPacY, coordX, coordY):
+
+	# Tá com um bug q se eu aumentar a velocidade do pacman ele fica em um loop, qqr coisa dps eu explico
+
 	global gCameraX, gCameraY, gBocaDir
 
 	_dX = coordX - coordPacX

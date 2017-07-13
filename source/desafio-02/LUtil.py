@@ -27,7 +27,7 @@ gAngle = mt.pi
 gBocaDir = 0
 
 #Criando pacman
-pacman = Pacman(30)
+pacman = Pacman(30,10)
 
 def initGL():
 	#Inicializando Matriz de Projeção
@@ -150,8 +150,8 @@ def render():
 
 	#Movendo para o centro da tela
 	glTranslatef(coordPacX,coordPacY, 0.0)
-	renderPacman()
-	#pacman.render(gCameraX,gCameraY)
+	#renderPacman()
+	pacman.render()
 	
 	distancia = mt.sqrt((coordX - coordPacX)**2 + (coordY - coordPacY)**2)
 

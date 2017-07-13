@@ -18,9 +18,12 @@ class Pacman:
     def __starting(self):
         self.__isOpen = True
         self.__actualAmplitude = self.__maxAmplitude
+        self.__initAlpha()        
+        self.__renderRange = (self.__speed * 2)
+
+    def __initAlpha(self):
         self.__alpha = 0.0
         self.__dalpha = mt.pi / self.__speed
-        self.__renderRange = (self.__speed * 2)
 
     def __calculateX(self):
 
@@ -32,7 +35,8 @@ class Pacman:
 
     def __calculateAlpha(self):
 
-        return self.__alpha += self.__dalpha
+        self.__alpha = self.__alpha + self.__dalpha
+        return True
 
     def __ôpenTheTcheka(self):
         if(self.__isOpen):
@@ -54,7 +58,7 @@ class Pacman:
         return
 
     def render(self):
-
+        self.__initAlpha()
         # glTranslatef(gCameraX, gCameraY, 0)
 
         x = self.__calculateX()
@@ -62,17 +66,17 @@ class Pacman:
 
         glBegin(GL_TRIANGLES)
 
-        for i in range(self.__maxAmplitude):
-            __calculateAlpha()
+        for i in range(self.__actualAmplitude):
+            self.__calculateAlpha()
             x = self.__calculateX()
             y = self.__calculateY()
 
         glColor3f(self.__color[0], self.__color[1], self.__color[2])
 
-        for i in range(self.__renderRange - (self.__actualAmplitude * 2)):
+        for i in range((self.__speed * 2) - (self.__actualAmplitude * 2)):
             glVertex2f(x, y)
             glVertex2f(0.0, 0.0)
-            self._alpha += self._dalpha
+            self.__alpha += self.__dalpha
             x = self.__calculateX()
             y = self.__calculateY()
             glVertex2f(x, y)

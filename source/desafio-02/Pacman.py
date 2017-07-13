@@ -5,13 +5,14 @@ import math as mt
 
 class Pacman:
 
-    def __init__(self, size, movSpeed = 4, mouthSpeed = 1,  color = [1, 1, 0]):
+    def __init__(self, size, movSpeed = 1, mouthSpeed = 1,  color = [1, 1, 0]):
         self.__size = size
         self.__mouthDirection = 0
         self.__maxAmplitude = 10
         self.__mouthSpeed = mouthSpeed
         self.__movSpeed = movSpeed
         self.__color = color
+        self.__rotation = 0.0
         
         # Starting the variables
         self.__starting()
@@ -25,7 +26,7 @@ class Pacman:
         self.gCameraY = 0
 
     def __initAlpha(self):
-        self.__alpha = 0.0
+        self.__alpha = self.__rotation
         self.__dalpha = mt.pi / 40
 
     def __calculateX(self):
@@ -41,7 +42,7 @@ class Pacman:
         
         return
 
-    def __ôpenTheTcheka(self):
+    def __mouthAnimation(self):
         if(self.__isOpen):
             self.__actualAmplitude += self.__mouthSpeed
             if(self.__actualAmplitude > 10):
@@ -64,10 +65,11 @@ class Pacman:
 
         return self.__size
 
-    def render(self):
+    def render(self, stop = False):
         self.__initAlpha()
-
-        self.__move()
+        
+        if not stop:
+            self.__move()
 
         glTranslatef(self.gCameraX, self.gCameraY, 0)
         glRotatef(self.__mouthDirection, 0, 0, 1)
@@ -94,9 +96,13 @@ class Pacman:
 
         glEnd()
 
-        self.__ôpenTheTcheka()
+        self.__mouthAnimation()
 
         return
+
+    def getPos(self):
+
+        return [self.gCameraX, self.gCameraY]
 
     def __move(self):
 
@@ -114,5 +120,10 @@ class Pacman:
     def changeDirection(self, rotationAngle):
 
         self.__mouthDirection = rotationAngle
+
+        return
+
+    def rotate(self, angle):
+        self.__rotation += angle
 
         return

@@ -1,5 +1,6 @@
 ﻿from random import *
 from Pacman import *
+from Dot import *
 
 #Constantes de Tela
 SCREEN_WIDTH = 640
@@ -10,8 +11,11 @@ SCREEN_FPS = 60
 gCameraX = 0
 gCameraY = 0
 
+gBocaDir = 0
+
 #Criando pacman
 pacman = Pacman(30)
+dot = Dot()
 
 #Distancia entre os objetos
 distancia = 3
@@ -67,25 +71,22 @@ def renderCircle():
 	glEnd()
 
 def render():
-	global gAberturaBoca, bocaAbrindo, coordX, coordY, distancia
-
-	#Limpando o buffer de cor
+	global distancia, coordX, coordY
+	# Limpando o buffer de cor
 	glClear(GL_COLOR_BUFFER_BIT)
 
-	#Se o pacman chegar na bola, renderiza a bola novamente
-	if(distancia < 10):
-		coordX = randint(50,SCREEN_WIDTH-50)
-		coordY = randint(50,SCREEN_HEIGHT-50)
-	
 	#Reiniciando a matriz Modelview
 	glPopMatrix()
 	glLoadIdentity()
 
-	#Salvando a matriz patrão novamente
+	#Salvando a matriz padrão novamente
 	glPushMatrix()
 
-	glTranslatef(coordX,coordY, 0.0)
-	renderCircle()
+	if(distancia < 10):
+		coordX = randint(50, SCREEN_WIDTH-50)
+		coordY = randint(50, SCREEN_HEIGHT-50)
+
+	dot.render(coordX, coordY)
 
 	#Reiniciando a matriz Modelview
 	glMatrixMode(GL_MODELVIEW)
@@ -96,17 +97,46 @@ def render():
 	glPushMatrix()
 
 	#Iniciando renderização da bola e do pacman
-	coordPacX = SCREEN_WIDTH // 2
-	coordPacY = SCREEN_HEIGHT // 2
+	# coordPacX = SCREEN_WIDTH // 2
+	# coordPacY = SCREEN_HEIGHT // 2
 
 	#Movendo para o centro da tela
-	glTranslatef(coordPacX,coordPacY, 0.0)
+	# glTranslatef(coordPacX,coordPacY, 0.0)
 	pacman.render()
 
-	distancia = mt.sqrt((coordX - coordPacX)**2 + (coordY - coordPacY)**2)
+	pacPos = pacman.getPos()
+
+	movePacman(pacPos[0], pacPos[1], coordX, coordY)
+
+	_dX = coordX - pacPos[0]
+	_dY = coordY - pacPos[1]
+	distancia = mt.sqrt(_dX**2 + _dY**2)
+
+	# distancia = mt.sqrt((coordX - coordPacX)**2 + (coordY - coordPacY)**2)
 
 	#Atualizando tela
 	glutSwapBuffers()
+
+def movePacman(coordPacX, coordPacY, coordX, coordY):
+	global gCameraX, gCameraY, gBocaDir
+
+	_dX = coordX - coordPacX
+	_dY = coordY - coordPacY
+
+	if(_dX > 0):
+		gCameraX += 5
+		gBocaDir = 0
+	elif(_dX < 0):
+		gCameraX -= 5
+		gBocaDir = 180
+	elif(_dY < 0):
+		gCameraY -= 5
+		gBocaDir = 270
+	elif(_dY > 0):
+		gCameraY += 5
+		gBocaDir = 90
+
+	pacman.changeDirection(gBocaDir)
 
 def runMainLoop(val):
 	#Lógica do Frame
@@ -119,6 +149,7 @@ def runMainLoop(val):
 def handleKeys(key,x,y):
 	global gRenderMode, gCameraX, gCameraY, gAngle, gBocaDir
 	key = ord(key)
+	rot = 0.0
 
 	#se o usuario pressiona a
 	if(key == 97):
@@ -137,8 +168,11 @@ def handleKeys(key,x,y):
 	elif(key == 115):
 		gCameraY += 5
 		gBocaDir = 90
+	elif(key == 98):
+		rot += mt.pi / 20
 
 	pacman.changeDirection(gBocaDir)
+	pacman.rotate(rot)
 
 	
 	#Atualizando matriz projeção

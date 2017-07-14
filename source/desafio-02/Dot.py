@@ -5,8 +5,9 @@ import math as mt
 
 class Dot:
 
-    def __init__(self, color = [1, 0, 0], size = 5):
+    def __init__(self, color = [255, 0, 0], size = 5):
         self.__size = size
+        color[:] = [ x / 255 for x in color] # Normalizando os valores entre 0 e 1
         self.__color = color
         self.__starting()
 

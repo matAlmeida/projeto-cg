@@ -1,44 +1,60 @@
+"""
+
+"""
+
 from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
 import math as mt
 
 class Dot:
+    """
+    Dot render a 'dot' in the screen.
+    """
+    def __init__(self, size = 5, color = [255, 0, 0]):
+        """
+        Construct a new 'Pacman' object.
 
-    def __init__(self, color = [255, 0, 0], size = 5):
+        :param size: The radius of the Dot
+        :param color: A vector with RGB values. [0:255, 0:255, 0:255]
+        """
         self.__size = size
         color[:] = [ x / 255 for x in color] # Normalizando os valores entre 0 e 1
         self.__color = color
-        self.__starting()
-
-    def __starting(self):
         self.__initAlpha()        
         self.__renderRange = 80
         self.gCameraX = 0
         self.gCameraY = 0
-    
-    def __initAlpha(self):
-        self.__alpha = 0.0
         self.__dalpha = mt.pi / 40
+        self.__alpha = 0.0
 
     def __calculateX(self):
-
+        """
+        Calculate a new coord 'x' of the Pacman using the current 'alpha' value.
+        """
         return self.__size * mt.cos(self.__alpha)
     
     def __calculateY(self):
-
+        """
+        Calculate a new coord 'y' of the Pacman using the current 'alpha' value.
+        """
         return self.__size * mt.sin(self.__alpha)
 
     def __calculateAlpha(self):
+        """
+        Calculate a new value to 'alpha' using the 'delta alpha' value.
+        """
         self.__alpha += self.__dalpha
         
         return
 
     def render(self, coordX, coordY):
-        self.__initAlpha()
+        """
+        Render the Dot in the screen.
 
-        # self.__move()
-
+        :param coordX: The 'x' coordinate where the Dot will be rendered
+        :param coordY: The 'y' coordinate where the Dot will be rendered
+        """
         glTranslatef(coordX, coordY, 0)
 
         # Renderizando um circulo com cor sólida, a partir da cor inicial ciano, utilizando tringulos

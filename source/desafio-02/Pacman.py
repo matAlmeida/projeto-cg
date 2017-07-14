@@ -16,7 +16,7 @@ class Pacman:
         Construct a new 'Pacman' object.
 
         :param size: The radius of the Pacman
-        :param movSpeed: The number of pixels that the pacman will 'walk' per render
+        :param movSpeed: The number of pixels the pacman will 'walk' per render
         :param color: A vector with RGB values. [0:255, 0:255, 0:255]
         :param mouthSpeed: The speed the Pacman close/open the mouth
         """

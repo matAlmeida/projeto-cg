@@ -28,6 +28,9 @@ class Dot:
         self.__dalpha = mt.pi / 40
 
     def __resetAlpha():
+        """
+        Reset the 'alpha' value when the Dot is re-render.
+        """
         self.__alpha = 0.0
 
         return
@@ -60,7 +63,7 @@ class Dot:
         :param coordY: The 'y' coordinate where the Dot will be rendered
         """
         self.__resetAlpha()
-        
+
         glTranslatef(coordX, coordY, 0)
 
         # Renderizando um circulo com cor sólida, a partir da cor inicial ciano, utilizando tringulos

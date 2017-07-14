@@ -27,7 +27,7 @@ class Dot:
         self.__resetAlpha()
         self.__dalpha = mt.pi / 40
 
-    def __resetAlpha():
+    def __resetAlpha(self):
         """
         Reset the 'alpha' value when the Dot is re-render.
         """

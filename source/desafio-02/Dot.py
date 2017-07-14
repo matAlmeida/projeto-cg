@@ -21,12 +21,16 @@ class Dot:
         self.__size = size
         color[:] = [ x / 255 for x in color] # Normalizando os valores entre 0 e 1
         self.__color = color
-        self.__initAlpha()        
         self.__renderRange = 80
         self.gCameraX = 0
         self.gCameraY = 0
+        self.__resetAlpha()
         self.__dalpha = mt.pi / 40
+
+    def __resetAlpha():
         self.__alpha = 0.0
+
+        return
 
     def __calculateX(self):
         """
@@ -55,6 +59,8 @@ class Dot:
         :param coordX: The 'x' coordinate where the Dot will be rendered
         :param coordY: The 'y' coordinate where the Dot will be rendered
         """
+        self.__resetAlpha()
+        
         glTranslatef(coordX, coordY, 0)
 
         # Renderizando um circulo com cor sólida, a partir da cor inicial ciano, utilizando tringulos

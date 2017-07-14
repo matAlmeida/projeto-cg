@@ -56,8 +56,6 @@ def render():
 
 	game.renderPacman()
 
-	game.updateDelta()
-
 	#Atualizando tela
 	glutSwapBuffers()
 

@@ -30,7 +30,7 @@ class Game:
 
     def __updateDistance(self):
         if(self.__distancePacToDoc < self.__eatAt):
-		    self.__updateDotCoord()
+        	self.__updateDotCoord()
         
         return
 

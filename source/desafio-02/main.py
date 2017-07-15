@@ -20,7 +20,7 @@ def main():
 		return 1;
 
 	#Definindo tecla
-	glutKeyboardFunc(handleKeys);
+	#glutKeyboardFunc(handleKeys);
 
 	#Setando a função de renderização
 	glutDisplayFunc(render);

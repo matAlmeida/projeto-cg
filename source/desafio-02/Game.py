@@ -63,7 +63,7 @@ class Game:
 
         return
 
-    def updateDelta(self):
+    def __updateDelta(self):
         self.__dX = self.__dotX - self.__pacX
         self.__dY = self.__dotY - self.__pacY
         self.__distancePacToDoc = mt.sqrt(self.__dX**2 + self.__dY**2)
@@ -79,3 +79,6 @@ class Game:
     def renderPacman(self):
         self.__pacman.render()
         self.__updatePacCoord()
+        self.__updateDelta()
+
+        return

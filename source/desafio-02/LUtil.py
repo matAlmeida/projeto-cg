@@ -37,26 +37,19 @@ def render():
 	# Limpando o buffer de cor
 	glClear(GL_COLOR_BUFFER_BIT)
 
-	#Reiniciando a matriz Modelview
-	glPopMatrix()
-	glLoadIdentity()
-
-	#Salvando a matriz padrão novamente
-	glPushMatrix()
+	updateMatrix()
 
 	#Renderizando ponto
 	game.renderDot()
 
-	#Reiniciando a matriz Modelview
-	glMatrixMode(GL_MODELVIEW)
-	glPopMatrix()
-	glLoadIdentity()
-
-	#Salvando a matriz patrão novamente
-	glPushMatrix()
+	updateMatrix()
 
 	#Renderizando o pacman já na direção correta do ponto
 	game.renderPacman()
+
+	#TESTE
+	updateMatrix()
+	game.renderObstacles()
 
 	#Atualizando tela
 	glutSwapBuffers()
@@ -68,3 +61,12 @@ def runMainLoop(val):
 
 	#Executando o frame mais uma vez
 	glutTimerFunc(1000 // SCREEN_FPS, runMainLoop, val)
+
+def updateMatrix():
+	#Reiniciando a matriz Modelview
+	glMatrixMode(GL_MODELVIEW)
+	glPopMatrix()
+	glLoadIdentity()
+
+	#Salvando a matriz patrão novamente
+	glPushMatrix()

@@ -2,15 +2,17 @@
 
 """
 
-import math as mt
 import random as rd
 from Pacman import *
 from Dot import *
+from Obstacle import *
 
 class Game:
     def __init__(self, screenWidth,screenHeight):
         self.__screenWidth = screenWidth
         self.__screenHeight = screenHeight
+
+        self.__obstacle = Obstacle(GL_LINE_LOOP, 100, [1,1,1], [screenWidth//2-50, screenHeight//2-50])
 
         self.__pacman = Pacman(30,4)
         self.__pacX = 0
@@ -73,6 +75,9 @@ class Game:
         self.__distancePacToDot = mt.sqrt(self.__dX**2 + self.__dY**2)
 
         return
+
+    def renderObstacles(self):
+    	self.__obstacle.render()
 
     def renderDot(self):
         self.__updateDistance()

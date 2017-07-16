@@ -5,7 +5,7 @@ SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
 SCREEN_FPS = 120
 
-game = Game(SCREEN_WIDTH,SCREEN_HEIGHT)
+game = Game(SCREEN_WIDTH, SCREEN_HEIGHT)
 
 def initGL():
 	#Inicializando Matriz de Projeção

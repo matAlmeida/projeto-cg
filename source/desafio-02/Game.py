@@ -12,7 +12,7 @@ class Game:
         self.__screenWidth = screenWidth
         self.__screenHeight = screenHeight
 
-        self.__pacman = Pacman(30)
+        self.__pacman = Pacman(30,4)
         self.__pacX = 0
         self.__pacY = 0
         self.__updatePacCoord()
@@ -25,15 +25,18 @@ class Game:
 
         self.__dX = self.__dotX - self.__pacX
         self.__dY = self.__dotY - self.__pacY
-        self.__distancePacToDoc = mt.sqrt(self.__dX**2 + self.__dY**2)
+        self.__distancePacToDot = mt.sqrt(self.__dX**2 + self.__dY**2)
 
         self.__eatAt = 1
 
     def __updateDistance(self):
-        if(self.__distancePacToDoc < self.__eatAt):
+        if(self.__distancePacToDot < self.__eatAt):
         	self.__updateDotCoord()
         
         return
+
+    def getDistance():
+    	return self.__distancePacToDot
 
     def __updateDotCoord(self):
         self.__dotX = rd.randint(50, self.__screenWidth-50)
@@ -67,7 +70,7 @@ class Game:
     def __updateDelta(self):
         self.__dX = self.__dotX - self.__pacX
         self.__dY = self.__dotY - self.__pacY
-        self.__distancePacToDoc = mt.sqrt(self.__dX**2 + self.__dY**2)
+        self.__distancePacToDot = mt.sqrt(self.__dX**2 + self.__dY**2)
 
         return
 
@@ -78,9 +81,22 @@ class Game:
         return
 
     def renderPacman(self):
-        self.__pacman.render()
-        self.__updatePacCoord()
-        self.__movePacman()
-        self.__updateDelta()
+    	self.__velocityControl()
+    	self.__pacman.render()
+    	self.__updatePacCoord()
+    	self.__movePacman()
+    	self.__updateDelta()
+    	self.__pacman.initCurrentMovSpeed()
 
-        return
+    	return
+
+    def __velocityControl(self):
+    	diferenca = []
+    	diferenca.append(self.__dX)
+    	diferenca.append(self.__dY)
+    	if(diferenca[0] < self.__pacman.getcurrentMovSpeed() and diferenca[0] > 0):
+    		self.__pacman.setcurrentMovSpeed(diferenca[0])
+    	elif(diferenca[1] < self.__pacman.getcurrentMovSpeed() and diferenca[1] > 0):
+    		self.__pacman.setcurrentMovSpeed(diferenca[1])
+    	else:
+    		self.__pacman.initCurrentMovSpeed()

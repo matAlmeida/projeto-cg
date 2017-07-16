@@ -25,6 +25,7 @@ class Pacman:
         self.__maxAmplitude = 10
         self.__mouthSpeed = mouthSpeed
         self.__movSpeed = movSpeed
+        self.__currentMovSpeed = movSpeed
         color[:] = [ x / 255 for x in color] # Normalizando os valores entre 0 e 1
         self.__color = color
         self.__rotation = 0.0
@@ -35,6 +36,9 @@ class Pacman:
         self.gCameraX = 50
         self.gCameraY = 50
         self.__dalpha = mt.pi / 40
+
+    def initCurrentMovSpeed(self):
+        self.__currentMovSpeed = self.__movSpeed
 
     def __updateAlpha(self):
         """
@@ -161,13 +165,13 @@ class Pacman:
         """
         #Fazendo o pacman se movimentar de acordo com a direção da boca
         if (self.__mouthDirection == 0):
-            self.gCameraX += self.__movSpeed
+            self.gCameraX += self.__currentMovSpeed
         elif (self.__mouthDirection == 90):
-            self.gCameraY += self.__movSpeed
+            self.gCameraY += self.__currentMovSpeed
         elif (self.__mouthDirection == 180):
-            self.gCameraX -= self.__movSpeed
+            self.gCameraX -= self.__currentMovSpeed
         else:
-            self.gCameraY -= self.__movSpeed
+            self.gCameraY -= self.__currentMovSpeed
 
         return
 
@@ -191,3 +195,8 @@ class Pacman:
         #Mudando a variável de rotação de acordo com um ângulo
         self.__rotation += angle
         return
+
+    def setcurrentMovSpeed(self, newMoveSpeed):
+        self.__currentMovSpeed = newMoveSpeed
+    def getcurrentMovSpeed(self):
+        return self.__currentMovSpeed

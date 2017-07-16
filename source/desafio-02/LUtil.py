@@ -5,7 +5,7 @@ SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
 SCREEN_FPS = 120
 
-game = Game(SCREEN_WIDTH)
+game = Game(SCREEN_WIDTH,SCREEN_HEIGHT)
 
 def initGL():
 	#Inicializando Matriz de Projeção
@@ -44,6 +44,7 @@ def render():
 	#Salvando a matriz padrão novamente
 	glPushMatrix()
 
+	#Renderizando ponto
 	game.renderDot()
 
 	#Reiniciando a matriz Modelview
@@ -54,6 +55,7 @@ def render():
 	#Salvando a matriz patrão novamente
 	glPushMatrix()
 
+	#Renderizando o pacman já na direção correta do ponto
 	game.renderPacman()
 
 	#Atualizando tela

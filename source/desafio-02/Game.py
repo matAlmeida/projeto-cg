@@ -8,8 +8,9 @@ from Pacman import *
 from Dot import *
 
 class Game:
-    def __init__(self, screenWidth):
+    def __init__(self, screenWidth,screenHeight):
         self.__screenWidth = screenWidth
+        self.__screenHeight = screenHeight
 
         self.__pacman = Pacman(30)
         self.__pacX = 0
@@ -26,7 +27,7 @@ class Game:
         self.__dY = self.__dotY - self.__pacY
         self.__distancePacToDoc = mt.sqrt(self.__dX**2 + self.__dY**2)
 
-        self.__eatAt = 10
+        self.__eatAt = 1
 
     def __updateDistance(self):
         if(self.__distancePacToDoc < self.__eatAt):
@@ -36,7 +37,7 @@ class Game:
 
     def __updateDotCoord(self):
         self.__dotX = rd.randint(50, self.__screenWidth-50)
-        self.__dotY = rd.randint(50, self.__screenWidth-50)
+        self.__dotY = rd.randint(50, self.__screenHeight-50)
 
         return
 
@@ -79,6 +80,7 @@ class Game:
     def renderPacman(self):
         self.__pacman.render()
         self.__updatePacCoord()
+        self.__movePacman()
         self.__updateDelta()
 
         return

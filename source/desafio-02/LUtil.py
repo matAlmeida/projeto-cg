@@ -42,13 +42,16 @@ def render():
 	#Renderizando ponto
 	game.renderDot()
 
+	#Atualizando Matriz
 	updateMatrix()
 
 	#Renderizando o pacman já na direção correta do ponto
 	game.renderPacman()
 
-	#TESTE
+	#Atualizando Matriz
 	updateMatrix()
+
+	#Renderizando Obstáculos
 	game.renderObstacles()
 
 	#Atualizando tela

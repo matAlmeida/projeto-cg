@@ -9,6 +9,12 @@ from Obstacle import *
 
 class Game:
     def __init__(self, screenWidth,screenHeight):
+        """
+        Game render a "Pacman Game" in the screen and automates the Pacman's movements toward dots
+
+        :param screenWidth: The Width of the window where the game will be rendered
+        :param screenHeight: The Height of the window where the game will be rendered
+        """
         self.__screenWidth = screenWidth
         self.__screenHeight = screenHeight
 
@@ -31,22 +37,20 @@ class Game:
 
         self.__eatAt = 1
 
-    def __updateDistance(self):
-        if(self.__distancePacToDot < self.__eatAt):
-        	self.__updateDotCoord()
-        
-        return
-
-    def getDistance():
-    	return self.__distancePacToDot
-
     def __updateDotCoord(self):
-        self.__dotX = rd.randint(50, self.__screenWidth-50)
-        self.__dotY = rd.randint(50, self.__screenHeight-50)
+        """
+        Sets the new Dot's coordinates before re-render.
+        """
+        if(self.__distancePacToDot < self.__eatAt):
+            self.__dotX = rd.randint(50, self.__screenWidth-50)
+            self.__dotY = rd.randint(50, self.__screenHeight-50)
 
         return
 
     def __updatePacCoord(self):
+        """
+        Updates the Pacman's coordinates to re-render after move.
+        """
         pos = self.__pacman.getPos()
         self.__pacX = pos[0]
         self.__pacY = pos[1]
@@ -54,6 +58,9 @@ class Game:
         return
 
     def __movePacman(self):
+        """
+        Change the Pacman's direction using the Dot's position.
+        """
         self.__updateDelta()
 
         if(self.__dX > 0):
@@ -70,22 +77,58 @@ class Game:
         return
 
     def __updateDelta(self):
+        """
+        Updates the distances between the Pacman and the Dot.
+        """
         self.__dX = self.__dotX - self.__pacX
         self.__dY = self.__dotY - self.__pacY
         self.__distancePacToDot = mt.sqrt(self.__dX**2 + self.__dY**2)
 
         return
 
+    def __velocityControl(self):
+        """
+        ?
+        """
+    	if(self.__dX < self.__pacman.getCurrentMovSpeed() and self.__dX > 0):
+    		self.__pacman.setCurrentMovSpeed(self.__dX)
+    	elif(self.__dY < self.__pacman.getCurrentMovSpeed() and self.__dY > 0):
+    		self.__pacman.setCurrentMovSpeed(self.__dY)
+    	else:
+    		self.__pacman.initCurrentMovSpeed()
+
+        return
+    
+    def getDistance(self):
+        """
+        Returns the current distance between the Pacman and the Dot.
+
+        :return: Current distance between the Pacman and the Dot
+        """
+
+        return self.__distancePacToDot
+
     def renderObstacles(self):
+        """
+        Render Obstacles in the screen.
+        """
     	self.__obstacle.render()
 
+        return
+
     def renderDot(self):
-        self.__updateDistance()
+        """
+        Render the Dot in the screen.
+        """
+        self.__updateDotCoord()
         self.__dot.render(self.__dotX, self.__dotY)
 
         return
 
     def renderPacman(self):
+        """
+        Render the Pacman in the screen.
+        """
     	self.__velocityControl()
     	self.__pacman.render()
     	self.__updatePacCoord()
@@ -94,14 +137,3 @@ class Game:
     	self.__pacman.initCurrentMovSpeed()
 
     	return
-
-    def __velocityControl(self):
-    	diferenca = []
-    	diferenca.append(self.__dX)
-    	diferenca.append(self.__dY)
-    	if(diferenca[0] < self.__pacman.getcurrentMovSpeed() and diferenca[0] > 0):
-    		self.__pacman.setcurrentMovSpeed(diferenca[0])
-    	elif(diferenca[1] < self.__pacman.getcurrentMovSpeed() and diferenca[1] > 0):
-    		self.__pacman.setcurrentMovSpeed(diferenca[1])
-    	else:
-    		self.__pacman.initCurrentMovSpeed()

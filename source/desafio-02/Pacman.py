@@ -38,13 +38,18 @@ class Pacman:
         self.__dalpha = mt.pi / 40
 
     def initCurrentMovSpeed(self):
+        """
+        Updates the Current MovSpeed value.
+        """
         self.__currentMovSpeed = self.__movSpeed
+        return
 
     def __updateAlpha(self):
         """
         Updates the 'alpha' value when the Pacman rotates.
         """
         self.__alpha = self.__rotation
+        return
 
     def __calculateX(self):
         """
@@ -196,7 +201,20 @@ class Pacman:
         self.__rotation += angle
         return
 
-    def setcurrentMovSpeed(self, newMoveSpeed):
+    def setCurrentMovSpeed(self, newMoveSpeed):
+        """
+        Change the Pacman MovSpeed
+
+        :param newMovSpeed: The new speed value
+        """
         self.__currentMovSpeed = newMoveSpeed
-    def getcurrentMovSpeed(self):
+        return
+
+    def getCurrentMovSpeed(self):
+        """
+        Return the current Pacman MovSpeed
+
+        :return: Current Pacman movSpeed value
+        """
+        
         return self.__currentMovSpeed

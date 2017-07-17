@@ -90,12 +90,12 @@ class Game:
         """
         Controls the pacman velocity
         """
-    	if(self.__dX < self.__pacman.getCurrentMovSpeed() and self.__dX > 0):
-    		self.__pacman.setCurrentMovSpeed(self.__dX)
-    	elif(self.__dY < self.__pacman.getCurrentMovSpeed() and self.__dY > 0):
-    		self.__pacman.setCurrentMovSpeed(self.__dY)
-    	else:
-    		self.__pacman.initCurrentMovSpeed()
+        if(self.__dX < self.__pacman.getCurrentMovSpeed() and self.__dX > 0):
+            self.__pacman.setCurrentMovSpeed(self.__dX)
+        elif(self.__dY < self.__pacman.getCurrentMovSpeed() and self.__dY > 0):
+            self.__pacman.setCurrentMovSpeed(self.__dY)
+        else:
+            self.__pacman.initCurrentMovSpeed()
 
         return
     
@@ -112,7 +112,7 @@ class Game:
         """
         Render Obstacles in the screen.
         """
-    	self.__obstacle.render()
+        self.__obstacle.render()
 
         return
 
@@ -129,11 +129,11 @@ class Game:
         """
         Render the Pacman in the screen.
         """
-    	self.__velocityControl()
-    	self.__pacman.render()
-    	self.__updatePacCoord()
-    	self.__movePacman()
-    	self.__updateDelta()
-    	self.__pacman.initCurrentMovSpeed()
+        self.__velocityControl()
+        self.__pacman.render()
+        self.__updatePacCoord()
+        self.__movePacman()
+        self.__updateDelta()
+        self.__pacman.initCurrentMovSpeed()
 
-    	return
+        return

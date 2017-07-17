@@ -88,7 +88,7 @@ class Game:
 
     def __velocityControl(self):
         """
-        ?
+        Controls the pacman velocity
         """
     	if(self.__dX < self.__pacman.getCurrentMovSpeed() and self.__dX > 0):
     		self.__pacman.setCurrentMovSpeed(self.__dX)

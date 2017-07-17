@@ -14,7 +14,7 @@ class Game:
 
         self.__obstacle = Obstacle(GL_LINE_LOOP, 100, [1,1,1], [screenWidth//2-50, screenHeight//2-50])
 
-        self.__pacman = Pacman(30,4)
+        self.__pacman = Pacman(30,2)
         self.__pacX = 0
         self.__pacY = 0
         self.__updatePacCoord()

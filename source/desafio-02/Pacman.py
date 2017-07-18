@@ -163,11 +163,12 @@ class Pacman:
         """
         #Posição atual do pacman
         return [self.gCameraX, self.gCameraY]
-
+    
+    '''
     def __move(self):
-        """
-        Update the pacman position using the current direction.
-        """
+        
+        #Update the pacman position using the current direction.
+
         #Fazendo o pacman se movimentar de acordo com a direção da boca
         if (self.__mouthDirection == 0):
             self.gCameraX += self.__currentMovSpeed
@@ -179,6 +180,36 @@ class Pacman:
             self.gCameraY -= self.__currentMovSpeed
 
         return
+    '''
+
+    def __move(self):
+        
+        #Update the pacman position using the current direction.
+
+        #Fazendo o pacman se movimentar de acordo com a direção da boca
+        if (self.__mouthDirection == 0):
+            self.gCameraX += self.__currentMovSpeed
+        elif (self.__mouthDirection == 90):
+            self.gCameraY += self.__currentMovSpeed
+        elif (self.__mouthDirection == 180):
+            self.gCameraX -= self.__currentMovSpeed
+        elif (self.__mouthDirection == 270):
+            self.gCameraY -= self.__currentMovSpeed
+        '''
+        elif (self.__mouthDirection < 90):
+        	self.gCameraX += 1
+        	self.gCameraY += 1
+        elif (self.__mouthDirection < 180):
+        	self.gCameraX -= 1
+        	self.gCameraY += 1
+        elif (self.__mouthDirection < 270):
+        	self.gCameraX -= 1
+        	self.gCameraY -= 1
+        else:
+        	self.gCameraX += 1
+        	self.gCameraY -= 1
+        '''
+        return
 
     def changeDirection(self, rotationAngle):
         """
@@ -187,8 +218,8 @@ class Pacman:
         :param rotationAngle: Angle in degree
         """
         #Mudando a variável de direção da boca de acordo com um ângulo de rotação dado
-        ang = rotationAngle % 361
-        self.__mouthDirection = ang
+        #ang = rotationAngle % 361
+        self.__mouthDirection = rotationAngle
         return
 
     def rotate(self, angle):

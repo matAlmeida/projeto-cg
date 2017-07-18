@@ -20,22 +20,22 @@ class Game:
 
         self.__obstacle = Obstacle(GL_LINE_LOOP, 100, [1,1,1], [screenWidth//2-50, screenHeight//2-50])
 
-        self.__pacman = Pacman(30,2)
-        self.__pacX = 0
-        self.__pacY = 0
+        self.__pacman = Pacman(30,1)
+        self.__pacX = 50
+        self.__pacY = 50
         self.__updatePacCoord()
         self.__pacmanDirection = 0
 
         self.__dot = Dot()
-        self.__dotX = 0
-        self.__dotY = 0
-        self.__updateDotCoord()
+        self.__dotX = 50
+        self.__dotY = 50
 
         self.__dX = self.__dotX - self.__pacX
         self.__dY = self.__dotY - self.__pacY
         self.__distancePacToDot = mt.sqrt(self.__dX**2 + self.__dY**2)
 
         self.__eatAt = 1
+        self.__updateDotCoord()
 
     def __updateDotCoord(self):
         """
@@ -71,9 +71,11 @@ class Game:
             self.__pacmanDirection = 270
         elif(self.__dY > 0):
             self.__pacmanDirection = 90
-
+        '''
+        if(abs(self.__dX) == abs(self.__dY) and self.__distancePacToDot != 0):
+        	self.__pacmanDirection = mt.degrees(mt.asin(self.__dY/self.__distancePacToDot))
+		'''
         self.__pacman.changeDirection(self.__pacmanDirection)
-
         return
 
     def __updateDelta(self):

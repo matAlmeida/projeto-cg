@@ -3,26 +3,38 @@
 #Constantes de Tela
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
-SCREEN_FPS = 120
+SCREEN_FPS = 60
 
-game = Game(SCREEN_WIDTH,SCREEN_HEIGHT)
+game = None
 
 def initGL():
+	#Definindo a janela de exibição (Viewport)
+	glViewport(0,0,SCREEN_WIDTH,SCREEN_HEIGHT)
+
 	#Inicializando Matriz de Projeção
 	glMatrixMode(GL_PROJECTION)
 	glLoadIdentity()
-	glOrtho(0.0, SCREEN_WIDTH, SCREEN_HEIGHT, 0.0, 1.0, -1.0)
-
-	#Inicializando Matriz de modelo de exibição (Modelview)
+	glOrtho( 0.0, SCREEN_WIDTH, SCREEN_HEIGHT, 0.0, 1.0, -1.0 )
+    
+	#Inicializando Matriz de modelo de visão (Modelview)
 	glMatrixMode(GL_MODELVIEW)
 	glLoadIdentity()
 
-	#Salvando a matriz padrão do modelo de exibição (modelview)
 	glPushMatrix()
-
+	
 	#Inicializando a tela com a cor preta
 	glClearColor(0,0,0,1)
+	
+	#Ativando textura
+	glEnable(GL_TEXTURE_2D)
 
+	#Ativando combinação
+	glEnable(GL_BLEND)
+	glDisable(GL_DEPTH_TEST)
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
+
+	global game
+	game = Game(SCREEN_WIDTH,SCREEN_HEIGHT)
 	#Verificando se há erros
 	erro = glGetError()
 	if(erro != GL_NO_ERROR):
@@ -38,14 +50,15 @@ def render():
 	glClear(GL_COLOR_BUFFER_BIT)
 
 	#Reiniciando a matriz Modelview
+	glMatrixMode(GL_MODELVIEW)
 	glPopMatrix()
 	glLoadIdentity()
-
-	#Salvando a matriz padrão novamente
 	glPushMatrix()
-
 	#Renderizando ponto
 	game.renderDot()
+	#Salvando a matriz padrão novamente
+	
+	
 
 	#Reiniciando a matriz Modelview
 	glMatrixMode(GL_MODELVIEW)

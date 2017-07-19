@@ -12,16 +12,16 @@ class Game:
         self.__screenWidth = screenWidth
         self.__screenHeight = screenHeight
 
+        self.__dot = Dot()
+        self.__dotX = 0
+        self.__dotY = 0
+        self.__updateDotCoord()
+        
         self.__pacman = Pacman(30,4)
         self.__pacX = 0
         self.__pacY = 0
         self.__updatePacCoord()
         self.__pacmanDirection = 0
-
-        self.__dot = Dot()
-        self.__dotX = 0
-        self.__dotY = 0
-        self.__updateDotCoord()
 
         self.__dX = self.__dotX - self.__pacX
         self.__dY = self.__dotY - self.__pacY
@@ -35,7 +35,7 @@ class Game:
         
         return
 
-    def getDistance():
+    def getDistance(self):
     	return self.__distancePacToDot
 
     def __updateDotCoord(self):

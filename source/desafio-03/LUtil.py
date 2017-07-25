@@ -30,6 +30,7 @@ def initGL():
 
 	#Habilitando textura
 	glEnable(GL_TEXTURE_2D)
+	glEnable(GL_ALPHA_TEST)
 
 	#Verificando se há erros
 	erro = glGetError()

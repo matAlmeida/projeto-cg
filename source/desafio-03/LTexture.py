@@ -115,7 +115,6 @@ class LTexture:
 			for col in range(0,im.size[0]):
 				for lin in range(0,im.size[1]):
 					r,g,b,a = im.getpixel((lin, col))
-					imColor = [r,g,b,a]
 					if(r > 208 and g > 185 and b > 175):
 						im.putpixel((lin, col), (color[0], color[1], color[2], color[3]))
 					else:						
@@ -123,12 +122,12 @@ class LTexture:
 			#Varrendo lado direito
 			width = im.size[0] - 1
 			height = im.size[1] - 1
-			for col in range(-width, 1):
-				for lin in range(-height,0):
-					r,g,b,a = im.getpixel((-lin, -col))
+			for col in range(width, -1,-1):
+				for lin in range(height,0,-1):
+					r,g,b,a = im.getpixel((lin, col))
 					imColor = [r,g,b,a]
 					if(r > 208 and g > 185 and b > 175):
-						im.putpixel((-lin, -col), (color[0], color[1], color[2], color[3]))
+						im.putpixel((lin, col), (color[0], color[1], color[2], color[3]))
 					else:
 						break
 		return im

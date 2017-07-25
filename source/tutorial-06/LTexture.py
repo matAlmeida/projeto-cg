@@ -67,7 +67,7 @@ class LTexture:
 		textureLoaded = False
 
 		#Gerando e Definindo uma imagem atual
-		im = open(imagem)
+		im = open(imagem).convert("RGBA")
 		if(im != None):
 			#Criando a textura a partir dos pixels do arquivo
 			imagem = im.tobytes("raw","RGBA",0,-1)

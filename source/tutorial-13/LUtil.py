@@ -9,7 +9,7 @@ SCREEN_FPS = 60;
 gRotatingTexture = LTexture();
 
 #Ângulo de rotação
-gAngle = 360.0
+gAngle = 0.0
 
 #Estado de transformação
 gTransformationCombo = 0
@@ -55,11 +55,11 @@ def loadMedia():
 def update():
 	global gAngle
 	#Rotacionando
-	gAngle -= 360.0 / SCREEN_FPS
+	gAngle += 360.0 / SCREEN_FPS
 
 	#Angulação
-	if(gAngle < 0.0):
-		gAngle += 360.0
+	if(gAngle > 360.0):
+		gAngle -= 360.0
 
 def render():
 	#Limpando o buffer de cor

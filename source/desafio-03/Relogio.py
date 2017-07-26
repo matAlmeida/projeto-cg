@@ -22,11 +22,11 @@ class Relogio(LTexture):
 		#Carregando textura
 		flag = self.loadTextureFromFile("relogioSafadao.png")
 		if(flag):
-			flag = self.Horas.loadTextureFromFile("pontHoras.png")
+			flag = self.Horas.loadTextureFromFile("pontHoras2.png")
 		if(flag):
-			flag = self.Minutos.loadTextureFromFile("pontMinutos.png")
+			flag = self.Minutos.loadTextureFromFile("pontMinutos2.png")
 		if(flag):
-			flag = self.Segundos.loadTextureFromFile("pontSegundos.png")
+			flag = self.Segundos.loadTextureFromFile("pontSegundos2.png")
 		return flag
 
 	def drawClock(self):

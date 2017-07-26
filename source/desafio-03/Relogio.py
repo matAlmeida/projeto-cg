@@ -2,6 +2,7 @@ from LTexture import *
 from Ponteiro import *
 from MatrizBoladona import *
 from time import *
+import pygame
 
 class Relogio(LTexture):
 	Textura = None
@@ -10,6 +11,12 @@ class Relogio(LTexture):
 		self.Horas = Ponteiro(360/12, localtime(time())[3])
 		self.Minutos = Ponteiro(360/60, localtime(time())[4])
 		self.Segundos = Ponteiro(360/60, localtime(time())[5])
+		pygame.init()
+		pygame.mixer.init()
+		pygame.mixer.music.load(b'despertador.wav')
+		pygame.mixer.music.play(-1)
+		#self.despertador = pygame.mixer.Sound(b'despertador.mp3')
+		#self.despertador.play()
 
 	def initTexture(self):
 		#Carregando textura

@@ -1,5 +1,4 @@
 from LTexture import *
-from Ponteiro import *
 from Relogio import *
 
 #Constantes de Tela
@@ -9,10 +8,7 @@ SCREEN_FPS = 60;
 
 #Textura do tabuleiro de damas
 gRelogio = None
-gPonteiroH = None
-gPonteiroM = None
-gPonteiroS = None
-screenColor = [0,0,0,1]
+
 
 def initGL():
 	#Definindo a janela de exibição (Viewport)
@@ -31,7 +27,7 @@ def initGL():
 	glPushMatrix()
 
 	#Inicializando a tela com a cor preta
-	glClearColor(screenColor[0], screenColor[1], screenColor[2], screenColor[3]);
+	glClearColor(0,0,0,1)
 
 	#Habilitando textura
 	glEnable(GL_TEXTURE_2D)
@@ -47,31 +43,27 @@ def initGL():
 	return True
 
 def loadMedia():
-	global gRelogio, gPonteiroH, gPonteiroM, gPonteiroS
+	global gRelogio
 	gRelogio = Relogio()
-	gPonteiroH = Ponteiro('h')
-	gPonteiroM = Ponteiro('m')
-	gPonteiroS = Ponteiro('s')
-	#Carregando textura
-	flag = gRelogio.loadTextureFromFile("relogioCoca.png", screenColor)
-	if(flag):
-		flag = gPonteiroH.loadTextureFromFile("pontHoras.png")
-	if(flag):
-		flag = gPonteiroM.loadTextureFromFile("pontMinutos.png")
-	if(flag):
-		flag = gPonteiroS.loadTextureFromFile("pontSegundos.png")
+	flag = gRelogio.initTexture()
 	if(not flag):
 		print("Não foi possível carregar a textura!")
 	return flag
 
 def update():
-	global gPonteiroH
-	gPonteiroH.rang += 1
+	global gRelogio
+	gRelogio.update()
 
 def render():
-	global gRelogio, gPonteiro
-	#Limpando o buffer de cor
+	global gRelogio
 	glClear(GL_COLOR_BUFFER_BIT)
+	
+	#Renderizando relogio
+	gRelogio.render()
+	
+	glutSwapBuffers()
+	'''#Limpando o buffer de cor
+	
 
 	#Obtendo coordenadas centrais
 	x = (SCREEN_WIDTH - gRelogio.textureWidth()) / 2
@@ -79,9 +71,6 @@ def render():
 
 	#Atualizando Matriz
 	updateMatrix()
-
-	#Renderizando relogio
-	gRelogio.render(x,y)
 
 	x = (SCREEN_WIDTH - gPonteiroH.textureWidth()) / 2
 	y = (SCREEN_HEIGHT - gPonteiroH.textureHeight()) / 2 - 10
@@ -108,10 +97,7 @@ def render():
 	updateMatrix()
 
 	#Renderizando ponteiro
-	gPonteiroS.render(x,y)
-	
-	#Atualizando tela
-	glutSwapBuffers()
+	gPonteiroS.render(x,y)'''
 
 def runMainLoop(val):
 	#Lógica do Frame

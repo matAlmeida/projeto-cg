@@ -61,7 +61,7 @@ class LTexture:
 			return False
 		return True
 
-	def loadTextureFromFile(self,imagem, screenColor = [0,0,0,0]):
+	def loadTextureFromFile(self,imagem):
 		textureLoaded = False
 
 		#Gerando e Definindo uma imagem atual

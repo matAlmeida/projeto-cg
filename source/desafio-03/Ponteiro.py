@@ -7,12 +7,12 @@ class Ponteiro(LTexture):
 		self.angle = time*self.ticAngle
 		self.value = time
 
-	def render(self):
+	def render(self, y):
 		#Se a textura existel
 		if(self.mTextureID != 0):
 			#Movendo para o ponto de renderização
 			glRotatef(self.angle,0,0,1)
-			glTranslatef(0,-18,0)
+			glTranslatef(0, y, 0)
 			
 			#Definindo textura ID
 			glBindTexture(GL_TEXTURE_2D,self.mTextureID)

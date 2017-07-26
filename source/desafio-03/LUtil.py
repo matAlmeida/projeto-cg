@@ -62,42 +62,6 @@ def render():
 	gRelogio.render()
 	
 	glutSwapBuffers()
-	'''#Limpando o buffer de cor
-	
-
-	#Obtendo coordenadas centrais
-	x = (SCREEN_WIDTH - gRelogio.textureWidth()) / 2
-	y = (SCREEN_HEIGHT - gRelogio.textureHeight()) / 2
-
-	#Atualizando Matriz
-	updateMatrix()
-
-	x = (SCREEN_WIDTH - gPonteiroH.textureWidth()) / 2
-	y = (SCREEN_HEIGHT - gPonteiroH.textureHeight()) / 2 - 10
-	
-	#Atualizando Matriz
-	updateMatrix()
-
-	#Renderizando ponteiro
-	gPonteiroH.render(x,y)
-	
-	x = (SCREEN_WIDTH - gPonteiroM.textureWidth()) / 2
-	y = (SCREEN_HEIGHT - gPonteiroM.textureHeight()) / 2
-
-	#Atualizando Matriz
-	updateMatrix()
-
-	#Renderizando ponteiro
-	gPonteiroM.render(x,y)
-
-	x = (SCREEN_WIDTH - gPonteiroS.textureWidth()) / 2
-	y = (SCREEN_HEIGHT - gPonteiroS.textureHeight()) / 2
-
-	#Atualizando Matriz
-	updateMatrix()
-
-	#Renderizando ponteiro
-	gPonteiroS.render(x,y)'''
 
 def runMainLoop(val):
 	#Lógica do Frame

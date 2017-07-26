@@ -13,7 +13,7 @@ class Relogio(LTexture):
 
 	def initTexture(self):
 		#Carregando textura
-		flag = self.loadTextureFromFile("relogioCoca.png")
+		flag = self.loadTextureFromFile("relogioSafadao.png")
 		if(flag):
 			flag = self.Horas.loadTextureFromFile("pontHoras.png")
 		if(flag):
@@ -43,13 +43,12 @@ class Relogio(LTexture):
 			with MatrizBoladona():
 				self.drawClock()
 			with MatrizBoladona():
-				self.Horas.render()
+				self.Horas.render(-18)
 			with MatrizBoladona():
-				self.Minutos.render()
+				self.Minutos.render(-32)
 			with MatrizBoladona():
-				self.Segundos.render()
-		
+				self.Segundos.render(-37)
 	def update(self):
-		self.Segundos.update(localtime(time())[5])
-		print(localtime(time())[5])
-		pass
+		self.Segundos.update(localtime()[5])
+		self.Minutos.update(localtime()[4]+(localtime()[5]/60))
+		self.Horas.update(localtime()[3]+(localtime()[4]/60))

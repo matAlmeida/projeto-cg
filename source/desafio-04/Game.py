@@ -5,7 +5,7 @@
 import math as mt
 import random as rd
 from Pacman import *
-from Dot import *
+from Player import *
 from Objeto import *
 from Superficie import *
 
@@ -14,7 +14,8 @@ class Game:
         self.__screenWidth = screenWidth
         self.__screenHeight = screenHeight
 
-        self.__dot = Dot(50, screenHeight - 55, 1, 30)
+        self.__player1 = Player("boy.png", 50, screenHeight - 51, 8, 0, 30)
+        self.__player2 = Player("walk.png", 50, screenHeight - 55, 6, 1, 30)
 
         self.__obj = Objeto("aboboratemp.png")
         self.__objX = 0
@@ -44,9 +45,15 @@ class Game:
         distanceObjToDot = mt.sqrt(dX**2 + dY**2)
         return distanceObjToDot
 
-    def renderDot(self):
-        self.__dot.render()
-        if(self.__updateDelta(self.__dot.getCoordX(), self.__dot.getCoordY(), self.__objX, self.__objY) < 15):
+    def renderPlayer1(self):
+        self.__player1.render()
+        if(self.__updateDelta(self.__player1.getCoordX(), self.__player1.getCurrentCoordY(), self.__objX, self.__objY) < 15):
+            self.__updateObjCoord()
+        return
+
+    def renderPlayer2(self):
+        self.__player2.render()
+        if(self.__updateDelta(self.__player2.getCoordX(), self.__player2.getCurrentCoordY(), self.__objX, self.__objY) < 15):
             self.__updateObjCoord()
         return
 
@@ -62,9 +69,33 @@ class Game:
 
     def __updateObjCoord(self):
         self.__objX = rd.randint(50, self.__screenWidth - 50)
-        self.__objY = rd.randint(self.__dot.getPuloMax(), self.__dot.getCoordY())
+        self.__objY = rd.randint(self.__player1.getPuloMax(), self.__player1.getCoordY())
 
         return
 
     def callHandleKeys(self, key):
-        self.__dot.handlekeys(key)
+        velocidade = 6
+        key = ord(key)
+
+        #PLAYER 1
+        #se o usuario pressiona a
+        if(key == 97):
+            self.__player1.setAndando(True)
+            if(self.__player1.getDireita()):
+                self.__player1.setRotacionar(True)
+            self.__player1.setDireita(False)
+            self.__player1.setCoordX(self.__player1.getCoordX() - velocidade)
+        #se o usuario pressiona d
+        elif(key == 100):
+            self.__player1.setAndando(True)
+            if(not self.__player1.getDireita()):
+                self.__player1.setRotacionar(False)
+            self.__player1.setDireita(True)
+            self.__player1.setCoordX(self.__player1.getCoordX() + velocidade)
+        #se o usuario pressiona w
+        elif(key == 119):
+            self.__player1.setPular(True)
+
+        #se o usuario pressiona s
+        #elif(key == 115):
+            #self.__dot.setCoordY(self.__dot.getCoordY + 16)

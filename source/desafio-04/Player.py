@@ -7,28 +7,29 @@ from CoordPosition2D import *
 from Sprite import *
 import pdb
 
-class Dot(LTexture):
+class Player(LTexture):
     """
-    Dot render a 'dot' in the screen.
+    Dot render a 'player' in the screen.
     """
-    def __init__(self, coordX, coordY, spriteStop, size = 15):
+    def __init__(self, image, coordX, coordY, numSprites, spriteStop, size = 15):
         """
         Construct a new 'Pacman' object.
 
         :param size: The radius of the Dot
         """
+        self.image = image
         self.vertexDataBuffer = None
         self.vertexIndexBuffer = None
         self.textureDataBuffer = None
         self.__size = size
-        self.numSprites = 6
+        self.numSprites = numSprites
         self.spriteCoordXSize = 1/self.numSprites
         self.actualSprite = 0
         self.spriteSpeed = 10
         self.renderCount = 1
         self.__coordX = coordX
-        self.__currentCoordY = coordY
         self.__coordY = coordY
+        self.__currentCoordY = coordY
         self.puloMax = coordY - 50
         self.pular = False
         self.puloSpeed = 3
@@ -50,7 +51,7 @@ class Dot(LTexture):
             self.renderCount = 1
 
     def initVBO(self):
-        self.loadTextureFromFile("walk.png")
+        self.loadTextureFromFile(self.image)
         self.initVertexData()
         self.initTextureData()
         return
@@ -98,7 +99,7 @@ class Dot(LTexture):
     def initTextureData(self):
         self.textureDataBuffer = glGenBuffers(1)
         
-        vData = (Sprite*6)()
+        vData = (Sprite*self.numSprites)()
         for i in range(0,self.numSprites):
             #Lado superior esquerdo
             vData[i].coord[0].x = GLfloat(i*self.spriteCoordXSize)
@@ -169,30 +170,6 @@ class Dot(LTexture):
         glDisableClientState(GL_TEXTURE_COORD_ARRAY)
         glDisableClientState(GL_VERTEX_ARRAY)
 
-    def handlekeys(self, key):
-        velocidade = 6
-        key = ord(key)
-        #se o usuario pressiona a
-        if(key == 97):
-            self.andando = True
-            if(self.getDireita()):
-                self.setRotacionar(True)
-            self.setDireita(False)
-            self.setCoordX(self.getCoordX() - velocidade)
-        #se o usuario pressiona d
-        elif(key == 100):
-            self.andando = True
-            if(not self.getDireita()):
-                self.setRotacionar(False)
-            self.setDireita(True)
-            self.setCoordX(self.getCoordX() + velocidade)
-        #se o usuario pressiona w
-        elif(key == 119):
-            self.pular = True
-        #se o usuario pressiona s
-        #elif(key == 115):
-            #self.__dot.setCoordY(self.__dot.getCoordY + 16)
-
     def updateCoordY(self):
         if(self.__currentCoordY < self.__coordY):
             self.__currentCoordY += self.puloSpeed
@@ -204,6 +181,8 @@ class Dot(LTexture):
     def setCoordY(self, newCoord):
         self.__coordY = newCoord
     def getCoordY(self):
+        return self.__coordY
+    def getCurrentCoordY(self):
         return self.__currentCoordY
     def setAndando(self, flag):
         self.andando = flag
@@ -213,5 +192,7 @@ class Dot(LTexture):
         return self.direita
     def getPuloMax(self):
         return self.puloMax
+    def setPular(self, newFlag):
+        self.pular = newFlag
     def setRotacionar(self, flag):
         self.rotacionar = flag

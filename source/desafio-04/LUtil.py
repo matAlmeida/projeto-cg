@@ -71,7 +71,15 @@ def render():
 	glLoadIdentity()
 	glPushMatrix()
 	#Renderizando ponto
-	game.renderDot()
+	game.renderPlayer1()
+
+	#Reiniciando a matriz Modelview
+	glMatrixMode(GL_MODELVIEW)
+	glPopMatrix()
+	glLoadIdentity()
+	glPushMatrix()
+	#Renderizando ponto
+	game.renderPlayer2()
 	
 
 	#Atualizando tela

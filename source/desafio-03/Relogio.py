@@ -13,7 +13,7 @@ class Relogio(LTexture):
 		self.Segundos = Ponteiro(360/60, localtime(time())[5])
 		pygame.init()
 		pygame.mixer.init()
-		pygame.mixer.music.load(b'despertador.wav')
+		pygame.mixer.music.load(b'despertador2.wav')
 		pygame.mixer.music.play(-1)
 		#self.despertador = pygame.mixer.Sound(b'despertador.mp3')
 		#self.despertador.play()

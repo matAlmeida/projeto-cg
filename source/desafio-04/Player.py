@@ -33,10 +33,12 @@ class Player(LTexture):
         self.puloMax = coordY - 50
         self.pular = False
         self.puloSpeed = 3
-        self.andando = False
+        self.andando = True
         self.direita = True
         self.rotacionar = False
         self.spriteStop = spriteStop
+        self.dead = False
+        self.stopRender = False
         LTexture.__init__(self)
         self.initVBO()
 
@@ -46,7 +48,11 @@ class Player(LTexture):
         else:
             self.actualSprite = self.spriteStop
         if(self.actualSprite >= self.numSprites):
-            self.actualSprite = 0
+            if(self.dead):
+                self.stopRender = True
+            else:
+                self.actualSprite = 0
+            
         if(self.renderCount > 60):
             self.renderCount = 1
 
@@ -94,6 +100,7 @@ class Player(LTexture):
         glBindBuffer(GL_ARRAY_BUFFER,0)
 
         del vData
+        del indexBuffers
         return
 
     def initTextureData(self):
@@ -174,6 +181,9 @@ class Player(LTexture):
         if(self.__currentCoordY < self.__coordY):
             self.__currentCoordY += self.puloSpeed
 
+    def changeCharacter(self, image, numSprites, coordX, coordY, size = 15):
+        self.__init__(image, coordX, coordY, numSprites, self.spriteStop, size)
+
     def setCoordX(self, newCoord):
         self.__coordX = newCoord
     def getCoordX(self):
@@ -184,6 +194,8 @@ class Player(LTexture):
         return self.__coordY
     def getCurrentCoordY(self):
         return self.__currentCoordY
+    def setCurrentCoordY(self, newCoordY):
+        self.__currentCoordY = newCoordY
     def setAndando(self, flag):
         self.andando = flag
     def setDireita(self, flag):
@@ -196,3 +208,11 @@ class Player(LTexture):
         self.pular = newFlag
     def setRotacionar(self, flag):
         self.rotacionar = flag
+    def setDead(self, flag):
+        self.dead = flag
+    def getDead(self):
+        return self.dead
+    def getStopRender(self):
+        return self.stopRender
+    def setStopRender(self, flag):
+        self.stopRender = flag

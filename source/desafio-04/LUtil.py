@@ -50,36 +50,28 @@ def render():
 	glClear(GL_COLOR_BUFFER_BIT)
 
 	#Reiniciando a matriz Modelview
-	glMatrixMode(GL_MODELVIEW)
-	glPopMatrix()
-	glLoadIdentity()
-	glPushMatrix()
-	#Renderizando ponto
+	updateMatrix()
+
+	#Renderizando superficie
 	game.renderSuperficie(0,0)
 
 	#Reiniciando a matriz Modelview
-	glMatrixMode(GL_MODELVIEW)
-	glPopMatrix()
-	glLoadIdentity()
-	glPushMatrix()
-	#Renderizando ponto
+	updateMatrix()
+
+	#Renderizando objeto
 	game.renderObjeto()
 
 	#Reiniciando a matriz Modelview
-	glMatrixMode(GL_MODELVIEW)
-	glPopMatrix()
-	glLoadIdentity()
-	glPushMatrix()
-	#Renderizando ponto
+	updateMatrix()
+
+	#Renderizando player 1
 	game.renderPlayer1()
 
 	#Reiniciando a matriz Modelview
-	glMatrixMode(GL_MODELVIEW)
-	glPopMatrix()
-	glLoadIdentity()
-	glPushMatrix()
-	#Renderizando ponto
-	game.renderPlayer2()
+	updateMatrix()
+
+	#Renderizando monstro
+	game.renderMonster()
 	
 
 	#Atualizando tela
@@ -95,3 +87,10 @@ def runMainLoop(val):
 
 def handleKeys(key,x,y):
 	game.callHandleKeys(key)
+
+def updateMatrix():
+	#Reiniciando a matriz Modelview
+	glMatrixMode(GL_MODELVIEW)
+	glPopMatrix()
+	glLoadIdentity()
+	glPushMatrix()

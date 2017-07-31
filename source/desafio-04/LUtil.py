@@ -64,14 +64,20 @@ def render():
 	#Reiniciando a matriz Modelview
 	updateMatrix()
 
-	#Renderizando player 1
-	game.renderPlayer1()
+	#Renderizando monstro
+	game.renderMonster()
 
 	#Reiniciando a matriz Modelview
 	updateMatrix()
 
 	#Renderizando monstro
-	game.renderMonster()
+	game.renderShot()
+
+	#Reiniciando a matriz Modelview
+	updateMatrix()
+
+	#Renderizando player 1
+	game.renderPlayer1()
 	
 
 	#Atualizando tela

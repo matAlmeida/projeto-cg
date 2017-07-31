@@ -11,30 +11,25 @@ class Objeto(LTexture):
     """
     Dot render a 'dot' in the screen.
     """
-    def __init__(self, image, size = 15, color = [255, 0, 0]):
-        """
-        Construct a new 'Pacman' object.
-
-        :param size: The radius of the Dot
-        :param color: A vector with RGB values. [0:255, 0:255, 0:255]
-        """
-        self.image = image
+    def __init__(self, objType, coordX, coordY):
+        obj = self.__returnObj(objType)
+        self.image = obj[0]
         self.vertexDataBuffer = None
         self.vertexIndexBuffer = None
         self.textureDataBuffer = None
-        self.__size = size
-        color[:] = [ x / 255 for x in color] # Normalizando os valores entre 0 e 1
-        self.__color = color
+        self.__size = obj[2]
         self.__renderRange = 80
-        self.gCameraX = 0
-        self.gCameraY = 0
+        self.coordX = coordX
+        self.coordY = coordY
         self.__resetAlpha()
         self.__dalpha = mt.pi / 40
-        self.numSprites = 6
+        self.numSprites = obj[1]
         self.spriteCoordXSize = 1/self.numSprites
         self.actualSprite = 0
         self.spriteSpeed = 10
         self.renderCount = 1
+        self.stopRender = True
+        self.rotacionar = False
         LTexture.__init__(self)
         self.initVBO()
 
@@ -51,18 +46,6 @@ class Objeto(LTexture):
         self.__alpha = 0.0
 
         return
-
-    def __calculateX(self):
-        """
-        Calculate a new coord 'x' of the Pacman using the current 'alpha' value.
-        """
-        return self.__size * mt.cos(self.__alpha)
-    
-    def __calculateY(self):
-        """
-        Calculate a new coord 'y' of the Pacman using the current 'alpha' value.
-        """
-        return self.__size * mt.sin(self.__alpha)
 
     def __calculateAlpha(self):
         """
@@ -115,12 +98,13 @@ class Objeto(LTexture):
         glBindBuffer(GL_ARRAY_BUFFER,0)
 
         del vData
+        del indexBuffers
         return
 
     def initTextureData(self):
         self.textureDataBuffer = glGenBuffers(1)
         
-        vData = (Sprite*6)()
+        vData = (Sprite*self.numSprites)()
         for i in range(0,self.numSprites):
             #Lado superior esquerdo
             vData[i].coord[0].x = GLfloat(i*self.spriteCoordXSize)
@@ -146,7 +130,7 @@ class Objeto(LTexture):
         del vData
         return
 
-    def render(self, coordX, coordY):
+    def render(self):
         """
         Render the Dot in the screen.
 
@@ -158,10 +142,9 @@ class Objeto(LTexture):
         self.renderCount += 1
         if(self.renderCount % self.spriteSpeed == 0):
             self.nextSprite()
-        glTranslatef(coordX, coordY, 0)
-        # Renderizando um circulo com cor sólida, a partir da cor inicial ciano, utilizando tringulos
-        x = self.__calculateX()
-        y = self.__calculateY()
+        glTranslatef(self.coordX, self.coordY, 0)
+        if(self.rotacionar):
+            glRotatef(180,0,1,0)
 
         glBindTexture(GL_TEXTURE_2D, self.mTextureID)
 
@@ -178,7 +161,6 @@ class Objeto(LTexture):
         
         #glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, self.textureIndexBuffer[1])
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, self.vertexIndexBuffer)
-        #glColor3f(self.__color[0], self.__color[1], self.__color[2])
         glDrawElements(GL_QUADS, 4, GL_UNSIGNED_INT, None)
         
         glBindTexture(GL_TEXTURE_2D,0)
@@ -187,3 +169,38 @@ class Objeto(LTexture):
         glDisableClientState(GL_TEXTURE_COORD_ARRAY)
         glDisableClientState(GL_VERTEX_ARRAY)
 
+    def changeObj(self, objType, x, y):
+        self.__init__(objType, x, y)
+
+    def __returnObj(self, num):
+        if(num == 0):
+            return ["Objetos/shot.png", 1, 25]
+        elif(num == 1):
+            return ["Objetos/abobora.png", 6, 15]
+        elif(num == 2):
+            return ["Objetos/coin.png", 10, 15]
+        elif(num == 3):
+            return ["Objetos/cogumelo.png", 1, 15]
+        elif(num == 4):
+            return ["Objetos/tomato.png", 4, 15]
+        elif(num == 5):
+            return ["Objetos/strawberry.png", 6, 15]
+
+    def getStopRender(self):
+        return self.stopRender
+    def setStopRender(self, flag):
+        self.stopRender = flag
+    def getCoordX(self):
+        return self.coordX
+    def getCoordY(self):
+        return self.coordY
+    def setCoordX(self, newCoord):
+        self.coordX = newCoord
+    def setCoordY(self, newCoord):
+        self.coordY = newCoord
+    def getRotacionar(self):
+        return self.rotacionar
+    def setRotacionar(self, flag):
+        self.rotacionar = flag
+    def getImage(self):
+        return self.image

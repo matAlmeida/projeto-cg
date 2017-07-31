@@ -1,5 +1,4 @@
 """
-
 """
 import math as mt
 from LTexture import *
@@ -14,7 +13,6 @@ class Player(LTexture):
     def __init__(self, image, coordX, coordY, numSprites, spriteStop, size = 15):
         """
         Construct a new 'Pacman' object.
-
         :param size: The radius of the Dot
         """
         self.image = image
@@ -31,6 +29,11 @@ class Player(LTexture):
         self.__coordY = coordY
         self.__currentCoordY = coordY
         self.puloMax = coordY - 50
+        if(image == "players/mario.png"):
+            self.puloMax = coordY - 100
+        self.velocity = 6
+        if(image == "players/girl.png"):
+            self.velocity = 10
         self.pular = False
         self.puloSpeed = 3
         self.andando = True
@@ -133,13 +136,6 @@ class Player(LTexture):
         return
 
     def render(self):
-        """
-        Render the Dot in the screen.
-
-        :param coordX: The 'x' coordinate where the Dot will be rendered
-        :param coordY: The 'y' coordinate where the Dot will be rendered
-        """
-
         self.renderCount += 1
         if(self.renderCount % self.spriteSpeed == 0):
             self.nextSprite()
@@ -153,6 +149,10 @@ class Player(LTexture):
                 self.pular = False
         else:
             self.updateCoordY()
+
+        #Se sair da tela
+        if(self.__coordX < 0):
+            self.stopRender = True
 
 
         glBindTexture(GL_TEXTURE_2D, self.mTextureID)
@@ -181,7 +181,7 @@ class Player(LTexture):
         if(self.__currentCoordY < self.__coordY):
             self.__currentCoordY += self.puloSpeed
 
-    def changeCharacter(self, image, numSprites, coordX, coordY, size = 15):
+    def changeChapter(self, image, numSprites, coordX, coordY, size = 15):
         self.__init__(image, coordX, coordY, numSprites, self.spriteStop, size)
 
     def setCoordX(self, newCoord):
@@ -208,6 +208,8 @@ class Player(LTexture):
         self.pular = newFlag
     def setRotacionar(self, flag):
         self.rotacionar = flag
+    def getRotacionar(self):
+        return self.rotacionar
     def setDead(self, flag):
         self.dead = flag
     def getDead(self):
@@ -216,3 +218,11 @@ class Player(LTexture):
         return self.stopRender
     def setStopRender(self, flag):
         self.stopRender = flag
+    def getVelocity(self):
+        return self.velocity
+    def getImage(self):
+        return self.image
+    def setVelocity(self, val):
+        self.velocity = val
+    def getVelocity(self):
+        return self.velocity

@@ -29,10 +29,10 @@ class Player(LTexture):
         self.__coordY = coordY
         self.__currentCoordY = coordY
         self.puloMax = coordY - 50
-        if(image == "players/mario.png"):
+        if(image == "res/players/mario.png"):
             self.puloMax = coordY - 100
         self.velocity = 6
-        if(image == "players/girl.png"):
+        if(image == "res/players/girl.png"):
             self.velocity = 10
         self.pular = False
         self.puloSpeed = 3

@@ -196,33 +196,3 @@ class Player(LTexture):
         return self.__currentCoordY
     def setCurrentCoordY(self, newCoordY):
         self.__currentCoordY = newCoordY
-    def setAndando(self, flag):
-        self.andando = flag
-    def setDireita(self, flag):
-        self.direita = flag
-    def getDireita(self):
-        return self.direita
-    def getPuloMax(self):
-        return self.puloMax
-    def setPular(self, newFlag):
-        self.pular = newFlag
-    def setRotacionar(self, flag):
-        self.rotacionar = flag
-    def getRotacionar(self):
-        return self.rotacionar
-    def setDead(self, flag):
-        self.dead = flag
-    def getDead(self):
-        return self.dead
-    def getStopRender(self):
-        return self.stopRender
-    def setStopRender(self, flag):
-        self.stopRender = flag
-    def getVelocity(self):
-        return self.velocity
-    def getImage(self):
-        return self.image
-    def setVelocity(self, val):
-        self.velocity = val
-    def getVelocity(self):
-        return self.velocity

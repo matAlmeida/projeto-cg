@@ -43,7 +43,8 @@ def initGL():
 	return True
 
 def update():
-	pass
+	global game
+	game.update()
 
 def render():
 	global game

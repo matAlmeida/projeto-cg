@@ -42,6 +42,11 @@ class Game:
 
         self.theEnd = False
 
+        #Keys bool
+        self.aKey = False
+        self.dKey = False
+        self.wKey = False
+
     def __updateDistance(self):
         if(self.__distanceObjToDot < self.__eatAt):
             self.__updateDotCoord()
@@ -146,18 +151,19 @@ class Game:
         if(not self.__player1.dead):
             #se o usuario pressiona a
             if(key == 97):
-                self.__player1.andando = True
+                #self.__player1.andando = True
                 if(self.__player1.direita):
                     self.__player1.rotacionar = True
                 self.__player1.direita = False
-                self.__player1.setCoordX(self.__player1.getCoordX() - self.__player1.velocity)
+                #self.__player1.setCoordX(self.__player1.getCoordX() - self.__player1.velocity)
+                self.__player1.direction = -1
             #se o usuario pressiona d
             elif(key == 100):
-                self.__player1.andando = True
+                #self.__player1.andando = True
                 if(not self.__player1.direita):
                     self.__player1.rotacionar = False
                 self.__player1.direita = True
-                self.__player1.setCoordX(self.__player1.getCoordX() + self.__player1.velocity)
+                self.__player1.direction = 1
             #se o usuario pressiona w
             elif(key == 119):
                 self.__player1.pular = True
@@ -189,6 +195,8 @@ class Game:
             #MODO DEUS tecla T
             elif(key == 116):
                 self.__player1.changeChapter("res/players/transparent.png", 7, self.__player1.getCoordX(), self.__screenHeight - 57, 35)
+            else:
+                self.__player1.direction = 0
         #FIM DE JOGO - Tecla Enter
         elif(key == 13):
             self.theEnd = True
@@ -245,3 +253,6 @@ class Game:
 
     def getTheEnd(self):
         return self.theEnd
+
+    def update(self):
+        self.__player1.update()

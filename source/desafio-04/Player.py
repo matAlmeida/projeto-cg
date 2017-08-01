@@ -45,6 +45,8 @@ class Player(LTexture):
         LTexture.__init__(self)
         self.initVBO()
 
+        self.direction = 0
+
     def nextSprite(self):
         if self.andando:
             self.actualSprite += 1
@@ -208,3 +210,6 @@ class Player(LTexture):
 
     def setVelocity(self, val):
         self.velocity = val
+    
+    def update(self):
+        self.__coordX = self.__coordX + self.velocity*self.direction

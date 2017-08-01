@@ -46,38 +46,44 @@ def update():
 	pass
 
 def render():
-	# Limpando o buffer de cor
-	glClear(GL_COLOR_BUFFER_BIT)
+	global game
 
-	#Reiniciando a matriz Modelview
-	updateMatrix()
+	if(game.getTheEnd()):
+		del game
+		game = Game(SCREEN_WIDTH,SCREEN_HEIGHT)
+	else:
+		# Limpando o buffer de cor
+		glClear(GL_COLOR_BUFFER_BIT)
 
-	#Renderizando superficie
-	game.renderSuperficie(0,0)
+		#Reiniciando a matriz Modelview
+		updateMatrix()
 
-	#Reiniciando a matriz Modelview
-	updateMatrix()
+		#Renderizando superficie
+		game.renderSuperficie(0,0)
 
-	#Renderizando objeto
-	game.renderObjeto()
+		#Reiniciando a matriz Modelview
+		updateMatrix()
 
-	#Reiniciando a matriz Modelview
-	updateMatrix()
+		#Renderizando objeto
+		game.renderObjeto()
 
-	#Renderizando monstro
-	game.renderMonster()
+		#Reiniciando a matriz Modelview
+		updateMatrix()
 
-	#Reiniciando a matriz Modelview
-	updateMatrix()
+		#Renderizando monstro
+		game.renderMonster()
 
-	#Renderizando monstro
-	game.renderShot()
+		#Reiniciando a matriz Modelview
+		updateMatrix()
 
-	#Reiniciando a matriz Modelview
-	updateMatrix()
+		#Renderizando monstro
+		game.renderShot()
 
-	#Renderizando player 1
-	game.renderPlayer1()
+		#Reiniciando a matriz Modelview
+		updateMatrix()
+
+		#Renderizando player 1
+		game.renderPlayer1()
 	
 
 	#Atualizando tela

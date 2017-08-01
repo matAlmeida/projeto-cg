@@ -1,6 +1,3 @@
-"""
-"""
-
 import math as mt
 import random as rd
 from Pacman import *
@@ -48,6 +45,8 @@ class Game:
 
         self.timeMonsters = 0
         self.__eatAt = 1
+
+        self.theEnd = False
 
     def __updateDistance(self):
         if(self.__distanceObjToDot < self.__eatAt):
@@ -191,6 +190,9 @@ class Game:
                 self.__player1.changeChapter("players/droid.png", 10, self.__player1.getCoordX(), self.__screenHeight - 60, 35)
             elif(key == 116): #T
                 self.__player1.changeChapter("players/transparent.png", 7, self.__player1.getCoordX(), self.__screenHeight - 57, 35)
+        #FIM DE JOGO - Tecla Enter
+        elif(key == 13):
+            self.theEnd = True
 
     def chooseMonster(self, op, dead):
         if(op == 1):
@@ -241,3 +243,6 @@ class Game:
             else:
                 self.__monster.changeChapter("monsters/eye.png", 3, self.__screenWidth, self.__screenHeight - 70, 20)
                 self.__monster.setVelocity(3)
+
+    def getTheEnd(self):
+        return self.theEnd

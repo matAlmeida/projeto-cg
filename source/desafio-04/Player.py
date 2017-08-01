@@ -29,10 +29,10 @@ class Player(LTexture):
         self.__coordY = coordY
         self.__currentCoordY = coordY
         self.puloMax = coordY - 50
-        if(image == "players/mario.png"):
+        if(image == "res/players/mario.png"):
             self.puloMax = coordY - 100
         self.velocity = 6
-        if(image == "players/girl.png"):
+        if(image == "res/players/girl.png"):
             self.velocity = 10
         self.pular = False
         self.puloSpeed = 3
@@ -46,17 +46,17 @@ class Player(LTexture):
         self.initVBO()
 
     def nextSprite(self):
-        if(self.andando):
+        if self.andando:
             self.actualSprite += 1
         else:
             self.actualSprite = self.spriteStop
-        if(self.actualSprite >= self.numSprites):
-            if(self.dead):
+        if self.actualSprite >= self.numSprites:
+            if self.dead:
                 self.stopRender = True
             else:
                 self.actualSprite = 0
             
-        if(self.renderCount > 60):
+        if self.renderCount > 60:
             self.renderCount = 1
 
     def initVBO(self):
@@ -108,9 +108,9 @@ class Player(LTexture):
 
     def initTextureData(self):
         self.textureDataBuffer = glGenBuffers(1)
-        
+
         vData = (Sprite*self.numSprites)()
-        for i in range(0,self.numSprites):
+        for i in range(0, self.numSprites):
             #Lado superior esquerdo
             vData[i].coord[0].x = GLfloat(i*self.spriteCoordXSize)
             vData[i].coord[0].y = GLfloat(0)
@@ -130,28 +130,29 @@ class Player(LTexture):
         glBindBuffer(GL_ARRAY_BUFFER, self.textureDataBuffer)
         glBufferData(GL_ARRAY_BUFFER, sizeof(vData), vData, GL_STATIC_DRAW)
 
-        glBindBuffer(GL_ARRAY_BUFFER,0)
-        
+        glBindBuffer(GL_ARRAY_BUFFER, 0)
+
         del vData
         return
 
     def render(self):
         self.renderCount += 1
-        if(self.renderCount % self.spriteSpeed == 0):
+        if self.renderCount % self.spriteSpeed == 0:
             self.nextSprite()
         glTranslatef(self.__coordX, self.__currentCoordY, 0)
-        if(self.rotacionar):
-            glRotatef(180,0,1,0)
 
-        if(self.pular):
+        if self.rotacionar:
+            glRotatef(180, 0, 1, 0)
+
+        if self.pular:
             self.__currentCoordY -= self.puloSpeed
-            if(self.__currentCoordY < self.puloMax):
+            if self.__currentCoordY < self.puloMax:
                 self.pular = False
         else:
             self.updateCoordY()
 
         #Se sair da tela
-        if(self.__coordX < 0):
+        if self.__coordX < 0:
             self.stopRender = True
 
 
@@ -178,51 +179,32 @@ class Player(LTexture):
         glDisableClientState(GL_VERTEX_ARRAY)
 
     def updateCoordY(self):
-        if(self.__currentCoordY < self.__coordY):
+        if self.__currentCoordY < self.__coordY:
             self.__currentCoordY += self.puloSpeed
 
-    def changeChapter(self, image, numSprites, coordX, coordY, size = 15):
+    def changeChapter(self, image, numSprites, coordX, coordY, size=15):
         self.__init__(image, coordX, coordY, numSprites, self.spriteStop, size)
+
+    def getCoordX(self):
+        return self.__coordX
 
     def setCoordX(self, newCoord):
         self.__coordX = newCoord
-    def getCoordX(self):
-        return self.__coordX
+
     def setCoordY(self, newCoord):
         self.__coordY = newCoord
+
     def getCoordY(self):
         return self.__coordY
+
     def getCurrentCoordY(self):
         return self.__currentCoordY
+
     def setCurrentCoordY(self, newCoordY):
         self.__currentCoordY = newCoordY
-    def setAndando(self, flag):
-        self.andando = flag
-    def setDireita(self, flag):
-        self.direita = flag
-    def getDireita(self):
-        return self.direita
-    def getPuloMax(self):
-        return self.puloMax
-    def setPular(self, newFlag):
-        self.pular = newFlag
-    def setRotacionar(self, flag):
-        self.rotacionar = flag
-    def getRotacionar(self):
-        return self.rotacionar
-    def setDead(self, flag):
-        self.dead = flag
-    def getDead(self):
-        return self.dead
-    def getStopRender(self):
-        return self.stopRender
-    def setStopRender(self, flag):
-        self.stopRender = flag
-    def getVelocity(self):
-        return self.velocity
+
     def getImage(self):
         return self.image
+
     def setVelocity(self, val):
         self.velocity = val
-    def getVelocity(self):
-        return self.velocity

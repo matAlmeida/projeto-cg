@@ -174,17 +174,17 @@ class Objeto(LTexture):
 
     def __returnObj(self, num):
         if(num == 0):
-            return ["Objetos/shot.png", 1, 25]
+            return ["res/objetos/shot.png", 1, 25]
         elif(num == 1):
-            return ["Objetos/abobora.png", 6, 15]
+            return ["res/objetos/abobora.png", 6, 15]
         elif(num == 2):
-            return ["Objetos/coin.png", 10, 15]
+            return ["res/objetos/coin.png", 10, 15]
         elif(num == 3):
-            return ["Objetos/cogumelo.png", 1, 15]
+            return ["res/objetos/cogumelo.png", 1, 15]
         elif(num == 4):
-            return ["Objetos/tomato.png", 4, 15]
+            return ["res/objetos/tomato.png", 4, 15]
         elif(num == 5):
-            return ["Objetos/strawberry.png", 6, 15]
+            return ["res/objetos/strawberry.png", 6, 15]
 
     def getStopRender(self):
         return self.stopRender

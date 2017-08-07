@@ -21,6 +21,7 @@ def main():
 
 	#Definindo tecla
 	glutKeyboardFunc(handleKeys)
+	glutKeyboardUpFunc(handleUpKeys)
 
 	#Setando a função de renderização
 	glutDisplayFunc(render)

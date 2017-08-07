@@ -151,19 +151,10 @@ class Game:
         if(not self.__player1.dead):
             #se o usuario pressiona a
             if(key == 97):
-                #self.__player1.andando = True
-                if(self.__player1.direita):
-                    self.__player1.rotacionar = True
-                self.__player1.direita = False
-                #self.__player1.setCoordX(self.__player1.getCoordX() - self.__player1.velocity)
-                self.__player1.direction = -1
+                self.aKey = True
             #se o usuario pressiona d
             elif(key == 100):
-                #self.__player1.andando = True
-                if(not self.__player1.direita):
-                    self.__player1.rotacionar = False
-                self.__player1.direita = True
-                self.__player1.direction = 1
+                self.dKey = True
             #se o usuario pressiona w
             elif(key == 119):
                 self.__player1.pular = True
@@ -200,6 +191,14 @@ class Game:
         #FIM DE JOGO - Tecla Enter
         elif(key == 13):
             self.theEnd = True
+    
+    def keysUp(self, key):
+        key = ord(key)
+
+        if(key == 97):
+            self.aKey = False
+        elif(key == 100):
+            self.dKey = False
 
     def chooseMonster(self, op, dead):
         if(op == 1):
@@ -255,4 +254,18 @@ class Game:
         return self.theEnd
 
     def update(self):
+        if(self.aKey):
+            if(self.dKey):
+                self.__player1.direction = 0
+            else:
+                if not self.__player1.rotacionar:
+                    self.__player1.rotacionar = True
+                self.__player1.direction = -1
+        elif(self.dKey):
+            if self.__player1.rotacionar:
+                self.__player1.rotacionar = False
+            self.__player1.direction = 1
+        else:
+            self.__player1.direction = 0
+        
         self.__player1.update()

@@ -101,6 +101,10 @@ def runMainLoop(val):
 def handleKeys(key,x,y):
 	game.callHandleKeys(key)
 
+def handleUpKeys(key,x,y):
+	global game
+	game.keysUp(key)
+
 def updateMatrix():
 	#Reiniciando a matriz Modelview
 	glMatrixMode(GL_MODELVIEW)
